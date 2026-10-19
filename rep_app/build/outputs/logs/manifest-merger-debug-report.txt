@@ -1,0 +1,362 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml:2:1-26:12
+INJECTED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml:2:1-26:12
+INJECTED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml:2:1-26:12
+INJECTED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml:2:1-26:12
+MERGED from [androidx.compose.material3:material3-android:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/1acb3e25bbe1d8f99e57dc11a1ff71b4/transformed/material3/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.animation:animation-core-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/948d75cb6053508631323d48b2d2f307/transformed/animation-core/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-ripple-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/a09930a49a396a5eb126bc900ebc45c8/transformed/material-ripple/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.animation:animation-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/16c03cd4aea1c5725213fbe14964c0ad/transformed/animation/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/70904fc608f4ac1d5da85838d4ecee9e/transformed/foundation-layout/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.foundation:foundation-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/5972d5e3a4e6cb4d9020ba0ce59cd22b/transformed/foundation/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-unit-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/64fe7d1608899f44aa55976d147ef7d1/transformed/ui-unit/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-geometry-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/f392ff0fa1acb98a54b9e976d3a584ef/transformed/ui-geometry/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-util-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/447bf72ad5cb32683a4743ac22c5013b/transformed/ui-util/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-text-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/1af14f4bffbd0af5e72ef078abbdbc70/transformed/ui-text/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/7cae74dc32ef303d5e1b2a627c845edb/transformed/ui-tooling-preview/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.ui:ui-graphics-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/fd927b0f4912e8296ee27f711f12c47a/transformed/ui-graphics/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.navigationevent:navigationevent-android:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/442c16f5dfe3706dc1783f1c01f37755/transformed/navigationevent/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.navigationevent:navigationevent-compose-android:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/ba24571dca22f7f8194c13d17dd70a35/transformed/navigationevent-compose/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/af641bd7745fb0f9899870b83bc7d6a4/transformed/customview-poolingcontainer-1.0.0/AndroidManifest.xml:17:1-23:12
+MERGED from [androidx.emoji2:emoji2:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/300dbc11c412287d768c66faac6d4fcb/transformed/emoji2-1.4.0/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.transition:transition:1.6.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/09f2c56db05d4e3461f7da950104f81d/transformed/transition-1.6.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/513629b4e3f262c70b641189c5cd45e3/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/f27f56d4ca7018fa3e8f4c4893b81d0a/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/2e5d844e0bd888ddca73b154bc5bbcb9/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/708ae0cc18e42be53efa4ca42f04b7e0/transformed/lifecycle-livedata-core-ktx-2.11.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/cce9174af03a54ec58cb1fe742bbafab/transformed/lifecycle-livedata-2.11.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/4f034b7fa1f5b88f4f53b77b39b93882/transformed/lifecycle-process-2.11.0/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/6e002cfbbebbe12e7f1a5386bec93db7/transformed/lifecycle-livedata-core-2.11.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/e15a76636704bdfc09c59dfe867e4be7/transformed/lifecycle-viewmodel-2.11.0/AndroidManifest.xml:2:1-5:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/24df118b57fe0a29e04ad18affb11cd3/transformed/lifecycle-viewmodel/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.runtime:runtime-retain-android:1.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/0b7929a69103994a24ade0ec4201ebb8/transformed/runtime-retain/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.runtime:runtime-annotation-android:1.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/9b7d5907e675e9abc69ff5175ee0bd4c/transformed/runtime-annotation/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.runtime:runtime-android:1.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/020d51dc524c3af5624f2f79baa2d293/transformed/runtime/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/f5d39d8387726cb66d5c3aab5f80b2df/transformed/runtime-saveable/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.savedstate:savedstate-compose-android:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/70afa5182e4c460f7ba1864894815ac5/transformed/savedstate-compose/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.savedstate:savedstate-ktx:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/58d598a1d5ae8f0f2167823ea106fd8b/transformed/savedstate-ktx-1.4.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.savedstate:savedstate-android:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/866a88cc1b9ef3d08bb335e2dcdececf/transformed/savedstate/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/c89d4960e9357d7a283e9344a787dd1e/transformed/lifecycle-viewmodel-savedstate/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core-ktx:1.19.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/0106995a856f59428cd47be75e0c531c/transformed/core-ktx-1.19.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.autofill:autofill:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/be4922047dae6107069d635785b3c6b8/transformed/autofill-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.window:window-core-android:1.5.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/e5987280a8c7e0359766afbf0d54a662/transformed/window-core/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.window:window:1.5.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/ece05e6ee20579337c6cb5c5a693ce59/transformed/window-1.5.0/AndroidManifest.xml:17:1-31:12
+MERGED from [androidx.graphics:graphics-path:1.0.1] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/1675559e85ecdaa7d85c7ecc52e79392/transformed/graphics-path-1.0.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.core:core:1.19.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/745956de6c95ea024a9cec774032face/transformed/core-1.19.0/AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/e2f37ad6dd26863ce55c2b53dcb5abe8/transformed/lifecycle-runtime/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/69e39a3ff2618c24903e8f9fd515078b/transformed/lifecycle-viewmodel-ktx-2.11.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/24234b031b6b71440e7b45ded0682d03/transformed/lifecycle-runtime-ktx/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose-android:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/d2845ed1b527a3bb6705af698b49e997/transformed/lifecycle-runtime-compose/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/067cc6bad377bf7db8e7e23e20409b91/transformed/ui/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.activity:activity-ktx:1.13.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/f75ce5fa00bc830a3ac20d79bd9272fb/transformed/activity-ktx-1.13.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.activity:activity:1.13.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/ccf77887eaa0819c8a0012de73a7fc62/transformed/activity-1.13.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity-compose:1.13.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/2d30b3e01ab372d84307adaa8646850a/transformed/activity-compose-1.13.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.core:core-viewtree:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/6c88a19c0a82aed501fc46370e7a8656/transformed/core-viewtree-1.0.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/1807430f3317c491ebc8859a0b1ee3f1/transformed/annotation-experimental-1.4.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/de9fb97a0257585bc368e3564dfa0265/transformed/profileinstaller-1.4.0/AndroidManifest.xml:17:1-55:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/869ac67f6cf66012d8a9ef013e3a5ffa/transformed/startup-runtime-1.1.1/AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.2.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/4d25fc3b0740bcd85a1b136d647860df/transformed/tracing-1.2.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/5c26f8cb5fb40a2592deaf35055cbffa/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/f1e52c3093dd4d65fdaa170bed8f11fb/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/d39b99ff9287d5e525c71d92d04e8e56/transformed/core-runtime-2.2.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/287a41b3dc03a46818a898b08c9e841b/transformed/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/e8739e88ef74262d7bd136065d755647/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/f8d6f93a11d8226596cdf8d0d24462ab/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
+	package
+		INJECTED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml:4:5-67
+	android:name
+		ADDED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml:4:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml:5:5-79
+	android:name
+		ADDED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml:5:22-76
+application
+ADDED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml:7:5-24:19
+INJECTED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml:7:5-24:19
+MERGED from [androidx.emoji2:emoji2:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/300dbc11c412287d768c66faac6d4fcb/transformed/emoji2-1.4.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/300dbc11c412287d768c66faac6d4fcb/transformed/emoji2-1.4.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/4f034b7fa1f5b88f4f53b77b39b93882/transformed/lifecycle-process-2.11.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/4f034b7fa1f5b88f4f53b77b39b93882/transformed/lifecycle-process-2.11.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.window:window:1.5.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/ece05e6ee20579337c6cb5c5a693ce59/transformed/window-1.5.0/AndroidManifest.xml:22:5-29:19
+MERGED from [androidx.window:window:1.5.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/ece05e6ee20579337c6cb5c5a693ce59/transformed/window-1.5.0/AndroidManifest.xml:22:5-29:19
+MERGED from [androidx.core:core:1.19.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/745956de6c95ea024a9cec774032face/transformed/core-1.19.0/AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.19.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/745956de6c95ea024a9cec774032face/transformed/core-1.19.0/AndroidManifest.xml:28:5-89
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/de9fb97a0257585bc368e3564dfa0265/transformed/profileinstaller-1.4.0/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/de9fb97a0257585bc368e3564dfa0265/transformed/profileinstaller-1.4.0/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/869ac67f6cf66012d8a9ef013e3a5ffa/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/869ac67f6cf66012d8a9ef013e3a5ffa/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/f1e52c3093dd4d65fdaa170bed8f11fb/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/f1e52c3093dd4d65fdaa170bed8f11fb/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+	android:extractNativeLibs
+		INJECTED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.19.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/745956de6c95ea024a9cec774032face/transformed/core-1.19.0/AndroidManifest.xml:28:18-86
+	android:supportsRtl
+		ADDED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml:12:9-35
+	android:label
+		ADDED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml:10:9-41
+	android:roundIcon
+		ADDED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml:11:9-48
+	android:icon
+		ADDED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml:9:9-43
+	android:allowBackup
+		ADDED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml:8:9-35
+	android:theme
+		ADDED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml:13:9-41
+	android:usesCleartextTraffic
+		ADDED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml:14:9-44
+activity#com.example.star_link.rep.RepMainActivity
+ADDED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml:15:9-23:20
+	android:label
+		ADDED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml:18:13-45
+	android:exported
+		ADDED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml:17:13-36
+	android:name
+		ADDED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml:16:13-44
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml:19:13-22:29
+action#android.intent.action.MAIN
+ADDED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml:20:17-69
+	android:name
+		ADDED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml:20:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml:21:17-77
+	android:name
+		ADDED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml:21:27-74
+uses-sdk
+INJECTED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml
+INJECTED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml
+MERGED from [androidx.compose.material3:material3-android:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/1acb3e25bbe1d8f99e57dc11a1ff71b4/transformed/material3/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material3:material3-android:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/1acb3e25bbe1d8f99e57dc11a1ff71b4/transformed/material3/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.animation:animation-core-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/948d75cb6053508631323d48b2d2f307/transformed/animation-core/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-core-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/948d75cb6053508631323d48b2d2f307/transformed/animation-core/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-ripple-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/a09930a49a396a5eb126bc900ebc45c8/transformed/material-ripple/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-ripple-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/a09930a49a396a5eb126bc900ebc45c8/transformed/material-ripple/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/16c03cd4aea1c5725213fbe14964c0ad/transformed/animation/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/16c03cd4aea1c5725213fbe14964c0ad/transformed/animation/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/70904fc608f4ac1d5da85838d4ecee9e/transformed/foundation-layout/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/70904fc608f4ac1d5da85838d4ecee9e/transformed/foundation-layout/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/5972d5e3a4e6cb4d9020ba0ce59cd22b/transformed/foundation/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/5972d5e3a4e6cb4d9020ba0ce59cd22b/transformed/foundation/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-unit-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/64fe7d1608899f44aa55976d147ef7d1/transformed/ui-unit/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-unit-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/64fe7d1608899f44aa55976d147ef7d1/transformed/ui-unit/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-geometry-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/f392ff0fa1acb98a54b9e976d3a584ef/transformed/ui-geometry/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-geometry-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/f392ff0fa1acb98a54b9e976d3a584ef/transformed/ui-geometry/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-util-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/447bf72ad5cb32683a4743ac22c5013b/transformed/ui-util/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-util-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/447bf72ad5cb32683a4743ac22c5013b/transformed/ui-util/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-text-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/1af14f4bffbd0af5e72ef078abbdbc70/transformed/ui-text/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-text-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/1af14f4bffbd0af5e72ef078abbdbc70/transformed/ui-text/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/7cae74dc32ef303d5e1b2a627c845edb/transformed/ui-tooling-preview/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/7cae74dc32ef303d5e1b2a627c845edb/transformed/ui-tooling-preview/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-graphics-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/fd927b0f4912e8296ee27f711f12c47a/transformed/ui-graphics/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-graphics-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/fd927b0f4912e8296ee27f711f12c47a/transformed/ui-graphics/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigationevent:navigationevent-android:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/442c16f5dfe3706dc1783f1c01f37755/transformed/navigationevent/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigationevent:navigationevent-android:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/442c16f5dfe3706dc1783f1c01f37755/transformed/navigationevent/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigationevent:navigationevent-compose-android:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/ba24571dca22f7f8194c13d17dd70a35/transformed/navigationevent-compose/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigationevent:navigationevent-compose-android:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/ba24571dca22f7f8194c13d17dd70a35/transformed/navigationevent-compose/AndroidManifest.xml:5:5-44
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/af641bd7745fb0f9899870b83bc7d6a4/transformed/customview-poolingcontainer-1.0.0/AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/af641bd7745fb0f9899870b83bc7d6a4/transformed/customview-poolingcontainer-1.0.0/AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.emoji2:emoji2:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/300dbc11c412287d768c66faac6d4fcb/transformed/emoji2-1.4.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/300dbc11c412287d768c66faac6d4fcb/transformed/emoji2-1.4.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.transition:transition:1.6.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/09f2c56db05d4e3461f7da950104f81d/transformed/transition-1.6.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.transition:transition:1.6.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/09f2c56db05d4e3461f7da950104f81d/transformed/transition-1.6.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/513629b4e3f262c70b641189c5cd45e3/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/513629b4e3f262c70b641189c5cd45e3/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/f27f56d4ca7018fa3e8f4c4893b81d0a/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/f27f56d4ca7018fa3e8f4c4893b81d0a/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/2e5d844e0bd888ddca73b154bc5bbcb9/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/2e5d844e0bd888ddca73b154bc5bbcb9/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/708ae0cc18e42be53efa4ca42f04b7e0/transformed/lifecycle-livedata-core-ktx-2.11.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/708ae0cc18e42be53efa4ca42f04b7e0/transformed/lifecycle-livedata-core-ktx-2.11.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/cce9174af03a54ec58cb1fe742bbafab/transformed/lifecycle-livedata-2.11.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/cce9174af03a54ec58cb1fe742bbafab/transformed/lifecycle-livedata-2.11.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/4f034b7fa1f5b88f4f53b77b39b93882/transformed/lifecycle-process-2.11.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/4f034b7fa1f5b88f4f53b77b39b93882/transformed/lifecycle-process-2.11.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/6e002cfbbebbe12e7f1a5386bec93db7/transformed/lifecycle-livedata-core-2.11.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/6e002cfbbebbe12e7f1a5386bec93db7/transformed/lifecycle-livedata-core-2.11.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/e15a76636704bdfc09c59dfe867e4be7/transformed/lifecycle-viewmodel-2.11.0/AndroidManifest.xml:4:5-43
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/e15a76636704bdfc09c59dfe867e4be7/transformed/lifecycle-viewmodel-2.11.0/AndroidManifest.xml:4:5-43
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/24df118b57fe0a29e04ad18affb11cd3/transformed/lifecycle-viewmodel/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/24df118b57fe0a29e04ad18affb11cd3/transformed/lifecycle-viewmodel/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.runtime:runtime-retain-android:1.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/0b7929a69103994a24ade0ec4201ebb8/transformed/runtime-retain/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-retain-android:1.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/0b7929a69103994a24ade0ec4201ebb8/transformed/runtime-retain/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-annotation-android:1.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/9b7d5907e675e9abc69ff5175ee0bd4c/transformed/runtime-annotation/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-annotation-android:1.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/9b7d5907e675e9abc69ff5175ee0bd4c/transformed/runtime-annotation/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-android:1.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/020d51dc524c3af5624f2f79baa2d293/transformed/runtime/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-android:1.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/020d51dc524c3af5624f2f79baa2d293/transformed/runtime/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/f5d39d8387726cb66d5c3aab5f80b2df/transformed/runtime-saveable/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/f5d39d8387726cb66d5c3aab5f80b2df/transformed/runtime-saveable/AndroidManifest.xml:5:5-44
+MERGED from [androidx.savedstate:savedstate-compose-android:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/70afa5182e4c460f7ba1864894815ac5/transformed/savedstate-compose/AndroidManifest.xml:5:5-44
+MERGED from [androidx.savedstate:savedstate-compose-android:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/70afa5182e4c460f7ba1864894815ac5/transformed/savedstate-compose/AndroidManifest.xml:5:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/58d598a1d5ae8f0f2167823ea106fd8b/transformed/savedstate-ktx-1.4.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/58d598a1d5ae8f0f2167823ea106fd8b/transformed/savedstate-ktx-1.4.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.savedstate:savedstate-android:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/866a88cc1b9ef3d08bb335e2dcdececf/transformed/savedstate/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-android:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/866a88cc1b9ef3d08bb335e2dcdececf/transformed/savedstate/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/c89d4960e9357d7a283e9344a787dd1e/transformed/lifecycle-viewmodel-savedstate/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/c89d4960e9357d7a283e9344a787dd1e/transformed/lifecycle-viewmodel-savedstate/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core-ktx:1.19.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/0106995a856f59428cd47be75e0c531c/transformed/core-ktx-1.19.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.19.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/0106995a856f59428cd47be75e0c531c/transformed/core-ktx-1.19.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.autofill:autofill:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/be4922047dae6107069d635785b3c6b8/transformed/autofill-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.autofill:autofill:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/be4922047dae6107069d635785b3c6b8/transformed/autofill-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.window:window-core-android:1.5.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/e5987280a8c7e0359766afbf0d54a662/transformed/window-core/AndroidManifest.xml:5:5-44
+MERGED from [androidx.window:window-core-android:1.5.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/e5987280a8c7e0359766afbf0d54a662/transformed/window-core/AndroidManifest.xml:5:5-44
+MERGED from [androidx.window:window:1.5.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/ece05e6ee20579337c6cb5c5a693ce59/transformed/window-1.5.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.window:window:1.5.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/ece05e6ee20579337c6cb5c5a693ce59/transformed/window-1.5.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.graphics:graphics-path:1.0.1] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/1675559e85ecdaa7d85c7ecc52e79392/transformed/graphics-path-1.0.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.graphics:graphics-path:1.0.1] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/1675559e85ecdaa7d85c7ecc52e79392/transformed/graphics-path-1.0.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core:1.19.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/745956de6c95ea024a9cec774032face/transformed/core-1.19.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.19.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/745956de6c95ea024a9cec774032face/transformed/core-1.19.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/e2f37ad6dd26863ce55c2b53dcb5abe8/transformed/lifecycle-runtime/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/e2f37ad6dd26863ce55c2b53dcb5abe8/transformed/lifecycle-runtime/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/69e39a3ff2618c24903e8f9fd515078b/transformed/lifecycle-viewmodel-ktx-2.11.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/69e39a3ff2618c24903e8f9fd515078b/transformed/lifecycle-viewmodel-ktx-2.11.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/24234b031b6b71440e7b45ded0682d03/transformed/lifecycle-runtime-ktx/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/24234b031b6b71440e7b45ded0682d03/transformed/lifecycle-runtime-ktx/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose-android:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/d2845ed1b527a3bb6705af698b49e997/transformed/lifecycle-runtime-compose/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose-android:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/d2845ed1b527a3bb6705af698b49e997/transformed/lifecycle-runtime-compose/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/067cc6bad377bf7db8e7e23e20409b91/transformed/ui/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-android:1.10.4] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/067cc6bad377bf7db8e7e23e20409b91/transformed/ui/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-ktx:1.13.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/f75ce5fa00bc830a3ac20d79bd9272fb/transformed/activity-ktx-1.13.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-ktx:1.13.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/f75ce5fa00bc830a3ac20d79bd9272fb/transformed/activity-ktx-1.13.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity:1.13.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/ccf77887eaa0819c8a0012de73a7fc62/transformed/activity-1.13.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.13.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/ccf77887eaa0819c8a0012de73a7fc62/transformed/activity-1.13.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity-compose:1.13.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/2d30b3e01ab372d84307adaa8646850a/transformed/activity-compose-1.13.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-compose:1.13.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/2d30b3e01ab372d84307adaa8646850a/transformed/activity-compose-1.13.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-viewtree:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/6c88a19c0a82aed501fc46370e7a8656/transformed/core-viewtree-1.0.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-viewtree:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/6c88a19c0a82aed501fc46370e7a8656/transformed/core-viewtree-1.0.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/1807430f3317c491ebc8859a0b1ee3f1/transformed/annotation-experimental-1.4.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/1807430f3317c491ebc8859a0b1ee3f1/transformed/annotation-experimental-1.4.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/de9fb97a0257585bc368e3564dfa0265/transformed/profileinstaller-1.4.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/de9fb97a0257585bc368e3564dfa0265/transformed/profileinstaller-1.4.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/869ac67f6cf66012d8a9ef013e3a5ffa/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/869ac67f6cf66012d8a9ef013e3a5ffa/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.2.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/4d25fc3b0740bcd85a1b136d647860df/transformed/tracing-1.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.tracing:tracing:1.2.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/4d25fc3b0740bcd85a1b136d647860df/transformed/tracing-1.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/5c26f8cb5fb40a2592deaf35055cbffa/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/5c26f8cb5fb40a2592deaf35055cbffa/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/f1e52c3093dd4d65fdaa170bed8f11fb/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/f1e52c3093dd4d65fdaa170bed8f11fb/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/d39b99ff9287d5e525c71d92d04e8e56/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/d39b99ff9287d5e525c71d92d04e8e56/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/287a41b3dc03a46818a898b08c9e841b/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/287a41b3dc03a46818a898b08c9e841b/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/e8739e88ef74262d7bd136065d755647/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/e8739e88ef74262d7bd136065d755647/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/f8d6f93a11d8226596cdf8d0d24462ab/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/f8d6f93a11d8226596cdf8d0d24462ab/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+	android:targetSdkVersion
+		INJECTED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/spacerabbit/AndroidStudioProjects/starlink/rep_app/src/main/AndroidManifest.xml
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.emoji2:emoji2:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/300dbc11c412287d768c66faac6d4fcb/transformed/emoji2-1.4.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/4f034b7fa1f5b88f4f53b77b39b93882/transformed/lifecycle-process-2.11.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/4f034b7fa1f5b88f4f53b77b39b93882/transformed/lifecycle-process-2.11.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/de9fb97a0257585bc368e3564dfa0265/transformed/profileinstaller-1.4.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/de9fb97a0257585bc368e3564dfa0265/transformed/profileinstaller-1.4.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/869ac67f6cf66012d8a9ef013e3a5ffa/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/869ac67f6cf66012d8a9ef013e3a5ffa/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.emoji2:emoji2:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/300dbc11c412287d768c66faac6d4fcb/transformed/emoji2-1.4.0/AndroidManifest.xml:28:13-31
+	android:authorities
+		ADDED from [androidx.emoji2:emoji2:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/300dbc11c412287d768c66faac6d4fcb/transformed/emoji2-1.4.0/AndroidManifest.xml:26:13-68
+	android:exported
+		ADDED from [androidx.emoji2:emoji2:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/300dbc11c412287d768c66faac6d4fcb/transformed/emoji2-1.4.0/AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/300dbc11c412287d768c66faac6d4fcb/transformed/emoji2-1.4.0/AndroidManifest.xml:25:13-67
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [androidx.emoji2:emoji2:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/300dbc11c412287d768c66faac6d4fcb/transformed/emoji2-1.4.0/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.emoji2:emoji2:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/300dbc11c412287d768c66faac6d4fcb/transformed/emoji2-1.4.0/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/300dbc11c412287d768c66faac6d4fcb/transformed/emoji2-1.4.0/AndroidManifest.xml:30:17-75
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/4f034b7fa1f5b88f4f53b77b39b93882/transformed/lifecycle-process-2.11.0/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/4f034b7fa1f5b88f4f53b77b39b93882/transformed/lifecycle-process-2.11.0/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.11.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/4f034b7fa1f5b88f4f53b77b39b93882/transformed/lifecycle-process-2.11.0/AndroidManifest.xml:30:17-78
+uses-library#androidx.window.extensions
+ADDED from [androidx.window:window:1.5.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/ece05e6ee20579337c6cb5c5a693ce59/transformed/window-1.5.0/AndroidManifest.xml:23:9-25:40
+	android:required
+		ADDED from [androidx.window:window:1.5.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/ece05e6ee20579337c6cb5c5a693ce59/transformed/window-1.5.0/AndroidManifest.xml:25:13-37
+	android:name
+		ADDED from [androidx.window:window:1.5.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/ece05e6ee20579337c6cb5c5a693ce59/transformed/window-1.5.0/AndroidManifest.xml:24:13-54
+uses-library#androidx.window.sidecar
+ADDED from [androidx.window:window:1.5.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/ece05e6ee20579337c6cb5c5a693ce59/transformed/window-1.5.0/AndroidManifest.xml:26:9-28:40
+	android:required
+		ADDED from [androidx.window:window:1.5.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/ece05e6ee20579337c6cb5c5a693ce59/transformed/window-1.5.0/AndroidManifest.xml:28:13-37
+	android:name
+		ADDED from [androidx.window:window:1.5.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/ece05e6ee20579337c6cb5c5a693ce59/transformed/window-1.5.0/AndroidManifest.xml:27:13-51
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.19.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/745956de6c95ea024a9cec774032face/transformed/core-1.19.0/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.19.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/745956de6c95ea024a9cec774032face/transformed/core-1.19.0/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.19.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/745956de6c95ea024a9cec774032face/transformed/core-1.19.0/AndroidManifest.xml:23:9-81
+permission#com.example.star_link.rep.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.19.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/745956de6c95ea024a9cec774032face/transformed/core-1.19.0/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.19.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/745956de6c95ea024a9cec774032face/transformed/core-1.19.0/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.19.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/745956de6c95ea024a9cec774032face/transformed/core-1.19.0/AndroidManifest.xml:23:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.19.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/745956de6c95ea024a9cec774032face/transformed/core-1.19.0/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.19.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/745956de6c95ea024a9cec774032face/transformed/core-1.19.0/AndroidManifest.xml:26:22-94
+uses-permission#com.example.star_link.rep.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.19.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/745956de6c95ea024a9cec774032face/transformed/core-1.19.0/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.19.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/745956de6c95ea024a9cec774032face/transformed/core-1.19.0/AndroidManifest.xml:26:22-94
+meta-data#androidx.profileinstaller.ProfileInstallerInitializer
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/de9fb97a0257585bc368e3564dfa0265/transformed/profileinstaller-1.4.0/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/de9fb97a0257585bc368e3564dfa0265/transformed/profileinstaller-1.4.0/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/de9fb97a0257585bc368e3564dfa0265/transformed/profileinstaller-1.4.0/AndroidManifest.xml:30:17-85
+receiver#androidx.profileinstaller.ProfileInstallReceiver
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/de9fb97a0257585bc368e3564dfa0265/transformed/profileinstaller-1.4.0/AndroidManifest.xml:34:9-52:20
+	android:enabled
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/de9fb97a0257585bc368e3564dfa0265/transformed/profileinstaller-1.4.0/AndroidManifest.xml:37:13-35
+	android:exported
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/de9fb97a0257585bc368e3564dfa0265/transformed/profileinstaller-1.4.0/AndroidManifest.xml:38:13-36
+	android:permission
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/de9fb97a0257585bc368e3564dfa0265/transformed/profileinstaller-1.4.0/AndroidManifest.xml:39:13-57
+	android:directBootAware
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/de9fb97a0257585bc368e3564dfa0265/transformed/profileinstaller-1.4.0/AndroidManifest.xml:36:13-44
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/de9fb97a0257585bc368e3564dfa0265/transformed/profileinstaller-1.4.0/AndroidManifest.xml:35:13-76
+intent-filter#action:name:androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/de9fb97a0257585bc368e3564dfa0265/transformed/profileinstaller-1.4.0/AndroidManifest.xml:40:13-42:29
+action#androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/de9fb97a0257585bc368e3564dfa0265/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:17-91
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/de9fb97a0257585bc368e3564dfa0265/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:25-88
+intent-filter#action:name:androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/de9fb97a0257585bc368e3564dfa0265/transformed/profileinstaller-1.4.0/AndroidManifest.xml:43:13-45:29
+action#androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/de9fb97a0257585bc368e3564dfa0265/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:17-85
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/de9fb97a0257585bc368e3564dfa0265/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:25-82
+intent-filter#action:name:androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/de9fb97a0257585bc368e3564dfa0265/transformed/profileinstaller-1.4.0/AndroidManifest.xml:46:13-48:29
+action#androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/de9fb97a0257585bc368e3564dfa0265/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:17-88
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/de9fb97a0257585bc368e3564dfa0265/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:25-85
+intent-filter#action:name:androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/de9fb97a0257585bc368e3564dfa0265/transformed/profileinstaller-1.4.0/AndroidManifest.xml:49:13-51:29
+action#androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/de9fb97a0257585bc368e3564dfa0265/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:17-95
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/spacerabbit/.gradle/caches/9.6.0/transforms/de9fb97a0257585bc368e3564dfa0265/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:25-92

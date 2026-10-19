@@ -1,0 +1,22 @@
+{
+  "date": "2026. 9. 25.",
+  "time": "오후 8:51:51",
+  "grandTotal": 33500,
+  "paidTotal": 33500,
+  "unpaidTotal": 0,
+  "orderCount": 2,
+  "itemSales": {
+    "명품 삼선 짜장면": {
+      "qty": 1,
+      "total": 8500
+    },
+    "바삭 찹쌀 탕수육(소)": {
+      "qty": 1,
+      "total": 19000
+    },
+    "속이 꽉 찬 군만두(6p)": {
+      "qty": 1,
+      "total": 6000
+    }
+  }
+}

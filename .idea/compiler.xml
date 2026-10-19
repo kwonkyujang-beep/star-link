@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel target="11">
+      <module name="star-link.app" target="25" />
+      <module name="star-link.cafe" target="25" />
+      <module name="star-link.core" target="25" />
+      <module name="star-link.pub" target="25" />
+      <module name="star-link.rep_app" target="25" />
+      <module name="star-link.restaurant" target="25" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

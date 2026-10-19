@@ -1,0 +1,291 @@
+Calculating task graph as configuration cache cannot be reused because environment variable 'STORE_MODE' has changed.
+> Task :server:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :server:processResources NO-SOURCE
+> Task :server:compileKotlin UP-TO-DATE
+> Task :server:compileJava NO-SOURCE
+> Task :server:classes UP-TO-DATE
+
+> Task :server:run
+17:32:50.575 [main] DEBUG Exposed -- SELECT COUNT(*) FROM menus
+17:32:50.578 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records
+17:32:50.583 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-10-12' ORDER BY sales_records.id ASC
+17:32:50.584 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-10-12'
+17:32:50.584 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 871
+17:32:50.587 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-10-13' ORDER BY sales_records.id ASC
+17:32:50.587 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-10-13'
+17:32:50.588 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 2432
+17:32:50.590 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026. 10. 13.' ORDER BY sales_records.id ASC
+17:32:50.590 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026. 10. 13.'
+17:32:50.591 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 2673
+17:32:50.592 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026. 10. 14.' ORDER BY sales_records.id ASC
+17:32:50.593 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026. 10. 14.'
+17:32:50.594 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 3394
+17:32:50.595 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-10-14' ORDER BY sales_records.id ASC
+17:32:50.596 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-10-14'
+17:32:50.597 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 4475
+17:32:50.598 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-10-15' ORDER BY sales_records.id ASC
+17:32:50.598 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-10-15'
+17:32:50.600 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 5556
+17:32:50.601 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-01' ORDER BY sales_records.id ASC
+17:32:50.601 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-01'
+17:32:50.603 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12760
+17:32:50.603 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-02' ORDER BY sales_records.id ASC
+17:32:50.603 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-02'
+17:32:50.605 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12764
+17:32:50.606 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-03' ORDER BY sales_records.id ASC
+17:32:50.606 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-03'
+17:32:50.608 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12768
+17:32:50.608 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-04' ORDER BY sales_records.id ASC
+17:32:50.608 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-04'
+17:32:50.610 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12772
+17:32:50.610 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-05' ORDER BY sales_records.id ASC
+17:32:50.611 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-05'
+17:32:50.613 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12776
+17:32:50.613 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-06' ORDER BY sales_records.id ASC
+17:32:50.613 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-06'
+17:32:50.615 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12780
+17:32:50.615 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-07' ORDER BY sales_records.id ASC
+17:32:50.616 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-07'
+17:32:50.618 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12784
+17:32:50.618 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-08' ORDER BY sales_records.id ASC
+17:32:50.618 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-08'
+17:32:50.620 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12788
+17:32:50.620 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-09' ORDER BY sales_records.id ASC
+17:32:50.620 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-09'
+17:32:50.622 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12792
+17:32:50.623 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-10' ORDER BY sales_records.id ASC
+17:32:50.623 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-10'
+17:32:50.625 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12796
+17:32:50.625 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-11' ORDER BY sales_records.id ASC
+17:32:50.625 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-11'
+17:32:50.627 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12800
+17:32:50.627 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-12' ORDER BY sales_records.id ASC
+17:32:50.628 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-12'
+17:32:50.630 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12804
+17:32:50.630 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-13' ORDER BY sales_records.id ASC
+17:32:50.630 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-13'
+17:32:50.632 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12808
+17:32:50.632 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-14' ORDER BY sales_records.id ASC
+17:32:50.632 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-14'
+17:32:50.634 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12812
+17:32:50.635 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-15' ORDER BY sales_records.id ASC
+17:32:50.635 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-15'
+17:32:50.637 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12816
+17:32:50.637 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-16' ORDER BY sales_records.id ASC
+17:32:50.637 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-16'
+17:32:50.639 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12820
+17:32:50.640 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-17' ORDER BY sales_records.id ASC
+17:32:50.640 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-17'
+17:32:50.642 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12824
+17:32:50.642 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-18' ORDER BY sales_records.id ASC
+17:32:50.642 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-18'
+17:32:50.644 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12828
+17:32:50.644 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-19' ORDER BY sales_records.id ASC
+17:32:50.644 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-19'
+17:32:50.646 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12832
+17:32:50.647 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-20' ORDER BY sales_records.id ASC
+17:32:50.647 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-20'
+17:32:50.649 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12836
+17:32:50.649 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-21' ORDER BY sales_records.id ASC
+17:32:50.649 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-21'
+17:32:50.651 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12840
+17:32:50.651 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-22' ORDER BY sales_records.id ASC
+17:32:50.651 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-22'
+17:32:50.653 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12844
+17:32:50.654 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-23' ORDER BY sales_records.id ASC
+17:32:50.654 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-23'
+17:32:50.656 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12848
+17:32:50.656 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-24' ORDER BY sales_records.id ASC
+17:32:50.656 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-24'
+17:32:50.658 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12852
+17:32:50.658 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-25' ORDER BY sales_records.id ASC
+17:32:50.658 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-25'
+17:32:50.660 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12856
+17:32:50.661 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-26' ORDER BY sales_records.id ASC
+17:32:50.661 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-26'
+17:32:50.663 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12860
+17:32:50.663 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-27' ORDER BY sales_records.id ASC
+17:32:50.663 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-27'
+17:32:50.665 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12864
+17:32:50.665 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-28' ORDER BY sales_records.id ASC
+17:32:50.665 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-28'
+17:32:50.667 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12868
+17:32:50.668 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-29' ORDER BY sales_records.id ASC
+17:32:50.668 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-29'
+17:32:50.670 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12872
+17:32:50.670 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-30' ORDER BY sales_records.id ASC
+17:32:50.670 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-09-30'
+17:32:50.672 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12876
+17:32:50.673 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-10-16' ORDER BY sales_records.id ASC
+17:32:50.673 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-10-16'
+17:32:50.675 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12877
+17:32:50.675 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-10-17' ORDER BY sales_records.id ASC
+17:32:50.675 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-10-17'
+17:32:50.677 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12878
+17:32:50.677 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-10-18' ORDER BY sales_records.id ASC
+17:32:50.677 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-10-18'
+17:32:50.679 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12879
+17:32:50.679 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-10-19' ORDER BY sales_records.id ASC
+17:32:50.680 [main] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-10-19'
+17:32:50.682 [main] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12880
+✅ [Migration] 과거 중복 누적된 매출 데이터 및 아이템을 깔끔하게 병합 정돈했습니다.
+17:32:50.910 [main] INFO ktor.application -- Autoreload is disabled because the development mode is off.
+17:32:50.940 [main] INFO ktor.application -- Application started in 0.036 seconds.
+17:32:50.944 [main] DEBUG io.netty.util.internal.logging.InternalLoggerFactory -- Using SLF4J as the default logging framework
+17:32:50.962 [main] DEBUG io.netty.util.internal.PlatformDependent0 -- -Dio.netty.noUnsafe: false
+17:32:50.962 [main] DEBUG io.netty.util.internal.PlatformDependent0 -- Java version: 11
+17:32:50.963 [main] DEBUG io.netty.util.internal.PlatformDependent0 -- sun.misc.Unsafe.theUnsafe: available
+17:32:50.964 [main] DEBUG io.netty.util.internal.PlatformDependent0 -- sun.misc.Unsafe base methods: all available
+17:32:50.964 [main] DEBUG io.netty.util.internal.PlatformDependent0 -- sun.misc.Unsafe.storeFence: available
+17:32:50.964 [main] DEBUG io.netty.util.internal.PlatformDependent0 -- java.nio.Buffer.address: available
+17:32:50.965 [main] DEBUG io.netty.util.internal.PlatformDependent0 -- direct buffer constructor: unavailable: Reflective setAccessible(true) disabled
+17:32:50.965 [main] DEBUG io.netty.util.internal.PlatformDependent0 -- java.nio.Bits.unaligned: available, true
+17:32:50.965 [main] DEBUG io.netty.util.internal.PlatformDependent0 -- jdk.internal.misc.Unsafe.allocateUninitializedArray(int): unavailable: class io.netty.util.internal.PlatformDependent0$7 cannot access class jdk.internal.misc.Unsafe (in module java.base) because module java.base does not export jdk.internal.misc to unnamed module @489543a6
+17:32:50.966 [main] DEBUG io.netty.util.internal.PlatformDependent0 -- java.nio.DirectByteBuffer.<init>(long, {int,long}): unavailable
+17:32:50.966 [main] DEBUG io.netty.util.internal.PlatformDependent -- sun.misc.Unsafe: available
+17:32:50.966 [main] DEBUG io.netty.util.internal.PlatformDependent -- -Dio.netty.tmpdir: /var/folders/k5/qg0b_nw94zx3_7s0fy3vcg8w0000gn/T (java.io.tmpdir)
+17:32:50.966 [main] DEBUG io.netty.util.internal.PlatformDependent -- -Dio.netty.bitMode: 64 (sun.arch.data.model)
+17:32:50.966 [main] DEBUG io.netty.util.internal.PlatformDependent -- Platform: MacOS
+17:32:50.966 [main] DEBUG io.netty.util.internal.PlatformDependent -- -Dio.netty.maxDirectMemory: -1 bytes
+17:32:50.966 [main] DEBUG io.netty.util.internal.PlatformDependent -- -Dio.netty.uninitializedArrayAllocationThreshold: -1
+17:32:50.967 [main] DEBUG io.netty.util.internal.CleanerJava9 -- java.nio.ByteBuffer.cleaner(): available
+17:32:50.967 [main] DEBUG io.netty.util.internal.PlatformDependent -- -Dio.netty.noPreferDirect: false
+17:32:50.969 [main] DEBUG io.netty.util.internal.NativeLibraryLoader -- -Dio.netty.native.workdir: /var/folders/k5/qg0b_nw94zx3_7s0fy3vcg8w0000gn/T (io.netty.tmpdir)
+17:32:50.969 [main] DEBUG io.netty.util.internal.NativeLibraryLoader -- -Dio.netty.native.deleteLibAfterLoading: true
+17:32:50.969 [main] DEBUG io.netty.util.internal.NativeLibraryLoader -- -Dio.netty.native.tryPatchShadedId: true
+17:32:50.969 [main] DEBUG io.netty.util.internal.NativeLibraryLoader -- -Dio.netty.native.detectNativeLibraryDuplicates: true
+17:32:50.979 [main] DEBUG io.netty.channel.MultithreadEventLoopGroup -- -Dio.netty.eventLoopThreads: 20
+17:32:50.983 [main] DEBUG io.netty.util.concurrent.GlobalEventExecutor -- -Dio.netty.globalEventExecutor.quietPeriodSeconds: 1
+17:32:50.986 [main] DEBUG io.netty.util.internal.InternalThreadLocalMap -- -Dio.netty.threadLocalMap.stringBuilder.initialSize: 1024
+17:32:50.986 [main] DEBUG io.netty.util.internal.InternalThreadLocalMap -- -Dio.netty.threadLocalMap.stringBuilder.maxSize: 4096
+17:32:50.990 [main] DEBUG io.netty.channel.nio.NioEventLoop -- -Dio.netty.noKeySetOptimization: false
+17:32:50.990 [main] DEBUG io.netty.channel.nio.NioEventLoop -- -Dio.netty.selectorAutoRebuildThreshold: 512
+17:32:50.993 [main] DEBUG io.netty.util.internal.PlatformDependent -- org.jctools-core.MpscChunkedArrayQueue: available
+17:32:51.003 [main] DEBUG io.netty.channel.DefaultChannelId -- -Dio.netty.processId: 83233 (auto-detected)
+17:32:51.005 [main] DEBUG io.netty.util.NetUtil -- -Djava.net.preferIPv4Stack: false
+17:32:51.005 [main] DEBUG io.netty.util.NetUtil -- -Djava.net.preferIPv6Addresses: false
+17:32:51.006 [main] DEBUG io.netty.util.NetUtilInitializations -- Loopback interface: lo0 (lo0, 0:0:0:0:0:0:0:1%lo0)
+17:32:51.006 [main] DEBUG io.netty.util.NetUtil -- Failed to get SOMAXCONN from sysctl and file /proc/sys/net/core/somaxconn. Default: 128
+17:32:51.007 [main] DEBUG io.netty.channel.DefaultChannelId -- -Dio.netty.machineId: c2:9c:bc:ff:fe:09:bc:17 (auto-detected)
+17:32:51.012 [main] DEBUG io.netty.util.ResourceLeakDetector -- -Dio.netty.leakDetection.level: simple
+17:32:51.012 [main] DEBUG io.netty.util.ResourceLeakDetector -- -Dio.netty.leakDetection.targetRecords: 4
+17:32:51.026 [main] DEBUG io.netty.buffer.PooledByteBufAllocator -- -Dio.netty.allocator.numHeapArenas: 20
+17:32:51.026 [main] DEBUG io.netty.buffer.PooledByteBufAllocator -- -Dio.netty.allocator.numDirectArenas: 20
+17:32:51.026 [main] DEBUG io.netty.buffer.PooledByteBufAllocator -- -Dio.netty.allocator.pageSize: 8192
+17:32:51.026 [main] DEBUG io.netty.buffer.PooledByteBufAllocator -- -Dio.netty.allocator.maxOrder: 9
+17:32:51.026 [main] DEBUG io.netty.buffer.PooledByteBufAllocator -- -Dio.netty.allocator.chunkSize: 4194304
+17:32:51.026 [main] DEBUG io.netty.buffer.PooledByteBufAllocator -- -Dio.netty.allocator.smallCacheSize: 256
+17:32:51.026 [main] DEBUG io.netty.buffer.PooledByteBufAllocator -- -Dio.netty.allocator.normalCacheSize: 64
+17:32:51.026 [main] DEBUG io.netty.buffer.PooledByteBufAllocator -- -Dio.netty.allocator.maxCachedBufferCapacity: 32768
+17:32:51.026 [main] DEBUG io.netty.buffer.PooledByteBufAllocator -- -Dio.netty.allocator.cacheTrimInterval: 8192
+17:32:51.026 [main] DEBUG io.netty.buffer.PooledByteBufAllocator -- -Dio.netty.allocator.cacheTrimIntervalMillis: 0
+17:32:51.026 [main] DEBUG io.netty.buffer.PooledByteBufAllocator -- -Dio.netty.allocator.useCacheForAllThreads: false
+17:32:51.026 [main] DEBUG io.netty.buffer.PooledByteBufAllocator -- -Dio.netty.allocator.maxCachedByteBuffersPerChunk: 1023
+17:32:51.031 [main] DEBUG io.netty.buffer.ByteBufUtil -- -Dio.netty.allocator.type: pooled
+17:32:51.031 [main] DEBUG io.netty.buffer.ByteBufUtil -- -Dio.netty.threadLocalDirectBufferSize: 0
+17:32:51.031 [main] DEBUG io.netty.buffer.ByteBufUtil -- -Dio.netty.maxThreadLocalCharBufferSize: 16384
+17:32:51.031 [main] DEBUG io.netty.bootstrap.ChannelInitializerExtensions -- -Dio.netty.bootstrap.extensions: null
+17:32:51.039 [DefaultDispatcher-worker-2] INFO ktor.application -- Responding at http://0.0.0.0:8888
+
+******************************************************************
+★★★★★★★★ [Firebase 클라우드 관제 동기화 성공] ★★★★★★★★
+  매장명: 스타링크 수제맥주 & 펍
+  SSID: 감지중 | IP: 192.168.35.70
+  🌐 5G 보안 터널 활성화: https://bachelor-plan-escape-editor.trycloudflare.com
+******************************************************************
+
+17:33:00.674 [eventLoopGroupProxy-3-3] DEBUG io.netty.buffer.AbstractByteBuf -- -Dio.netty.buffer.checkAccessible: true
+17:33:00.675 [eventLoopGroupProxy-3-3] DEBUG io.netty.buffer.AbstractByteBuf -- -Dio.netty.buffer.checkBounds: true
+17:33:00.675 [eventLoopGroupProxy-3-3] DEBUG io.netty.util.ResourceLeakDetectorFactory -- Loaded default ResourceLeakDetector: io.netty.util.ResourceLeakDetector@3341fabe
+17:33:00.700 [eventLoopGroupProxy-3-2] DEBUG io.netty.util.Recycler -- -Dio.netty.recycler.maxCapacityPerThread: 4096
+17:33:00.700 [eventLoopGroupProxy-3-2] DEBUG io.netty.util.Recycler -- -Dio.netty.recycler.ratio: 8
+17:33:00.700 [eventLoopGroupProxy-3-2] DEBUG io.netty.util.Recycler -- -Dio.netty.recycler.chunkSize: 32
+17:33:00.700 [eventLoopGroupProxy-3-2] DEBUG io.netty.util.Recycler -- -Dio.netty.recycler.blocking: false
+17:33:00.700 [eventLoopGroupProxy-3-2] DEBUG io.netty.util.Recycler -- -Dio.netty.recycler.batchFastThreadLocalOnly: true
+17:33:00.777 [eventLoopGroupProxy-4-3] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records
+17:33:00.782 [eventLoopGroupProxy-4-3] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12880
+17:33:00.787 [eventLoopGroupProxy-4-3] DEBUG Exposed -- SELECT COUNT(*) FROM sales_records WHERE sales_records.sale_date = '2026-10-18'
+🌟 [주방] 실시간 세션 연결됨
+📱 [연결] 새로운 손님 단말기 접속 시도
+17:33:20.640 [eventLoopGroupProxy-4-8] DEBUG Exposed -- SELECT menus.id, menus."name", menus.price, menus.category, menus.img, menus.sort_order FROM menus ORDER BY menus.sort_order ASC
+📍 [세션매핑] 2 번 테이블 손님(기기 추가) 식별 완료
+17:33:28.861 [eventLoopGroupProxy-4-8] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records WHERE sales_records.sale_date = '2026-10-19' ORDER BY sales_records.id DESC
+17:33:28.866 [eventLoopGroupProxy-4-8] DEBUG Exposed -- UPDATE sales_records SET sale_time='17:33:28', grand_total=50000, paid_total=50000, order_count=10 WHERE sales_records.id = 12880
+17:33:28.873 [eventLoopGroupProxy-4-8] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE (order_items.sale_id = 12880) AND (order_items.item_name = '고소한 카페라떼')
+17:33:28.874 [eventLoopGroupProxy-4-8] DEBUG Exposed -- UPDATE order_items SET qty=9, total=45000 WHERE order_items.id = 64398
+17:33:40.344 [eventLoopGroupProxy-4-5] DEBUG Exposed -- SELECT sales_records.id, sales_records.sale_date, sales_records.sale_time, sales_records.grand_total, sales_records.paid_total, sales_records.unpaid_total, sales_records.order_count FROM sales_records
+17:33:40.349 [eventLoopGroupProxy-4-5] DEBUG Exposed -- SELECT order_items.id, order_items.sale_id, order_items.item_name, order_items.qty, order_items.total FROM order_items WHERE order_items.sale_id = 12880
+17:33:40.351 [eventLoopGroupProxy-4-5] DEBUG Exposed -- SELECT COUNT(*) FROM sales_records WHERE sales_records.sale_date = '2026-10-18'
+🧹 [초기화] 2 번 테이블 (세션종료: true)
+
+******************************************************************
+★★★★★★★★ [Firebase 클라우드 관제 동기화 성공] ★★★★★★★★
+  매장명: 스타링크 수제맥주 & 펍
+  SSID: 감지중 | IP: 192.168.35.70
+  🌐 5G 보안 터널 활성화: https://satisfied-rainbow-sender-imposed.trycloudflare.com
+******************************************************************
+
+
+******************************************************************
+★★★★★★★★ [Firebase 클라우드 관제 동기화 성공] ★★★★★★★★
+  매장명: 스타링크 수제맥주 & 펍
+  SSID: 감지중 | IP: 192.168.35.70
+  🌐 5G 보안 터널 활성화: https://satisfied-rainbow-sender-imposed.trycloudflare.com
+******************************************************************
+
+
+******************************************************************
+★★★★★★★★ [Firebase 클라우드 관제 동기화 성공] ★★★★★★★★
+  매장명: 스타링크 수제맥주 & 펍
+  SSID: 감지중 | IP: 192.168.35.70
+  🌐 5G 보안 터널 활성화: https://satisfied-rainbow-sender-imposed.trycloudflare.com
+******************************************************************
+
+
+******************************************************************
+★★★★★★★★ [Firebase 클라우드 관제 동기화 성공] ★★★★★★★★
+  매장명: 스타링크 수제맥주 & 펍
+  SSID: 감지중 | IP: 192.168.35.70
+  🌐 5G 보안 터널 활성화: https://satisfied-rainbow-sender-imposed.trycloudflare.com
+******************************************************************
+
+
+******************************************************************
+★★★★★★★★ [Firebase 클라우드 관제 동기화 성공] ★★★★★★★★
+  매장명: 스타링크 수제맥주 & 펍
+  SSID: 감지중 | IP: 192.168.35.70
+  🌐 5G 보안 터널 활성화: https://satisfied-rainbow-sender-imposed.trycloudflare.com
+******************************************************************
+
+
+******************************************************************
+★★★★★★★★ [Firebase 클라우드 관제 동기화 성공] ★★★★★★★★
+  매장명: 스타링크 수제맥주 & 펍
+  SSID: 감지중 | IP: 192.168.35.70
+  🌐 5G 보안 터널 활성화: https://satisfied-rainbow-sender-imposed.trycloudflare.com
+******************************************************************
+
+
+******************************************************************
+★★★★★★★★ [Firebase 클라우드 관제 동기화 성공] ★★★★★★★★
+  매장명: 스타링크 수제맥주 & 펍
+  SSID: 감지중 | IP: 192.168.35.70
+  🌐 5G 보안 터널 활성화: https://satisfied-rainbow-sender-imposed.trycloudflare.com
+******************************************************************
+
+
+******************************************************************
+★★★★★★★★ [Firebase 클라우드 관제 동기화 성공] ★★★★★★★★
+  매장명: 스타링크 수제맥주 & 펍
+  SSID: 감지중 | IP: 192.168.35.70
+  🌐 5G 보안 터널 활성화: https://satisfied-rainbow-sender-imposed.trycloudflare.com
+******************************************************************
+
+
+******************************************************************
+★★★★★★★★ [Firebase 클라우드 관제 동기화 성공] ★★★★★★★★
+  매장명: 스타링크 수제맥주 & 펍
+  SSID: 감지중 | IP: 192.168.35.70
+  🌐 5G 보안 터널 활성화: https://satisfied-rainbow-sender-imposed.trycloudflare.com
+******************************************************************
+

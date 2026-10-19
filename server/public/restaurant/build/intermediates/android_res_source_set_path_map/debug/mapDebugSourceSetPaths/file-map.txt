@@ -1,0 +1,8 @@
+com.example.star_link.restaurant-pngs-0 /Users/spacerabbit/AndroidStudioProjects/starlink/restaurant/build/generated/res/pngs/debug
+com.example.star_link.restaurant-updated_navigation_xml-1 /Users/spacerabbit/AndroidStudioProjects/starlink/restaurant/build/generated/updated_navigation_xml/debug
+com.example.star_link.restaurant-packageDebugResources-2 /Users/spacerabbit/AndroidStudioProjects/starlink/restaurant/build/intermediates/incremental/debug/packageDebugResources/merged.dir
+com.example.star_link.restaurant-packageDebugResources-3 /Users/spacerabbit/AndroidStudioProjects/starlink/restaurant/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
+com.example.star_link.restaurant-debug-4 /Users/spacerabbit/AndroidStudioProjects/starlink/restaurant/build/intermediates/merged_res/debug/mergeDebugResources
+com.example.star_link.restaurant-debug-5 /Users/spacerabbit/AndroidStudioProjects/starlink/restaurant/src/debug/res
+com.example.star_link.restaurant-main-6 /Users/spacerabbit/AndroidStudioProjects/starlink/restaurant/src/main/res
+gradleHome-0 /Users/spacerabbit/.gradle

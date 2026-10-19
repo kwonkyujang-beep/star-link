@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Starlink Digital Experience 🌟</title>
+    <style>
+        :root { --primary: #6750A4; --bg-dark: #121212; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: var(--bg-dark); color: white; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; text-align: center; }
+        .container { padding: 30px; width: 100%; max-width: 400px; box-sizing: border-box; animation: fadeIn 0.8s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .spinner { width: 50px; height: 50px; border: 4px solid rgba(255,255,255,0.1); border-top: 4px solid #ffbc42; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        h1 { font-size: 20px; font-weight: 800; margin-bottom: 8px; color: #ffbc42; }
+        p { font-size: 14px; color: #aaa; line-height: 1.5; margin-bottom: 25px; }
+
+        .btn-connect { background: linear-gradient(135deg, #6750A4, #9162cc); color: white; border: none; padding: 16px 0; width: 100%; border-radius: 30px; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 6px 15px rgba(103, 80, 164, 0.4); transition: all 0.2s; margin-top: 15px; }
+        .btn-connect:active { transform: scale(0.96); }
+
+        .fallback-card { text-align: center; background: rgba(255,255,255,0.06); padding: 22px; border-radius: 16px; margin-top: 20px; border: 1px solid #333; display: none; animation: slideUp 0.5s ease-out; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .secure-badge { font-size: 12px; color: #aaa; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+<div class="container" id="main-ui">
+    <div class="spinner" id="loading-spinner"></div>
+    <h1 id="store-name-display">매장 연결 중...</h1>
+    <p id="status-message">안전한 보안 네트워크로 연결하고 있습니다 ☕</p>
+
+    <!-- 수동 연결 카드 -->
+    <div class="fallback-card" id="manual-fallback-card">
+        <div style="font-size: 15px; font-weight: bold; color: #ffbc42; margin-bottom: 8px;">🌟 스마트 오더 준비 완료</div>
+        <div style="font-size: 13px; color: #ccc; margin-bottom: 15px;">버튼을 누르면 즉시 주문 메뉴판으로 입장합니다.</div>
+        <button class="btn-connect" onclick="goToMenu()">메뉴판 바로 입장하기</button>
+    </div>
+
+    <div class="secure-badge" id="secure-badge">
+        🔒 Starlink Secure Channel
+    </div>
+</div>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const storeId = urlParams.get('s') || 'S-A101-001';
+    const tableNum = urlParams.get('t') || '1';
+    let activeTunnelUrl = "";
+
+    let fallbackTimer = setTimeout(() => {
+        document.getElementById('manual-fallback-card').style.display = 'block';
+        document.getElementById('loading-spinner').style.display = 'none';
+        document.getElementById('status-message').innerText = "연결이 준비되었습니다. 아래 버튼을 눌러주세요.";
+    }, 3000);
+
+    async function init() {
+        const path = `https://qrrolink-order-web-default-rtdb.asia-southeast1.firebasedatabase.app/stores/${storeId}.json`;
+        try {
+            const res = await fetch(path);
+            const data = await res.json();
+            if (data) {
+                activeTunnelUrl = data.tunnelUrl || "";
+                if (data.storeName) document.getElementById('store-name-display').innerText = `${data.storeName} 테이블 ${tableNum}`;
+
+                // [HTTPS to HTTPS 하이패스 터널]
+                if (activeTunnelUrl && activeTunnelUrl.startsWith('https://')) {
+                    clearTimeout(fallbackTimer);
+                    console.log("🚀 하이패스 터널 연결 성공:", activeTunnelUrl);
+                    window.location.href = `${activeTunnelUrl}/menu?table=${tableNum}`;
+                    return;
+                }
+            }
+        } catch (e) {
+            console.error("Firebase fetch error:", e);
+        }
+    }
+
+    function goToMenu() {
+        if (activeTunnelUrl && activeTunnelUrl.startsWith('https://')) {
+            window.location.href = `${activeTunnelUrl}/menu?table=${tableNum}`;
+        } else {
+            alert("⚠️ 활성화된 터널 주소를 불러오지 못했습니다. 서버를 재실행해 주세요.");
+        }
+    }
+
+    init();
+</script>
+</body>
+</html>

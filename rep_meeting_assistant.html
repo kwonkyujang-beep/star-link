@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤝 스타링크 파트너 CRM</title>
+    <style>
+        :root {
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --bg-dark: #09090b;
+            --card-bg: #18181b;
+            --border-color: #27272a;
+            --text-gold: #fbbf24;
+            --text-muted: #a1a1aa;
+            --accent-blue: #0284c7;
+        }
+        html, body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-dark);
+            color: #f4f4f5;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        /* 상단 안전 영역 확보 */
+        body {
+            padding-top: env(safe-area-inset-top, 24px);
+        }
+
+        /* 프로페셔널 헤더 */
+        header {
+            background: var(--card-bg);
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            z-index: 10;
+        }
+        .brand { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; color: var(--text-gold); }
+        .rep-badge { font-size: 11px; background: #27272a; padding: 4px 8px; border-radius: 6px; color: #34d399; border: 1px solid #3f3f46; font-weight: 600; }
+
+        /* 프로그레스 스텝퍼 바 */
+        .stepper-bar {
+            background: #121214;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .step-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-muted); font-weight: 600; }
+        .step-item.active { color: var(--text-gold); }
+        .step-item.completed { color: var(--primary); }
+        .step-number { width: 22px; height: 22px; border-radius: 50%; background: #27272a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #fff; }
+        .step-item.active .step-number { background: var(--text-gold); color: #000; font-weight: bold; }
+        .step-item.completed .step-number { background: var(--primary); color: #fff; }
+
+        /* 메인 위저드 폼 영역 */
+        .wizard-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            background-color: var(--bg-dark);
+        }
+
+        .form-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            display: block;
+        }
+        .form-title { font-size: 16px; font-weight: bold; color: #fff; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+        .form-desc { font-size: 12px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.4; }
+
+        .form-group { margin-bottom: 14px; }
+        .form-label { display: block; font-size: 12px; font-weight: 600; color: #d4d4d8; margin-bottom: 6px; }
+        .form-control { width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid #3f3f46; background: #27272a; color: white; font-size: 13px; outline: none; box-sizing: border-box; }
+        .form-control:focus { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(16,185,129,0.2); }
+
+        /* 터치 칩 버튼 */
+        .chip-group { display: flex; gap: 8px; flex-wrap: wrap; }
+        .chip { background: #27272a; border: 1px solid #3f3f46; color: #d4d4d8; padding: 8px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+        .chip.selected { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+        /* 버튼 그룹 */
+        .btn-group { display: flex; gap: 10px; margin-top: 20px; }
+        .btn { flex: 1; padding: 14px; border-radius: 10px; font-weight: bold; font-size: 14px; border: none; cursor: pointer; }
+        .btn-secondary { background: #3f3f46; color: #fff; }
+        .btn-primary { background: var(--primary); color: #fff; }
+        .btn-accent { background: var(--accent-blue); color: #fff; }
+        .btn-gold { background: var(--text-gold); color: #000; }
+
+        /* 메뉴 리스트 테이블 */
+        .menu-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12px; }
+        .menu-table th, .menu-table td { padding: 8px 10px; border-bottom: 1px solid #27272a; text-align: left; }
+        .menu-table th { color: var(--text-muted); font-weight: 600; }
+        .del-btn { background: #ef4444; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: 600; }
+
+        /* 요약 카드 */
+        .summary-section { background: #121214; border: 1px solid var(--border-color); border-radius: 12px; padding: 12px; margin-bottom: 12px; font-size: 13px; }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 6px; }
+        .summary-label { color: var(--text-muted); }
+        .summary-val { color: #fff; font-weight: 600; text-align: right; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="brand">🤝 스타링크 파트너 CRM</div>
+    <div class="rep-badge">👤 REP_KIM_07</div>
+</header>
+
+<!-- 프로그레스 스텝퍼 바 -->
+<div class="stepper-bar">
+    <div class="step-item active" id="stepper-1">
+        <div class="step-number">1</div>
+        <span>기본정보</span>
+    </div>
+    <div class="step-item" id="stepper-2">
+        <div class="step-number">2</div>
+        <span>사업자/토스</span>
+    </div>
+    <div class="step-item" id="stepper-3">
+        <div class="step-number">3</div>
+        <span>메뉴등록</span>
+    </div>
+    <div class="step-item" id="stepper-4">
+        <div class="step-number">4</div>
+        <span>최종검토</span>
+    </div>
+</div>
+
+<div class="wizard-container">
+
+    <!-- STEP 1: 기본 정보 -->
+    <div class="form-card" id="step-card-1" style="display: block;">
+        <div class="form-title">🏢 1단계: 가맹점 기본 정보</div>
+        <div class="form-desc">점주님과의 미팅을 통해 매장의 기본 신원 정보를 포맷에 맞게 입력하세요.</div>
+
+        <div class="form-group">
+            <label class="form-label">매장 상호명</label>
+            <input type="text" id="input-name" class="form-control" placeholder="예: 홍대 바삭한 숯불구이">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">매장 업종</label>
+            <div class="chip-group" id="type-chips">
+                <div class="chip selected" onclick="selectType('CAFE', this)">☕ 카페</div>
+                <div class="chip" onclick="selectType('RESTAURANT', this)">🍲 한식당</div>
+                <div class="chip" onclick="selectType('CHINESE', this)">🥢 중식당</div>
+                <div class="chip" onclick="selectType('PUB', this)">🍻 주점/호프</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">대표자 성명</label>
+            <input type="text" id="input-owner" class="form-control" placeholder="예: 홍길동">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">대표자 연락처 (휴대폰 번호 포맷)</label>
+            <input type="text" id="input-phone" class="form-control" placeholder="예: 010-1234-5678" oninput="formatPhone(this)">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">매장 주소 (도로명 주소)</label>
+            <input type="text" id="input-address" class="form-control" placeholder="예: 서울 마포구 와우산로 123">
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-primary" onclick="goToStep(2)">다음 단계로 ➡️</button>
+        </div>
+    </div>
+
+    <!-- STEP 2: 사업자 및 토스 정산 정보 -->
+    <div class="form-card" id="step-card-2" style="display: none;">
+        <div class="form-title">📄 2단계: 사업자 및 토스 등록 정보</div>
+        <div class="form-desc">세무 신고 및 토스 결제 등록 대행에 필요한 필수 번호 및 계좌 포맷입니다.</div>
+
+        <div class="form-group">
+            <label class="form-label">사업자등록번호 (10자리 표준 포맷)</label>
+            <input type="text" id="input-biz" class="form-control" placeholder="예: 123-45-67890" maxlength="12" oninput="formatBizNumber(this)">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">토스 정산 계좌 정보 (은행명 / 계좌번호 / 예금주)</label>
+            <input type="text" id="input-toss" class="form-control" placeholder="예: 국민은행 123456-04-123456 홍길동">
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-secondary" onclick="goToStep(1)">⬅️ 이전</button>
+            <button class="btn btn-primary" onclick="goToStep(3)">메뉴 등록으로 ➡️</button>
+        </div>
+    </div>
+
+    <!-- STEP 3: 메뉴 등록 (카테고리, 메뉴명, 가격) -->
+    <div class="form-card" id="step-card-3" style="display: none;">
+        <div class="form-title">📋 3단계: 메뉴판 데이터 등록</div>
+        <div class="form-desc">점주님과 협의한 판매 메뉴를 카테고리별로 등록하세요.</div>
+
+        <div class="form-group">
+            <label class="form-label">메뉴 카테고리</label>
+            <div class="chip-group" id="cat-chips">
+                <div class="chip selected" onclick="selectCat('식사류', this)">🍚 식사류</div>
+                <div class="chip" onclick="selectCat('요리/사이드', this)">🥟 요리/사이드</div>
+                <div class="chip" onclick="selectCat('음료/주류', this)">🍺 음료/주류</div>
+                <div class="chip" onclick="selectCat('커피/디저트', this)">☕ 커피/디저트</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">메뉴명</label>
+            <input type="text" id="input-menu-name" class="form-control" placeholder="예: 삼선짜장">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">가격 (원)</label>
+            <input type="number" id="input-menu-price" class="form-control" placeholder="예: 9000">
+        </div>
+
+        <button class="btn btn-accent" style="width: 100%; margin-top: 6px;" onclick="addMenu()">➕ 메뉴 추가하기</button>
+
+        <div style="margin-top: 16px; max-height: 180px; overflow-y: auto;">
+            <table class="menu-table">
+                <thead>
+                    <tr>
+                        <th>카테고리</th>
+                        <th>메뉴명</th>
+                        <th>가격</th>
+                        <th>관리</th>
+                    </tr>
+                </thead>
+                <tbody id="menu-table-body">
+                    <tr><td colspan="4" style="text-align: center; color: var(--text-muted);">등록된 메뉴가 없습니다.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-secondary" onclick="goToStep(2)">⬅️ 이전</button>
+            <button class="btn btn-primary" onclick="goToStep(4)">최종 검토로 ➡️</button>
+        </div>
+    </div>
+
+    <!-- STEP 4: 최종 검토 및 본사 전송 -->
+    <div class="form-card" id="step-card-4" style="display: none;">
+        <div class="form-title">✨ 4단계: 최종 점검 및 본사 전송</div>
+        <div class="form-desc">작성된 모든 정보가 정확한지 최종 확인 후 본사로 전송하세요.</div>
+
+        <div class="summary-section">
+            <div style="font-weight: bold; color: var(--text-gold); margin-bottom: 8px;">🏢 가맹점 및 토스 등록 정보</div>
+            <div class="summary-row"><span class="summary-label">상호명:</span><span class="summary-val" id="sum-name">-</span></div>
+            <div class="summary-row"><span class="summary-label">업종:</span><span class="summary-val" id="sum-type">-</span></div>
+            <div class="summary-row"><span class="summary-label">대표자명:</span><span class="summary-val" id="sum-owner">-</span></div>
+            <div class="summary-row"><span class="summary-label">연락처:</span><span class="summary-val" id="sum-phone">-</span></div>
+            <div class="summary-row"><span class="summary-label">주소:</span><span class="summary-val" id="sum-address">-</span></div>
+            <div class="summary-row"><span class="summary-label" style="color:#34d399;">사업자번호:</span><span class="summary-val" id="sum-biz" style="color:#34d399;">-</span></div>
+            <div class="summary-row"><span class="summary-label" style="color:#34d399;">토스 정산계좌:</span><span class="summary-val" id="sum-toss" style="color:#34d399;">-</span></div>
+        </div>
+
+        <div class="summary-section">
+            <div style="font-weight: bold; color: var(--text-gold); margin-bottom: 8px;">📋 등록된 메뉴 (<span id="sum-menu-count">0</span>개)</div>
+            <div id="sum-menu-list" style="max-height: 120px; overflow-y: auto; font-size: 12px; color: #d4d4d8;">
+                메뉴 없음
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-secondary" onclick="goToStep(3)">⬅️ 수정하기</button>
+            <button class="btn btn-gold" onclick="exportToCSV()">📥 엑셀(CSV)</button>
+        </div>
+        <div class="btn-group" style="margin-top: 10px;">
+            <button class="btn btn-primary" onclick="uploadToCloud()">🚀 본사 최종 전송</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    let currentStep = 1;
+    let selectedType = "CAFE";
+    let selectedCat = "식사류";
+
+    let storeInfo = {
+        name: "",
+        type: "CAFE",
+        ownerName: "",
+        phone: "",
+        address: "",
+        businessNumber: "",
+        tossInfo: ""
+    };
+    let collectedMenus = [];
+
+    window.storeInfo = storeInfo;
+    window.collectedMenus = collectedMenus;
+
+    function formatPhone(input) {
+        let val = input.value.replace(/[^0-9]/g, '');
+        if (val.length > 3 && val.length <= 7) {
+            val = val.slice(0,3) + '-' + val.slice(3);
+        } else if (val.length > 7) {
+            val = val.slice(0,3) + '-' + val.slice(3,7) + '-' + val.slice(7,11);
+        }
+        input.value = val;
+    }
+
+    function formatBizNumber(input) {
+        let val = input.value.replace(/[^0-9]/g, '');
+        if (val.length > 3 && val.length <= 5) {
+            val = val.slice(0,3) + '-' + val.slice(3);
+        } else if (val.length > 5) {
+            val = val.slice(0,3) + '-' + val.slice(3,5) + '-' + val.slice(5,10);
+        }
+        input.value = val;
+    }
+
+    function selectType(type, el) {
+        selectedType = type;
+        document.querySelectorAll('#type-chips .chip').forEach(c => c.classList.remove('selected'));
+        el.classList.add('selected');
+    }
+
+    function selectCat(cat, el) {
+        selectedCat = cat;
+        document.querySelectorAll('#cat-chips .chip').forEach(c => c.classList.remove('selected'));
+        el.classList.add('selected');
+    }
+
+    function collectFormData() {
+        storeInfo.name = document.getElementById('input-name').value.trim();
+        storeInfo.type = selectedType;
+        storeInfo.ownerName = document.getElementById('input-owner').value.trim();
+        storeInfo.phone = document.getElementById('input-phone').value.trim();
+        storeInfo.address = document.getElementById('input-address').value.trim();
+        storeInfo.businessNumber = document.getElementById('input-biz').value.trim();
+        storeInfo.tossInfo = document.getElementById('input-toss').value.trim();
+    }
+
+    function goToStep(step) {
+        collectFormData();
+        currentStep = step;
+
+        for (let i = 1; i <= 4; i++) {
+            document.getElementById(`step-card-${i}`).style.display = (i === step) ? 'block' : 'none';
+            const stepper = document.getElementById(`stepper-${i}`);
+            stepper.className = "step-item";
+            if (i < step) stepper.classList.add("completed");
+            else if (i === step) stepper.classList.add("active");
+        }
+
+        if (step === 4) {
+            renderSummary();
+        }
+
+        const container = document.querySelector('.wizard-container');
+        if (container) container.scrollTop = 0;
+    }
+
+    function addMenu() {
+        const name = document.getElementById('input-menu-name').value.trim();
+        const price = parseInt(document.getElementById('input-menu-price').value) || 0;
+
+        if (!name || price <= 0) {
+            alert("올바른 메뉴명과 가격을 입력해주세요.");
+            return;
+        }
+
+        collectedMenus.push({ category: selectedCat, name: name, price: price });
+        document.getElementById('input-menu-name').value = "";
+        document.getElementById('input-menu-price').value = "";
+        renderMenuTable();
+    }
+
+    function removeMenu(index) {
+        collectedMenus.splice(index, 1);
+        renderMenuTable();
+    }
+
+    function renderMenuTable() {
+        const tbody = document.getElementById('menu-table-body');
+        if (collectedMenus.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="4" style="text-align: center; color: var(--text-muted);">등록된 메뉴가 없습니다.</td></tr>`;
+            return;
+        }
+
+        let html = "";
+        collectedMenus.forEach((m, idx) => {
+            html += `<tr>
+                <td>${m.category}</td>
+                <td style="font-weight:600; color:#fff;">${m.name}</td>
+                <td>${m.price.toLocaleString()}원</td>
+                <td><button class="del-btn" onclick="removeMenu(${idx})">삭제</button></td>
+            </tr>`;
+        });
+        tbody.innerHTML = html;
+    }
+
+    function renderSummary() {
+        document.getElementById('sum-name').innerText = storeInfo.name || "(미입력)";
+        document.getElementById('sum-type').innerText = storeInfo.type || "(미입력)";
+        document.getElementById('sum-owner').innerText = storeInfo.ownerName || "(미입력)";
+        document.getElementById('sum-phone').innerText = storeInfo.phone || "(미입력)";
+        document.getElementById('sum-address').innerText = storeInfo.address || "(미입력)";
+        document.getElementById('sum-biz').innerText = storeInfo.businessNumber || "(미입력)";
+        document.getElementById('sum-toss').innerText = storeInfo.tossInfo || "(미입력)";
+        document.getElementById('sum-menu-count').innerText = collectedMenus.length;
+
+        const listDiv = document.getElementById('sum-menu-list');
+        if (collectedMenus.length === 0) {
+            listDiv.innerHTML = "등록된 메뉴가 없습니다.";
+        } else {
+            let html = "";
+            collectedMenus.forEach((m, idx) => {
+                html += `<div>${idx + 1}. [${m.category}] <b>${m.name}</b> - ${m.price.toLocaleString()}원</div>`;
+            });
+            listDiv.innerHTML = html;
+        }
+    }
+
+    function uploadToCloud() {
+        collectFormData();
+        if (collectedMenus.length === 0) {
+            alert("전송할 메뉴가 없습니다.");
+            goToStep(3);
+            return;
+        }
+        if (!storeInfo.name) {
+            alert("매장 상호명이 설정되지 않았습니다.");
+            goToStep(1);
+            return;
+        }
+
+        if (!confirm(`'${storeInfo.name}' 가맹점 입점 및 토스 등록 신청 데이터를 저장하시겠습니까?`)) return;
+
+        const submission = {
+            storeInfo: storeInfo,
+            menus: collectedMenus,
+            timestamp: new Date().toLocaleString()
+        };
+        localStorage.setItem("starlink_submitted_" + Date.now(), JSON.stringify(submission));
+        alert(`🎉 [본사 전송 및 저장 완료]\n'${storeInfo.name}' 가맹점 입점 신청서가 성공적으로 처리되었습니다!`);
+    }
+
+    function exportToCSV() {
+        collectFormData();
+        if (collectedMenus.length === 0) {
+            alert("수집된 메뉴가 없습니다.");
+            return;
+        }
+
+        let csv = `=== 스타링크 가맹점 입점 및 토스 등록 신청서 ===\n`;
+        csv += `상호명,${storeInfo.name}\n업종,${storeInfo.type}\n대표자명,${storeInfo.ownerName}\n연락처,${storeInfo.phone}\n주소,${storeInfo.address}\n사업자등록번호,${storeInfo.businessNumber}\n토스정산계좌,${storeInfo.tossInfo}\n\n[등록된 메뉴 목록]\n카테고리,메뉴명,가격(원)\n`;
+        collectedMenus.forEach(m => {
+            csv += `${m.category},${m.name},${m.price}\n`;
+        });
+
+        const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = `${storeInfo.name || '가맹점'}_토스등록신청서.csv`;
+        a.click();
+    }
+</script>
+</body>
+</html>

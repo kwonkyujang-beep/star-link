@@ -1,0 +1,51 @@
+{
+  "version": "1.0.0",
+  "description": "Starlink HQ Official Image Bank Index",
+  "assets": [
+    {
+      "tag": "americano",
+      "keywords": ["아메리카노", "커피", "에스프레소", "콜드브루", "카페"],
+      "path": "/image_bank/coffee/americano.jpg"
+    },
+    {
+      "tag": "latte",
+      "keywords": ["라떼", "카페라떼", "바닐라라떼", "모카"],
+      "path": "/image_bank/coffee/latte.jpg"
+    },
+    {
+      "tag": "pork_belly",
+      "keywords": ["삼겹살", "목살", "구이", "고기", "한우생삼겹구이"],
+      "path": "/image_bank/korean/pork_belly.jpg"
+    },
+    {
+      "tag": "stew",
+      "keywords": ["찌개", "국밥", "된장찌개", "김치찌개", "전골", "차돌된장찌개"],
+      "path": "/image_bank/korean/stew.jpg"
+    },
+    {
+      "tag": "jjajang",
+      "keywords": ["짜장", "자장", "짜장면", "간짜장", "삼선짜장"],
+      "path": "/image_bank/chinese/jjajang.jpg"
+    },
+    {
+      "tag": "tangsuyuk",
+      "keywords": ["탕수육", "유린기", "깐풍기", "요리류"],
+      "path": "/image_bank/chinese/tangsuyuk.jpg"
+    },
+    {
+      "tag": "beer",
+      "keywords": ["맥주", "생맥주", "호프", "테라", "카스", "하이볼"],
+      "path": "/image_bank/pub/beer.jpg"
+    },
+    {
+      "tag": "soju",
+      "keywords": ["소주", "참이슬", "처음처럼", "진로", "주류", "술"],
+      "path": "/image_bank/pub/soju.jpg"
+    },
+    {
+      "tag": "cake",
+      "keywords": ["케이크", "디저트", "빵", "크로플", "초코케이크"],
+      "path": "/image_bank/dessert/cake.jpg"
+    }
+  ]
+}

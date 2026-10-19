@@ -1,0 +1,4 @@
+- `[x]` 1. 클라우드 동기화 모듈 분기 (`CloudSync.kt`)
+- `[x]` 2. API 라우팅 및 원격 진단 API 분기 (`ApiRoutes.kt`)
+- `[x]` 3. 웹소켓 스트림 라우팅 분기 (`WebSocketRoutes.kt`)
+- `[x]` 4. `ServerMain.kt` 진입점 리팩토링 및 빌드 검증

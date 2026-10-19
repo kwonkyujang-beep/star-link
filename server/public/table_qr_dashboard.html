@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌐 Starlink 상용 지능형 QR 보드</title>
+    <style>
+        body {
+            font-family: 'Malgun Gothic', sans-serif;
+            background-color: #f4f4f9;
+            padding: 40px;
+            text-align: center;
+        }
+        h1 { color: #333; margin-bottom: 10px; }
+        .info-card {
+            background: #eaddff;
+            color: #6750A4;
+            padding: 15px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 30px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .qr-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        .qr-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+        .qr-card:hover { transform: translateY(-5px); }
+        .qr-card img {
+            width: 160px;
+            height: 160px;
+            margin-bottom: 15px;
+        }
+        .table-num {
+            font-size: 18px;
+            font-weight: bold;
+            color: #6750A4;
+        }
+        .url-text {
+            font-size: 9px;
+            color: #bbb;
+            margin-top: 10px;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="store-title">🌐 Starlink 상용 지능형 QR 보드</h1>
+    <div class="info-card" id="info-card">
+        📍 이 큐알들은 장소를 옮겨도 맥북 IP가 바뀌어도 <b>평생 그대로 사용</b> 가능합니다.<br>
+        (스타링크 A타입 표준 패키지: 최대 20개 테이블 내 자율 조절 가능)
+    </div>
+
+    <div style="margin-bottom: 25px; background: white; padding: 15px 25px; border-radius: 12px; display: inline-block; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+        <label style="font-weight: bold; color: #333; margin-right: 10px;">🪑 매장 테이블 개수 설정 (최대 20개):</label>
+        <input type="number" id="table-count-input" value="20" min="1" max="20" style="padding: 8px 12px; width: 80px; border-radius: 8px; border: 1px solid #ccc; font-size: 16px; text-align: center; font-weight: bold;">
+        <button onclick="renderQrGrid()" style="padding: 9px 18px; background: #6750A4; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-left: 10px;">적용 및 QR 생성</button>
+    </div>
+
+    <div class="qr-grid" id="qr-container">
+        <!-- JS로 상용 QR 코드가 생성됩니다 -->
+    </div>
+
+    <script>
+        let globalStoreId = "S-A101-001";
+
+        async function initQrBoard() {
+            const cloudBaseUrl = "https://qrrolink-order-web.web.app/join";
+
+            try {
+                const res = await fetch('/api/store/config');
+                const data = await res.json();
+                if (data.storeId) {
+                    globalStoreId = data.storeId;
+                }
+                if (data.storeName) {
+                    document.getElementById('store-title').innerText = `🌐 ${data.storeName} 지능형 QR 보드`;
+                }
+                if (data.tableCount) {
+                    document.getElementById('table-count-input').value = data.tableCount;
+                }
+            } catch (e) {
+                console.error("매장 설정 로드 실패:", e);
+            }
+
+            renderQrGrid();
+        }
+
+        async function renderQrGrid() {
+            const countInput = document.getElementById('table-count-input');
+            let totalTables = parseInt(countInput ? countInput.value : 20) || 20;
+            if (totalTables > 20) totalTables = 20; // A타입 최대 20개 제한
+            if (totalTables < 1) totalTables = 1;
+            countInput.value = totalTables;
+
+            try {
+                await fetch('/api/store/config/update', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tableCount: totalTables })
+                });
+            } catch (e) {
+                console.error("테이블 개수 서버 저장 실패:", e);
+            }
+
+            let localHost = window.location.origin;
+            try {
+                const res = await fetch('/api/store/config');
+                const data = await res.json();
+                if (data.storeIp) {
+                    localHost = `http://${data.storeIp}:8888`;
+                }
+            } catch (e) {}
+
+            const container = document.getElementById('qr-container');
+            container.innerHTML = '';
+
+            for (let i = 1; i <= totalTables; i++) {
+                const targetUrl = `${localHost}/menu?table=${i}`;
+                const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(targetUrl)}`;
+
+                const card = document.createElement('div');
+                card.className = 'qr-card';
+                card.innerHTML = `
+                    <div class="table-num">${i}번 테이블</div>
+                    <img src="{qrImageUrl}" alt="Table ${i} QR">
+                    <div class="url-text">{targetUrl}</div>
+                `.replace("{qrImageUrl}", qrImageUrl).replace("{i}", i).replace("{targetUrl}", targetUrl);
+                container.appendChild(card);
+            }
+        }
+
+        initQrBoard();
+    </script>
+</body>
+</html>

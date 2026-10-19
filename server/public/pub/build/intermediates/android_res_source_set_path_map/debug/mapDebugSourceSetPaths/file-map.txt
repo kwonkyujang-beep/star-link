@@ -1,0 +1,8 @@
+com.example.star_link.pub-pngs-0 /Users/spacerabbit/AndroidStudioProjects/starlink/pub/build/generated/res/pngs/debug
+com.example.star_link.pub-updated_navigation_xml-1 /Users/spacerabbit/AndroidStudioProjects/starlink/pub/build/generated/updated_navigation_xml/debug
+com.example.star_link.pub-packageDebugResources-2 /Users/spacerabbit/AndroidStudioProjects/starlink/pub/build/intermediates/incremental/debug/packageDebugResources/merged.dir
+com.example.star_link.pub-packageDebugResources-3 /Users/spacerabbit/AndroidStudioProjects/starlink/pub/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
+com.example.star_link.pub-debug-4 /Users/spacerabbit/AndroidStudioProjects/starlink/pub/build/intermediates/merged_res/debug/mergeDebugResources
+com.example.star_link.pub-debug-5 /Users/spacerabbit/AndroidStudioProjects/starlink/pub/src/debug/res
+com.example.star_link.pub-main-6 /Users/spacerabbit/AndroidStudioProjects/starlink/pub/src/main/res
+gradleHome-0 /Users/spacerabbit/.gradle

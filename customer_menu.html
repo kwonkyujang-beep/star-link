@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>스마트 오더 🛎️</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        :root {
+            --primary: #8D6E63;
+            --primary-container: #EFEBE9;
+            --on-primary-container: #3E2723;
+            --surface: #FAFAFA;
+            --error: #B3261E;
+            --secondary: #A1887F;
+            --outline: #D7CCC8;
+        }
+        html, body { height: 100%; margin: 0; padding: 0; background-color: var(--surface); -webkit-overflow-scrolling: touch; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; display: flex; flex-direction: column; user-select: none; }
+        header { background-color: #fff; padding: 16px; flex-shrink: 0; z-index: 100; box-shadow: 0 1px 3px rgba(0,0,0,0.1); text-align: center; }
+        .restaurant-name { font-size: 18px; font-weight: 900; color: #1c1b1f; letter-spacing: -0.5px; }
+        .table-badge { font-size: 11px; background: var(--primary-container); color: var(--primary); padding: 3px 10px; border-radius: 12px; display: inline-block; margin-top: 2px; font-weight: bold; }
+        .pay-mode-badge { font-size: 10px; background: #e3f2fd; color: #0288d1; padding: 2px 7px; border-radius: 8px; margin-left: 4px; font-weight: bold; }
+
+        .back-header-btn {
+            background: #f3edf7;
+            border: 1px solid #eaddff;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--primary);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .back-header-btn:active {
+            background: #eaddff;
+        }
+
+        main { flex-grow: 1; overflow-y: auto; padding-bottom: 100px; }
+        .view-section { display: none; }
+        .view-section.active { display: block; }
+        .category-bar { background: white; padding: 12px; display: flex; overflow-x: auto; gap: 8px; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 90; }
+        .category-chip { padding: 8px 16px; border-radius: 20px; background: #f1f1f1; font-size: 13px; font-weight: bold; white-space: nowrap; cursor: pointer; }
+        .category-chip.active { background: var(--primary); color: white; }
+
+        .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 12px; }
+        .menu-card { background: white; border-radius: 16px; overflow: hidden; border: 1px solid #f0f0f0; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; flex-direction: column; cursor: pointer; }
+        .menu-img { width: 100%; height: 110px; object-fit: cover; }
+        .menu-content { padding: 10px; flex-grow: 1; display: flex; flex-direction: column; }
+        .menu-name { font-weight: bold; font-size: 14px; min-height: 34px; }
+        .menu-price { font-weight: 800; color: var(--error); margin-top: 6px; }
+        .option-tag { font-size: 10px; color: var(--primary); background: #f3edf7; padding: 2px 6px; border-radius: 4px; margin-top: 4px; align-self: flex-start; }
+        .qty-control { display: flex; align-items: center; justify-content: flex-end; margin-top: 10px; }
+        .btn-qty { width: 28px; height: 28px; border-radius: 50%; border: none; background: var(--primary); color: white; font-weight: bold; cursor: pointer; }
+        .btn-qty.minus { background: #e0e0e0; color: black; }
+
+        /* 옵션 모달 스타일 */
+        #option-modal { position: fixed; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.6); display: none; z-index: 3500; justify-content: center; align-items: flex-end; }
+        .option-sheet { background: white; width: 100%; max-height: 85vh; border-radius: 24px 24px 0 0; padding: 20px; box-sizing: border-box; overflow-y: auto; animation: slideUp 0.3s ease-out; }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+        .option-group-box { background: #fdfdfd; border: 1px solid #eee; border-radius: 12px; padding: 14px; margin-bottom: 14px; }
+        .option-group-title { font-size: 14px; font-weight: bold; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+        .req-badge { font-size: 10px; background: #ffebee; color: #c62828; padding: 2px 6px; border-radius: 4px; }
+        .opt-badge { font-size: 10px; background: #f5f5f5; color: #616161; padding: 2px 6px; border-radius: 4px; }
+
+        .option-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f5f5f5; cursor: pointer; font-size: 14px; }
+        .option-item:last-child { border-bottom: none; }
+        .option-item input { width: 18px; height: 18px; accent-color: var(--primary); }
+
+        .add-cart-btn { width: 100%; padding: 16px; background: var(--primary); color: white; border: none; border-radius: 14px; font-size: 16px; font-weight: bold; margin-top: 16px; cursor: pointer; }
+
+        /* 결제 섹션 카드 스타일 */
+        .card-preview { background: linear-gradient(135deg, #1e1e1e, #444); border-radius: 16px; padding: 24px; color: white; margin: 16px; position: relative; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .card-number { font-size: 18px; letter-spacing: 2px; margin-top: 20px; }
+        .card-chip { width: 40px; height: 30px; background: #ffd700; border-radius: 4px; margin-bottom: 10px; }
+
+        .loading-overlay { position: fixed; top:0; left:0; right:0; bottom:0; background: rgba(255,255,255,0.95); z-index: 5000; display: none; flex-direction: column; justify-content: center; align-items: center; }
+        .toss-logo { width: 120px; margin-bottom: 20px; }
+        .spinner { width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #0050FF; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* 결제 팝업 스타일 */
+        #payment-modal { position: fixed; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.5); display: none; z-index: 3000; justify-content: center; align-items: flex-end; }
+        .payment-sheet { background: white; width: 100%; border-radius: 24px 24px 0 0; padding: 24px; box-sizing: border-box; animation: slideUp 0.3s ease-out; }
+        .payment-method { display: flex; align-items: center; padding: 16px; border: 1px solid #eee; border-radius: 12px; margin-bottom: 12px; cursor: pointer; }
+        .payment-method.active { border-color: #0050FF; background: #f0f5ff; }
+        .pay-btn-final { width: 100%; padding: 16px; background: #0050FF; color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: bold; margin-top: 20px; cursor: pointer; }
+
+        nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; height: 65px; display: flex; border-top: 1px solid #eee; z-index: 500; }
+        .nav-item { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; font-size: 11px; font-weight: bold; color: #777; cursor: pointer; }
+        .nav-item.active { color: var(--primary); }
+        .nav-icon { font-size: 20px; margin-bottom: 2px; }
+
+        .cart-summary { position: fixed; bottom: 80px; left: 16px; right: 16px; background: var(--primary); color: white; padding: 14px 20px; border-radius: 30px; display: none; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(103, 80, 164, 0.3); z-index: 400; cursor: pointer; }
+        .history-list { padding: 16px; }
+        .history-card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 12px; border: 1px solid #eee; }
+        .status-badge { font-size: 11px; padding: 4px 8px; border-radius: 4px; font-weight: bold; float: right; }
+        .status-waiting { background: #fff3e0; color: #e65100; }
+        .status-served { background: #e3f2fd; color: #1565c0; }
+        .call-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 16px; }
+        .call-btn { background: white; border: 1px solid #ddd; border-radius: 12px; padding: 20px; text-align: center; font-weight: bold; cursor: pointer; }
+        #popup-overlay { position: fixed; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.8); display: none; z-index: 4000; justify-content: center; align-items: center; }
+        .popup-card { background: white; border-radius: 24px; padding: 30px; width: 80%; text-align: center; }
+    </style>
+</head>
+<body>
+
+<header style="display: flex; align-items: center; justify-content: space-between; padding: 10px 16px;">
+    <button class="back-header-btn" onclick="handleBackAction()">◀ 뒤로</button>
+    <div style="text-align: center; flex-grow: 1;">
+        <div class="restaurant-name" id="display-restaurant-name">스타링크 매장</div>
+        <div style="margin-top: 2px;">
+            <span class="table-badge" id="display-table-num">1번 테이블</span>
+            <span class="pay-mode-badge" id="display-pay-mode">스마트 오더</span>
+        </div>
+    </div>
+    <div style="width: 50px;"></div>
+</header>
+
+<div class="loading-overlay" id="loading-overlay">
+    <img src="https://static.toss.im/assets/homepage/brand/pc-logo.png" class="toss-logo">
+    <div class="spinner"></div>
+    <p id="loading-text" style="margin-top:20px; font-weight:bold; color:#0050FF;">토스페이먼츠 보안 결제 요청 중...</p>
+</div>
+
+<!-- 옵션 선택 모달 -->
+<div id="option-modal">
+    <div class="option-sheet">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+            <div>
+                <h3 id="opt-menu-name" style="margin:0; font-size:18px; font-weight:900;">메뉴명</h3>
+                <div id="opt-base-price" style="color:var(--error); font-weight:bold; margin-top:4px;">0원</div>
+            </div>
+            <button onclick="closeOptionModal()" style="background:none; border:none; font-size:20px; color:#aaa; cursor:pointer;">✕</button>
+        </div>
+
+        <div id="option-groups-container"></div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:16px; padding-top:12px; border-top:1px solid #eee;">
+            <span style="font-size:14px; font-weight:bold;">수량</span>
+            <div style="display:flex; align-items:center;">
+                <button class="btn-qty minus" onclick="changeOptionQty(-1)">-</button>
+                <span id="opt-modal-qty" style="margin:0 12px; font-weight:bold; font-size:16px;">1</span>
+                <button class="btn-qty" onclick="changeOptionQty(1)">+</button>
+            </div>
+        </div>
+
+        <button class="add-cart-btn" id="btn-add-to-cart" onclick="confirmOptionAddToCart()">0원 장바구니 담기</button>
+    </div>
+</div>
+
+<!-- 결제/주문 수단 선택 모달 -->
+<div id="payment-modal">
+    <div class="payment-sheet">
+        <h3 style="margin-top:0;">결제/주문 수단 선택</h3>
+        <div class="payment-method active" onclick="selectMethod(this, 'KAKAO_PAY')">
+            <span style="font-size:22px; margin-right:12px;">🟡</span>
+            <div>
+                <div style="font-weight:bold;">카카오페이 (선불)</div>
+                <div style="font-size:12px; color:#666;">카카오톡 1초 간편결제</div>
+            </div>
+        </div>
+        <div class="payment-method" onclick="selectMethod(this, 'NAVER_PAY')">
+            <span style="font-size:22px; margin-right:12px;">🟢</span>
+            <div>
+                <div style="font-weight:bold;">네이버페이 (선불)</div>
+                <div style="font-size:12px; color:#666;">네이버페이 포인트 적립</div>
+            </div>
+        </div>
+        <div class="payment-method" onclick="selectMethod(this, 'TOSS_PAY')">
+            <span style="font-size:22px; margin-right:12px;">🔵</span>
+            <div>
+                <div style="font-weight:bold;">토스페이 (선불)</div>
+                <div style="font-size:12px; color:#666;">토스 1초 간편결제</div>
+            </div>
+        </div>
+        <div class="payment-method" onclick="selectMethod(this, 'CARD')">
+            <span style="font-size:22px; margin-right:12px;">💳</span>
+            <div>
+                <div style="font-weight:bold;">신용/체크카드 (선불)</div>
+                <div style="font-size:12px; color:#666;">현대/삼성/KB/신한 등 전 카드사</div>
+            </div>
+        </div>
+        <div class="payment-method" onclick="selectMethod(this, 'POST_PAY')">
+            <span style="font-size:22px; margin-right:12px;">📝</span>
+            <div>
+                <div style="font-weight:bold; color:var(--primary);">카운터 후불 결제</div>
+                <div style="font-size:12px; color:#666;">식사를 마치신 후 나갈 때 카운터에서 계산</div>
+            </div>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-top:20px; font-weight:bold;">
+            <span>최종 주문 금액</span>
+            <span id="final-pay-amount" style="color:var(--primary);">0원</span>
+        </div>
+        <button class="pay-btn-final" id="btn-submit-payment" onclick="startPGPayment()">카카오페이 결제하기</button>
+        <button onclick="document.getElementById('payment-modal').style.display='none'" style="width:100%; background:none; border:none; color:#999; margin-top:10px; cursor:pointer;">취소</button>
+    </div>
+</div>
+
+<main id="main-content">
+    <section id="section-menu" class="view-section active">
+        <div class="category-bar" id="category-bar-container">
+            <!-- 카테고리가 동적으로 생성됩니다 -->
+        </div>
+        <div class="menu-grid" id="menu-container"></div>
+    </section>
+
+    <section id="section-history" class="view-section">
+        <div style="padding: 20px 16px 10px; display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-weight: bold; font-size: 18px;">주문 내역</span>
+            <div id="grand-total-display" style="font-size: 16px; font-weight: 900; color: var(--error);">누적 합계: 0원</div>
+        </div>
+        <div class="history-list" id="history-container"></div>
+    </section>
+
+    <section id="section-call" class="view-section">
+        <div style="padding: 20px 16px 0; font-weight: bold; font-size: 18px;">필요하신 것이 있나요?</div>
+        <div class="call-grid">
+            <div class="call-btn" onclick="callStaff('물 좀 주세요')">💧 물</div>
+            <div class="call-btn" onclick="callStaff('단무지 리필')">🥗 단무지</div>
+            <div class="call-btn" onclick="callStaff('앞접시/가위')">🍽️ 앞접시</div>
+            <div class="call-btn" onclick="callStaff('직원 호출')">🙋 직원 호출</div>
+        </div>
+    </section>
+
+    <section id="section-pay" class="view-section">
+        <div style="padding: 20px 16px 0; font-weight: bold; font-size: 18px;">결제 수단 관리</div>
+        <div id="card-registered-view" style="display:none;">
+            <div class="card-preview">
+                <div class="card-chip"></div>
+                <div style="font-size:12px; opacity:0.8;">Starlink Secure Card</div>
+                <div class="card-number">**** **** **** 8829</div>
+            </div>
+            <button onclick="unregisterCard()" style="margin:0 16px; color:var(--error); border:none; background:none; font-weight:bold;">등록 해제</button>
+        </div>
+        <div id="card-empty-view" style="padding:40px 20px; text-align:center;">
+            <p style="color:#999;">등록된 카드가 없습니다.</p>
+            <button onclick="registerCardMock()" style="margin-top:20px; padding:12px 24px; background:var(--primary); color:white; border:none; border-radius:12px; font-weight:bold;">+ 카드 등록</button>
+        </div>
+    </section>
+</main>
+
+<div class="cart-summary" id="cart-summary" onclick="handleCartSubmit()">
+    <span id="cart-count">0개 선택</span>
+    <span id="cart-price">0원 주문하기 〉</span>
+</div>
+
+<div id="popup-overlay">
+    <div class="popup-card">
+        <div id="popup-icon" style="font-size: 50px;">🎉</div>
+        <h3 id="popup-title">알림</h3>
+        <p id="popup-msg" style="color:#666; white-space:pre-line;"></p>
+        <button id="btn-show-receipt" onclick="showDigitalReceipt()" style="width:100%; padding:12px; background:#43a047; color:white; border:none; border-radius:12px; font-weight:bold; margin-top:8px; cursor:pointer; display:none;">🧾 전자영수증 보기</button>
+        <button onclick="closePopup()" style="width:100%; padding:12px; background:var(--primary); color:white; border:none; border-radius:12px; font-weight:bold; margin-top:8px; cursor:pointer;">확인</button>
+    </div>
+</div>
+
+<!-- 전자영수증 모달 -->
+<div id="receipt-modal" style="position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.85); display:none; justify-content:center; align-items:center; z-index:2500; padding:16px;">
+    <div id="receipt-card-element" style="background:#fff; color:#333; width:100%; max-width:380px; border-radius:20px; padding:24px; box-sizing:border-box; font-family:'Courier New', Courier, monospace; box-shadow:0 10px 30px rgba(0,0,0,0.6); max-height:90vh; overflow-y:auto;">
+        <div style="text-align:center; border-bottom:2px dashed #ccc; padding-bottom:15px; margin-bottom:15px;">
+            <h2 style="margin:0; font-size:18px; font-weight:bold; color:#111;">🧾 모바일 전자영수증</h2>
+            <div style="font-size:11px; color:#666; margin-top:4px;">Starlink Smart Digital Receipt</div>
+        </div>
+        <div style="font-size:12px; line-height:1.6; margin-bottom:15px;">
+            <div style="display:flex; justify-content:space-between;"><span>상호명:</span> <span style="font-weight:bold;">천하제일점</span></div>
+            <div style="display:flex; justify-content:space-between;"><span>테이블:</span> <span id="rcpt-table" style="font-weight:bold;">1번 테이블</span></div>
+            <div style="display:flex; justify-content:space-between;"><span>거래일시:</span> <span id="rcpt-time">2026-10-11 14:30:00</span></div>
+            <div style="display:flex; justify-content:space-between;"><span>결제수단:</span> <span id="rcpt-method">토스페이</span></div>
+            <div style="display:flex; justify-content:space-between;"><span>승인번호:</span> <span id="rcpt-txid" style="word-break:break-all;">TX-12345678</span></div>
+        </div>
+        <div style="border-top:1px dashed #ccc; border-bottom:1px dashed #ccc; padding:10px 0; margin-bottom:15px;">
+            <table style="width:100%; font-size:12px; border-collapse:collapse;">
+                <thead>
+                    <tr style="border-bottom:1px solid #ddd; text-align:left;">
+                        <th style="padding:4px;">상품명</th>
+                        <th style="padding:4px; text-align:center;">수량</th>
+                        <th style="padding:4px; text-align:right;">금액</th>
+                    </tr>
+                </thead>
+                <tbody id="rcpt-items-tbody"></tbody>
+            </table>
+        </div>
+        <div style="font-size:13px; font-weight:bold; margin-bottom:20px;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:4px;"><span>공급가액:</span> <span id="rcpt-supply">0원</span></div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px;"><span>부가세(VAT):</span> <span id="rcpt-vat">0원</span></div>
+            <div style="display:flex; justify-content:space-between; font-size:16px; color:#0050FF; border-top:1px solid #ddd; padding-top:8px;">
+                <span>총 결제금액:</span> <span id="rcpt-total">0원</span>
+            </div>
+        </div>
+        <button id="btn-save-receipt" onclick="downloadReceiptImage()" style="width:100%; padding:14px; background:#43a047; color:white; border:none; border-radius:12px; font-weight:bold; font-size:15px; cursor:pointer; margin-bottom:8px;">📥 영수증 이미지로 저장</button>
+        <button id="btn-close-receipt" onclick="document.getElementById('receipt-modal').style.display='none'" style="width:100%; padding:14px; background:#0050FF; color:white; border:none; border-radius:12px; font-weight:bold; font-size:15px; cursor:pointer; margin-bottom:8px;">확인 (닫기)</button>
+        <div style="font-size:11px; color:#888; text-align:center;">본 영수증은 전자상거래법에 의거한 모바일 전자영수증입니다.</div>
+    </div>
+</div>
+
+<nav>
+    <div class="nav-item active" onclick="changeTab('menu', this)"><span class="nav-icon">📖</span><span>메뉴판</span></div>
+    <div class="nav-item" onclick="changeTab('history', this)"><span class="nav-icon">📝</span><span>주문내역</span></div>
+    <div class="nav-item" onclick="changeTab('call', this)"><span class="nav-icon">🙋</span><span>직원호출</span></div>
+    <div class="nav-item" onclick="changeTab('pay', this)"><span class="nav-icon">💳</span><span>내정보</span></div>
+</nav>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const tableNumber = urlParams.get('table') || "1";
+    document.getElementById('display-table-num').innerText = `${tableNumber}번 테이블`;
+
+    let paymentMode = "POST_PAY"; // POST_PAY (후불) | PRE_PAY (선불)
+    let secureCardToken = localStorage.getItem('pay_token') || null;
+
+    let cart = []; // [{ cartKey, menuId, name, basePrice, optionPrice, unitPrice, qty, selectedOptions }]
+    let orderHistory = JSON.parse(localStorage.getItem(`orders_${tableNumber}`)) || [];
+
+    const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const wsHost = window.location.protocol === 'https:' ? window.location.host : `${window.location.hostname}:8888`;
+
+    let ws = null;
+    try {
+        ws = new WebSocket(`${wsProtocol}//${wsHost}/place-order`);
+        ws.onopen = () => {
+            console.log("✅ 서버 연결 성공!");
+            try { ws.send(JSON.stringify({ type: "JOIN", tableNumber: parseInt(tableNumber) })); } catch(e) {}
+        };
+        ws.onmessage = (event) => {
+            try {
+                const data = JSON.parse(event.data);
+                if (data.type === 'MENU_UPDATED') { fetchMenus(); }
+                if (data.type === 'PAYMENT_COMPLETED') { showNotify("💳", "결제 승인 완료", "결제가 정상적으로 처리되었습니다."); }
+                if (data.type === 'SERVICE_TERMINATED') {
+                    closePopup();
+                    if (document.getElementById('payment-modal')) document.getElementById('payment-modal').style.display = 'none';
+                    if (document.getElementById('option-modal')) document.getElementById('option-modal').style.display = 'none';
+                    showServiceTerminated(data.message || "식사가 완료되었습니다.");
+                }
+            } catch(e) {}
+        };
+        ws.onerror = (err) => { console.warn("웹소켓 비동기 연결 에러 무시됨", err); };
+    } catch(e) {
+        console.warn("웹소켓 초기화 예외 안전 처리됨", e);
+    }
+
+    function showServiceTerminated(msg) {
+        document.body.innerHTML = `
+            <div style="height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; background:#121212; color:white; text-align:center; padding:20px;">
+                <div style="font-size:80px; margin-bottom:20px;">✨</div>
+                <h1 style="color:#ffbc42; font-size:24px;">방문해 주셔서 감사합니다</h1>
+                <p style="color:#aaa; line-height:1.6; margin-top:10px;">${msg}</p>
+                <div style="margin-top:40px; padding:15px 30px; border:1px solid #333; border-radius:15px; font-size:14px; color:#555;">
+                    보안을 위해 주문 세션이 종료되었습니다.<br>페이지를 닫으셔도 좋습니다.
+                </div>
+                <button onclick="window.location.reload()" style="margin-top:30px; background:none; border:1px solid #444; color:#888; padding:10px 20px; border-radius:10px; font-size:12px;">다시 주문하려면 여기를 누르세요</button>
+            </div>
+        `;
+        // [해결] 자동으로 /join으로 이동하여 루프가 발생하는 현상 차단
+    }
+
+    const defaultFallbackMenus = [
+        {
+            id: "1",
+            name: "명품 삼선 짜장면",
+            price: 8500,
+            category: "식사류",
+            img: "https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=600&q=80",
+            optionGroups: [
+                {
+                    title: "옵션 선택",
+                    required: false,
+                    options: [
+                        { name: "매운맛 변경 (+500원)", price: 500 },
+                        { name: "면 곱빼기 (+1,000원)", price: 1000 }
+                    ]
+                }
+            ]
+        },
+        {
+            id: "2",
+            name: "차돌박이 불짬뽕",
+            price: 11000,
+            category: "식사류",
+            img: "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?auto=format&fit=crop&w=600&q=80",
+            optionGroups: [
+                {
+                    title: "옵션 선택",
+                    required: false,
+                    options: [
+                        { name: "더 매운맛 변경 (+500원)", price: 500 },
+                        { name: "면 곱빼기 (+1,000원)", price: 1000 }
+                    ]
+                }
+            ]
+        },
+        {
+            id: "3",
+            name: "해물 쟁반짜장(2인)",
+            price: 18000,
+            category: "식사류",
+            img: "https://images.unsplash.com/photo-1569058242253-92a9c71f9867?auto=format&fit=crop&w=600&q=80",
+            optionGroups: [
+                {
+                    title: "사리 추가",
+                    required: false,
+                    options: [
+                        { name: "공기밥 추가 (+1,500원)", price: 1500 }
+                    ]
+                }
+            ]
+        },
+        {
+            id: "4",
+            name: "바삭 찹쌀 탕수육(소)",
+            price: 19000,
+            category: "요리류",
+            img: "https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=600&q=80",
+            optionGroups: [
+                {
+                    title: "소스 방식",
+                    required: false,
+                    options: [
+                        { name: "찍먹 (소스 별도)", price: 0 },
+                        { name: "부먹 (소스 뿌려서)", price: 0 }
+                    ]
+                }
+            ]
+        },
+        {
+            id: "8",
+            name: "속이 꽉 찬 군만두(6p)",
+            price: 6000,
+            category: "사이드",
+            img: "https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=600&q=80",
+            optionGroups: []
+        }
+    ];
+
+    let menus = defaultFallbackMenus;
+
+    async function fetchStoreConfig() {
+        try {
+            const res = await fetch(`${window.location.origin}/api/store/config`);
+            if (res.ok) {
+                const config = await res.json();
+                if (config.paymentMode) paymentMode = config.paymentMode;
+                if (config.storeName) {
+                    document.getElementById('display-restaurant-name').innerText = config.storeName;
+                    document.title = `${config.storeName} 스마트 오더 🛎️`;
+                }
+                updateCartBar();
+            }
+        } catch (e) {
+            console.warn("매장 설정 조회 실패", e);
+        }
+    }
+
+    async function fetchMenus() {
+        try {
+            const res = await fetch(`${window.location.origin}/api/menus`);
+            if (res.ok) {
+                const fetched = await res.json();
+                if (Array.isArray(fetched) && fetched.length > 0) {
+                    menus = fetched;
+                }
+            }
+        } catch (e) {
+            console.warn("서버 메뉴 로딩 실패", e);
+        } finally {
+            updateCategoryBar();
+            renderMenus();
+        }
+    }
+
+    function updateCategoryBar() {
+        const catContainer = document.getElementById('category-bar-container');
+        if (!catContainer) return;
+
+        const categories = ['전체', ...new Set(menus.map(m => m.category).filter(c => c))];
+        let currentActive = document.querySelector('.category-chip.active')?.innerText || '전체';
+        if (!categories.includes(currentActive)) currentActive = '전체';
+
+        catContainer.innerHTML = categories.map(cat =>
+            `<div class="category-chip ${cat === currentActive ? 'active' : ''}" onclick="setCategory('${cat}', this)">${cat}</div>`
+        ).join('');
+    }
+
+    fetchStoreConfig();
+    fetchMenus();
+
+    function renderMenus(cat = '전체') {
+        const container = document.getElementById('menu-container');
+        container.innerHTML = menus.filter(m => cat === '전체' || m.category === cat).map(m => {
+            const cartItems = cart.filter(c => c.menuId === m.id);
+            const totalQty = cartItems.reduce((sum, c) => sum + c.qty, 0);
+            const hasOptions = m.optionGroups && m.optionGroups.length > 0;
+
+            return `
+            <div class="menu-card" onclick="onMenuCardClick('${m.id}')">
+                <img src="${m.img}" class="menu-img">
+                <div class="menu-content">
+                    <div class="menu-name">${m.name}</div>
+                    <div class="menu-price">${m.price.toLocaleString()}원</div>
+                    ${hasOptions ? `<div class="option-tag">✨ 옵션 선택가능</div>` : ''}
+                    <div class="qty-control">
+                        ${totalQty > 0 ? `<span style="font-size:12px; font-weight:bold; color:var(--primary);">${totalQty}개 담김</span>` : `<button class="btn-qty" onclick="event.stopPropagation(); onMenuCardClick('${m.id}')">+</button>`}
+                    </div>
+                </div>
+            </div>`;
+        }).join('');
+    }
+
+    // 옵션 모달 전역 변수
+    let currentActiveMenu = null;
+    let optionModalQty = 1;
+
+    function onMenuCardClick(menuId) {
+        try {
+            const menu = menus.find(m => m.id === menuId);
+            if (!menu) {
+                alert("메뉴를 찾을 수 없습니다: " + menuId);
+                return;
+            }
+
+            if (menu.optionGroups && menu.optionGroups.length > 0) {
+                openOptionModal(menu);
+            } else {
+                // 옵션 없는 메뉴는 즉시 1개 추가
+                addToCartDirect(menu, [], 1);
+            }
+        } catch (e) {
+            alert("⚠️ 메뉴 클릭 에러: " + e.message);
+        }
+    }
+
+    function openOptionModal(menu) {
+        currentActiveMenu = menu;
+        optionModalQty = 1;
+        document.getElementById('opt-menu-name').innerText = menu.name;
+        document.getElementById('opt-base-price').innerText = `${menu.price.toLocaleString()}원`;
+        document.getElementById('opt-modal-qty').innerText = optionModalQty;
+
+        const container = document.getElementById('option-groups-container');
+        container.innerHTML = menu.optionGroups.map((group, gIdx) => `
+            <div class="option-group-box">
+                <div class="option-group-title">
+                    <span>${group.title}</span>
+                    <span class="${group.required ? 'req-badge' : 'opt-badge'}">${group.required ? '필수' : '선택'}</span>
+                </div>
+                ${group.options.map((opt, oIdx) => `
+                    <label class="option-item">
+                        <span>${opt.name}</span>
+                        <div style="display:flex; align-items:center;">
+                            <span style="font-size:12px; color:#666; margin-right:8px;">${opt.price > 0 ? `+${opt.price.toLocaleString()}원` : ''}</span>
+                            <input type="${group.required ? 'radio' : 'checkbox'}"
+                                   name="opt_group_${gIdx}"
+                                   value="${oIdx}"
+                                   ${group.required && oIdx === 0 ? 'checked' : ''}
+                                   onchange="calculateOptionTotalPrice()">
+                        </div>
+                    </label>
+                `).join('')}
+            </div>
+        `).join('');
+
+        document.getElementById('option-modal').style.display = 'flex';
+        calculateOptionTotalPrice();
+    }
+
+    function closeOptionModal() {
+        document.getElementById('option-modal').style.display = 'none';
+        currentActiveMenu = null;
+    }
+
+    function changeOptionQty(delta) {
+        optionModalQty = Math.max(1, optionModalQty + delta);
+        document.getElementById('opt-modal-qty').innerText = optionModalQty;
+        calculateOptionTotalPrice();
+    }
+
+    function calculateOptionTotalPrice() {
+        if (!currentActiveMenu) return 0;
+        let optionExtraPrice = 0;
+
+        currentActiveMenu.optionGroups.forEach((group, gIdx) => {
+            const inputs = document.querySelectorAll(`input[name="opt_group_${gIdx}"]:checked`);
+            inputs.forEach(inp => {
+                const optIdx = parseInt(inp.value);
+                optionExtraPrice += group.options[optIdx].price;
+            });
+        });
+
+        const unitPrice = currentActiveMenu.price + optionExtraPrice;
+        const totalPrice = unitPrice * optionModalQty;
+        document.getElementById('btn-add-to-cart').innerText = `${totalPrice.toLocaleString()}원 장바구니 담기`;
+        return totalPrice;
+    }
+
+    function confirmOptionAddToCart() {
+        if (!currentActiveMenu) return;
+
+        // 필수 항목 체크 유효성 검사
+        for (let gIdx = 0; gIdx < currentActiveMenu.optionGroups.length; gIdx++) {
+            const group = currentActiveMenu.optionGroups[gIdx];
+            if (group.required) {
+                const checked = document.querySelector(`input[name="opt_group_${gIdx}"]:checked`);
+                if (!checked) {
+                    alert(`'${group.title}' 항목을 선택해 주세요.`);
+                    return;
+                }
+            }
+        }
+
+        const selectedOpts = [];
+        let optionExtraPrice = 0;
+
+        currentActiveMenu.optionGroups.forEach((group, gIdx) => {
+            const inputs = document.querySelectorAll(`input[name="opt_group_${gIdx}"]:checked`);
+            inputs.forEach(inp => {
+                const optIdx = parseInt(inp.value);
+                const opt = group.options[optIdx];
+                selectedOpts.push({ groupTitle: group.title, name: opt.name, price: opt.price });
+                optionExtraPrice += opt.price;
+            });
+        });
+
+        addToCartDirect(currentActiveMenu, selectedOpts, optionModalQty);
+        closeOptionModal();
+    }
+
+    function addToCartDirect(menu, selectedOpts, qty) {
+        const optKey = selectedOpts.map(o => o.name).sort().join('|');
+        const cartKey = `${menu.id}_${optKey}`;
+
+        const existingIndex = cart.findIndex(c => c.cartKey === cartKey);
+        if (existingIndex !== -1) {
+            cart[existingIndex].qty += qty;
+        } else {
+            const optionPriceSum = selectedOpts.reduce((sum, o) => sum + o.price, 0);
+            cart.push({
+                cartKey: cartKey,
+                menuId: menu.id,
+                name: menu.name,
+                basePrice: menu.price,
+                optionPrice: optionPriceSum,
+                unitPrice: menu.price + optionPriceSum,
+                qty: qty,
+                selectedOptions: selectedOpts
+            });
+        }
+
+        updateCartBar();
+        renderMenus(document.querySelector('.category-chip.active').innerText);
+    }
+
+    function updateCartBar() {
+        const bar = document.getElementById('cart-summary');
+        let totalQty = 0, totalPrice = 0;
+        cart.forEach(item => {
+            totalQty += item.qty;
+            totalPrice += item.unitPrice * item.qty;
+        });
+
+        if (totalQty > 0) {
+            bar.style.display = 'flex';
+            document.getElementById('cart-count').innerText = `${totalQty}개 선택`;
+            document.getElementById('cart-price').innerText = `${totalPrice.toLocaleString()}원 결제/주문하기 〉`;
+        } else bar.style.display = 'none';
+    }
+
+    function handleCartSubmit() {
+        alert("[디버그] 장바구니 바가 클릭되었습니다! 결제 모달을 엽니다.");
+        let totalPrice = cart.reduce((sum, i) => sum + (i.unitPrice * i.qty), 0);
+        document.getElementById('final-pay-amount').innerText = `${totalPrice.toLocaleString()}원`;
+        document.getElementById('payment-modal').style.display = 'flex';
+    }
+
+    async function submitPostPayOrder() {
+        const orderId = "ORD_" + Date.now() + "_" + Math.floor(Math.random() * 1000);
+        const total = cart.reduce((sum, i) => sum + (i.unitPrice * i.qty), 0);
+
+        const itemsSummary = cart.map(item => {
+            const optText = item.selectedOptions.map(o => o.name).join(', ');
+            return {
+                name: item.name + (optText ? ` [${optText}]` : ''),
+                qty: item.qty,
+                price: item.unitPrice,
+                options: optText
+            };
+        });
+
+        const orderPacket = {
+            type: "ORDER_RECEIVED",
+            tableNumber: parseInt(tableNumber),
+            totalAmount: total,
+            isPaid: false,
+            paymentMode: "POST_PAY",
+            orderId: orderId,
+            items: itemsSummary
+        };
+
+
+
+        try {
+            const response = await fetch(`${window.location.origin}/api/order/submit`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(orderPacket)
+            });
+            if (!response.ok) {
+                throw new Error("HTTP 오류 상태코드: " + response.status);
+            }
+            const result = await response.json();
+            if (result && result.success === false) {
+                throw new Error(result.message || "서버 주문 거절됨");
+            }
+        } catch (e) {
+            console.error("HTTP 주문 전송 에러", e);
+            alert("⚠️ 주문 전송 실패: " + e.message + "\n네트워크 연결을 확인해주세요.");
+            return;
+        }
+
+        orderHistory.push({
+            time: new Date().toLocaleTimeString(),
+            items: itemsSummary,
+            status: '주문완료 (카운터 후불)',
+            total: total,
+            isPaid: false
+        });
+        localStorage.setItem(`orders_${tableNumber}`, JSON.stringify(orderHistory));
+
+        cart = [];
+        updateCartBar();
+        renderMenus();
+        renderHistory();
+        saveLastOrder(itemsSummary, total, orderId, "카운터 후불 결제");
+        document.getElementById('btn-show-receipt').style.display = 'block';
+        showNotify("📝", "주문 접수 완료!", "주문이 주방으로 성공적으로 전달되었습니다.\n계산은 식사를 마치신 후 카운터에서 진행해 주세요.");
+    }
+
+    let selectedPayMethod = 'KAKAO_PAY';
+
+    function selectMethod(el, method) {
+        document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('active'));
+        el.classList.add('active');
+        selectedPayMethod = method;
+
+        const btn = document.getElementById('btn-submit-payment');
+        if (btn) {
+            if (method === 'POST_PAY') {
+                btn.innerText = "카운터 후불로 주문 전송하기";
+                btn.style.background = "var(--primary)";
+            } else {
+                btn.innerText = `${getPayMethodName(method)} 결제하기`;
+                btn.style.background = "#0050FF";
+            }
+        }
+    }
+
+    function getPayMethodName(method) {
+        switch (method) {
+            case 'KAKAO_PAY': return '카카오페이';
+            case 'NAVER_PAY': return '네이버페이';
+            case 'TOSS_PAY': return '토스페이';
+            case 'CARD': return '신용/체크카드';
+            case 'POST_PAY': return '카운터 후불 결제';
+            default: return '간편결제';
+        }
+    }
+
+    async function startPGPayment() {
+        alert("[디버그] 결제/주문 전송 버튼이 클릭되었습니다! 선택된 방식: " + selectedPayMethod);
+        document.getElementById('payment-modal').style.display = 'none';
+
+        // 후불 결제 선택 시
+        if (selectedPayMethod === 'POST_PAY') {
+            submitPostPayOrder();
+            return;
+        }
+
+        const methodName = getPayMethodName(selectedPayMethod);
+        document.getElementById('loading-text').innerText = `${methodName} 보안 결제 승인 요청 중...`;
+        document.getElementById('loading-overlay').style.display = 'flex';
+
+        let pgClientKey = "test_ck_D5Ge2x3M8pv991005b6VgL1N0Ene";
+        const txId = "tx_" + Math.random().toString(36).substr(2, 9).toUpperCase();
+        const orderId = "ORD_" + Date.now() + "_" + Math.floor(Math.random() * 1000);
+
+        const itemsSummary = cart.map(item => {
+            const optText = item.selectedOptions.map(o => o.name).join(', ');
+            return {
+                name: item.name + (optText ? ` [${optText}]` : ''),
+                qty: item.qty,
+                price: item.unitPrice,
+                options: optText
+            };
+        });
+        const total = itemsSummary.reduce((sum, i) => sum + (i.price * i.qty), 0);
+
+        await new Promise(r => setTimeout(r, 1200));
+
+        try {
+            const res = await fetch(`${window.location.origin}/api/payment/confirm`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    paymentKey: txId,
+                    orderId: orderId,
+                    amount: total,
+                    tableNumber: parseInt(tableNumber),
+                    items: itemsSummary,
+                    isPaid: true,
+                    paymentMode: "PRE_PAY",
+                    payMethod: selectedPayMethod
+                })
+            });
+            const result = await res.json();
+            if (!res.ok || result.success === false) {
+                document.getElementById('loading-overlay').style.display = 'none';
+                alert("결제 거부: " + (result.message || "이미 결제되었거나 잔액이 부족합니다."));
+                return;
+            }
+        } catch (e) {
+            console.error("결제 승인 통신 에러", e);
+            document.getElementById('loading-overlay').style.display = 'none';
+            alert("결제 승인 통신 중 오류가 발생했습니다.");
+            return;
+        }
+
+        orderHistory.push({ time: new Date().toLocaleTimeString(), items: itemsSummary, status: `주문완료(${methodName})`, total: total, isPaid: true, txId: txId });
+        localStorage.setItem(`orders_${tableNumber}`, JSON.stringify(orderHistory));
+
+        document.getElementById('loading-overlay').style.display = 'none';
+        cart = []; updateCartBar(); renderMenus();
+        saveLastOrder(itemsSummary, total, txId, methodName);
+        document.getElementById('btn-show-receipt').style.display = 'block';
+        showNotify("💳", `${methodName} 결제 완료!`, `승인번호: ${txId}\n주문이 주방으로 성공적으로 전달되었습니다.`);
+    }
+
+    function renderHistory() {
+        const container = document.getElementById('history-container');
+        let grandTotal = 0;
+        if (orderHistory.length === 0) {
+            container.innerHTML = '<p style="text-align:center; color:#999; margin-top:40px;">내역이 없습니다.</p>';
+            document.getElementById('grand-total-display').innerText = "누적 합계: 0원";
+            return;
+        }
+        container.innerHTML = orderHistory.map(o => {
+            grandTotal += o.total;
+            return `
+            <div class="history-card">
+                <span class="status-badge ${o.isPaid ? 'status-served' : 'status-waiting'}">${o.isPaid ? '💳 선불완료' : '📝 후불(카운터 결제)'}</span>
+                <div style="font-size:12px; color:#999; margin-bottom:8px;">${o.time} 주문</div>
+                ${o.items.map(i => `<div style="display:flex; justify-content:space-between; font-size:14px; margin-bottom:4px;"><span>• ${i.name} (${i.qty}개)</span><span>${(i.price*i.qty).toLocaleString()}원</span></div>`).join('')}
+                <div style="margin-top:10px; border-top:1px solid #f9f9f9; padding-top:8px; font-weight:bold; color:var(--error); text-align:right;">소계: ${o.total.toLocaleString()}원</div>
+            </div>`;
+        }).reverse().join('');
+        document.getElementById('grand-total-display').innerText = `누적 합계: ${grandTotal.toLocaleString()}원`;
+    }
+
+    function registerCardMock() {
+        const token = "tok_" + Math.random().toString(36).substr(2, 9);
+        localStorage.setItem('pay_token', token);
+        secureCardToken = token;
+        renderPaySection(); updateCartBar();
+        showNotify("💳", "등록 완료", "이제 간편결제가 가능합니다.");
+    }
+
+    function unregisterCard() {
+        localStorage.removeItem('pay_token'); secureCardToken = null;
+        renderPaySection(); updateCartBar();
+    }
+
+    function renderPaySection() {
+        document.getElementById('card-registered-view').style.display = secureCardToken ? 'block' : 'none';
+        document.getElementById('card-empty-view').style.display = secureCardToken ? 'none' : 'block';
+    }
+
+    function changeTab(tab, el) {
+        try {
+            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+            if (el) el.classList.add('active');
+            document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+            const targetSection = document.getElementById(`section-${tab}`);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            } else {
+                alert("⚠️ 화면 섹션을 찾을 수 없습니다: " + tab);
+            }
+            if(tab === 'history') renderHistory();
+            if(tab === 'pay') renderPaySection();
+        } catch (e) {
+            alert("⚠️ 탭 이동 에러: " + e.message);
+        }
+    }
+
+    function callStaff(msg) {
+        try {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({ type: "STAFF_CALL", tableNumber: parseInt(tableNumber), message: msg }));
+            }
+            showNotify("🙋", "호출 완료", `'${msg}' 요청을 주방/카운터로 전달했습니다.`);
+        } catch (e) {
+            alert("⚠️ 직원 호출 에러: " + e.message);
+        }
+    }
+
+    function showNotify(icon, title, msg) {
+        document.getElementById('popup-icon').innerText = icon;
+        document.getElementById('popup-title').innerText = title;
+        document.getElementById('popup-msg').innerText = msg;
+        document.getElementById('popup-overlay').style.display = 'flex';
+    }
+
+    let lastOrderData = null;
+
+    function saveLastOrder(items, total, txId, methodName) {
+        lastOrderData = {
+            tableNumber: tableNumber,
+            time: new Date().toLocaleString(),
+            txId: txId || ("ORD_" + Date.now()),
+            methodName: methodName || "간편결제",
+            items: items,
+            total: total
+        };
+    }
+
+    function showDigitalReceipt() {
+        if (!lastOrderData) return alert("발급된 영수증 내역이 없습니다.");
+        document.getElementById('rcpt-table').innerText = `${lastOrderData.tableNumber}번 테이블`;
+        document.getElementById('rcpt-time').innerText = lastOrderData.time;
+        document.getElementById('rcpt-method').innerText = lastOrderData.methodName;
+        document.getElementById('rcpt-txid').innerText = lastOrderData.txId;
+
+        const total = lastOrderData.total;
+        const supply = Math.round(total / 1.1);
+        const vat = total - supply;
+
+        document.getElementById('rcpt-supply').innerText = supply.toLocaleString() + "원";
+        document.getElementById('rcpt-vat').innerText = vat.toLocaleString() + "원";
+        document.getElementById('rcpt-total').innerText = total.toLocaleString() + "원";
+
+        const tbody = document.getElementById('rcpt-items-tbody');
+        tbody.innerHTML = lastOrderData.items.map(i => `
+            <tr>
+                <td style="padding:6px 4px; border-bottom:1px solid #f0f0f0;">${i.name}</td>
+                <td style="padding:6px 4px; text-align:center; border-bottom:1px solid #f0f0f0;">${i.qty}</td>
+                <td style="padding:6px 4px; text-align:right; border-bottom:1px solid #f0f0f0;">${(i.price * i.qty).toLocaleString()}원</td>
+            </tr>
+        `).join('');
+
+        document.getElementById('popup-overlay').style.display = 'none';
+        document.getElementById('receipt-modal').style.display = 'flex';
+    }
+
+    async function downloadReceiptImage() {
+        const receiptCard = document.getElementById('receipt-card-element');
+        const btnSave = document.getElementById('btn-save-receipt');
+        const btnClose = document.getElementById('btn-close-receipt');
+
+        btnSave.style.display = 'none';
+        btnClose.style.display = 'none';
+
+        try {
+            const canvas = await html2canvas(receiptCard, { scale: 2, backgroundColor: '#ffffff' });
+            const image = canvas.toDataURL("image/png");
+
+            const a = document.createElement('a');
+            a.href = image;
+            a.download = `Starlink_Receipt_${Date.now()}.png`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            alert("영수증이 이미지로 저장되었습니다!");
+        } catch (e) {
+            console.error("영수증 저장 실패", e);
+            alert("이미지 저장 중 오류가 발생했습니다. 화면 캡처를 이용해 주세요.");
+        } finally {
+            btnSave.style.display = 'block';
+            btnClose.style.display = 'block';
+        }
+    }
+
+    function closePopup() { document.getElementById('popup-overlay').style.display = 'none'; }
+
+    function handleBackAction() {
+        // 1. 옵션 모달이 열려있으면 닫기
+        if (document.getElementById('option-modal').style.display === 'flex') {
+            closeOptionModal();
+            return;
+        }
+
+        // 2. 결제 수단 모달이 열려있으면 닫기
+        if (document.getElementById('payment-modal').style.display === 'flex') {
+            document.getElementById('payment-modal').style.display = 'none';
+            return;
+        }
+
+        // 3. 장바구니에 담긴 항목이 있으면 장바구니 비우기 확인
+        if (cart.length > 0) {
+            if (confirm("담아둔 메뉴를 비우고 이전 상태로 돌아가시겠습니까?")) {
+                cart = [];
+                updateCartBar();
+                renderMenus();
+            }
+            return;
+        }
+
+        // 4. 주문내역/직원호출/내정보 탭인 경우 -> 메뉴판 탭으로 복귀
+        const activeSection = document.querySelector('.view-section.active');
+        if (activeSection && activeSection.id !== 'section-menu') {
+            const menuTabNav = document.querySelector('.nav-item');
+            if (menuTabNav) changeTab('menu', menuTabNav);
+            return;
+        }
+
+        // 5. 메뉴판 탭이고 장바구니가 비어있으면 앱 스캐너 첫 화면으로 복귀
+        if (window.Android && window.Android.closeWebView) {
+            window.Android.closeWebView();
+        } else if (window.history.length > 1) {
+            window.history.back();
+        } else {
+            showNotify("🚪", "첫 화면 이동", "테이블 선택 화면으로 복귀합니다.");
+        }
+    }
+
+    function setCategory(cat, el) {
+        document.querySelectorAll('.category-chip').forEach(c => c.classList.remove('active'));
+        el.classList.add('active');
+        renderMenus(cat);
+    }
+
+    renderMenus();
+</script>
+</body>
+</html>

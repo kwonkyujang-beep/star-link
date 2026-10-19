@@ -1,0 +1,4 @@
+com.example.star_link.rep
+mipmap ic_launcher
+string app_name
+style Theme_Rep

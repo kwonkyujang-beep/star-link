@@ -1,0 +1,228 @@
+--------------------------------------------------
+🚀 [Starlink / 큐알로] 실시간 스마트 오더 서버 가동 완료!
+📡 [현재 설정된 와이파이 IP]: 172.30.1.13
+📍 접속 포트: 8888
+📍 주방 KDS 주소 : http://172.30.1.13:8888/kitchen
+📍 테이블 QR 보드 : http://172.30.1.13:8888/qr_board
+📍 1번 테이블 주소: http://172.30.1.13:8888/menu?table=1
+--------------------------------------------------
+15:07:21.422 [main] INFO ktor.application -- Autoreload is disabled because the development mode is off.
+15:07:21.448 [main] INFO ktor.application -- Application started in 0.041 seconds.
+15:07:21.450 [main] DEBUG io.netty.util.internal.logging.InternalLoggerFactory -- Using SLF4J as the default logging framework
+15:07:21.462 [main] DEBUG io.netty.util.internal.PlatformDependent0 -- -Dio.netty.noUnsafe: false
+15:07:21.462 [main] DEBUG io.netty.util.internal.PlatformDependent0 -- Java version: 25
+15:07:21.463 [main] DEBUG io.netty.util.internal.PlatformDependent0 -- sun.misc.Unsafe.theUnsafe: available
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::allocateMemory has been called by io.netty.util.internal.PlatformDependent0$2 (file:/Users/spacerabbit/AndroidStudioProjects/starlink/server/build/install/server/lib/netty-common-4.1.111.Final.jar)
+WARNING: Please consider reporting this to the maintainers of class io.netty.util.internal.PlatformDependent0$2
+WARNING: sun.misc.Unsafe::allocateMemory will be removed in a future release
+15:07:21.466 [main] DEBUG io.netty.util.internal.PlatformDependent0 -- sun.misc.Unsafe base methods: all available
+15:07:21.466 [main] DEBUG io.netty.util.internal.PlatformDependent0 -- sun.misc.Unsafe.storeFence: available
+15:07:21.466 [main] DEBUG io.netty.util.internal.PlatformDependent0 -- java.nio.Buffer.address: available
+15:07:21.467 [main] DEBUG io.netty.util.internal.PlatformDependent0 -- direct buffer constructor: unavailable: Reflective setAccessible(true) disabled
+15:07:21.467 [main] DEBUG io.netty.util.internal.PlatformDependent0 -- java.nio.Bits.unaligned: available, true
+15:07:21.467 [main] DEBUG io.netty.util.internal.PlatformDependent0 -- jdk.internal.misc.Unsafe.allocateUninitializedArray(int): unavailable: class io.netty.util.internal.PlatformDependent0$7 cannot access class jdk.internal.misc.Unsafe (in module java.base) because module java.base does not export jdk.internal.misc to unnamed module @d29f28
+15:07:21.470 [main] DEBUG io.netty.util.internal.PlatformDependent0 -- java.nio.DirectByteBuffer.<init>(long, {int,long}): unavailable
+15:07:21.470 [main] DEBUG io.netty.util.internal.PlatformDependent -- sun.misc.Unsafe: available
+15:07:21.470 [main] DEBUG io.netty.util.internal.PlatformDependent -- -Dio.netty.tmpdir: /var/folders/k5/qg0b_nw94zx3_7s0fy3vcg8w0000gn/T (java.io.tmpdir)
+15:07:21.470 [main] DEBUG io.netty.util.internal.PlatformDependent -- -Dio.netty.bitMode: 64 (sun.arch.data.model)
+15:07:21.471 [main] DEBUG io.netty.util.internal.PlatformDependent -- Platform: MacOS
+15:07:21.472 [main] DEBUG io.netty.util.internal.PlatformDependent -- -Dio.netty.maxDirectMemory: -1 bytes
+15:07:21.472 [main] DEBUG io.netty.util.internal.PlatformDependent -- -Dio.netty.uninitializedArrayAllocationThreshold: -1
+15:07:21.474 [main] DEBUG io.netty.util.internal.CleanerJava9 -- java.nio.ByteBuffer.cleaner(): available
+15:07:21.474 [main] DEBUG io.netty.util.internal.PlatformDependent -- -Dio.netty.noPreferDirect: false
+15:07:21.475 [main] DEBUG io.netty.util.internal.NativeLibraryLoader -- -Dio.netty.native.workdir: /var/folders/k5/qg0b_nw94zx3_7s0fy3vcg8w0000gn/T (io.netty.tmpdir)
+15:07:21.475 [main] DEBUG io.netty.util.internal.NativeLibraryLoader -- -Dio.netty.native.deleteLibAfterLoading: true
+15:07:21.475 [main] DEBUG io.netty.util.internal.NativeLibraryLoader -- -Dio.netty.native.tryPatchShadedId: true
+15:07:21.475 [main] DEBUG io.netty.util.internal.NativeLibraryLoader -- -Dio.netty.native.detectNativeLibraryDuplicates: true
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::loadLibrary has been called by io.netty.util.internal.NativeLibraryUtil in an unnamed module (file:/Users/spacerabbit/AndroidStudioProjects/starlink/server/build/install/server/lib/netty-common-4.1.111.Final.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+15:07:21.497 [main] DEBUG io.netty.channel.MultithreadEventLoopGroup -- -Dio.netty.eventLoopThreads: 20
+15:07:21.500 [main] DEBUG io.netty.util.concurrent.GlobalEventExecutor -- -Dio.netty.globalEventExecutor.quietPeriodSeconds: 1
+15:07:21.502 [main] DEBUG io.netty.util.internal.InternalThreadLocalMap -- -Dio.netty.threadLocalMap.stringBuilder.initialSize: 1024
+15:07:21.502 [main] DEBUG io.netty.util.internal.InternalThreadLocalMap -- -Dio.netty.threadLocalMap.stringBuilder.maxSize: 4096
+15:07:21.504 [main] DEBUG io.netty.channel.nio.NioEventLoop -- -Dio.netty.noKeySetOptimization: false
+15:07:21.504 [main] DEBUG io.netty.channel.nio.NioEventLoop -- -Dio.netty.selectorAutoRebuildThreshold: 512
+15:07:21.507 [main] DEBUG io.netty.util.internal.PlatformDependent -- org.jctools-core.MpscChunkedArrayQueue: available
+15:07:21.523 [main] DEBUG io.netty.channel.DefaultChannelId -- -Dio.netty.processId: 4494 (auto-detected)
+15:07:21.525 [main] DEBUG io.netty.util.NetUtil -- -Djava.net.preferIPv4Stack: false
+15:07:21.525 [main] DEBUG io.netty.util.NetUtil -- -Djava.net.preferIPv6Addresses: false
+15:07:21.527 [main] DEBUG io.netty.util.NetUtilInitializations -- Loopback interface: lo0 (lo0, 0:0:0:0:0:0:0:1%lo0)
+15:07:21.528 [main] DEBUG io.netty.util.NetUtil -- Failed to get SOMAXCONN from sysctl and file /proc/sys/net/core/somaxconn. Default: 128
+15:07:21.528 [main] DEBUG io.netty.channel.DefaultChannelId -- -Dio.netty.machineId: 5c:9b:a6:ff:fe:8a:7c:3c (auto-detected)
+15:07:21.533 [main] DEBUG io.netty.util.ResourceLeakDetector -- -Dio.netty.leakDetection.level: simple
+15:07:21.533 [main] DEBUG io.netty.util.ResourceLeakDetector -- -Dio.netty.leakDetection.targetRecords: 4
+15:07:21.542 [main] DEBUG io.netty.buffer.PooledByteBufAllocator -- -Dio.netty.allocator.numHeapArenas: 20
+15:07:21.542 [main] DEBUG io.netty.buffer.PooledByteBufAllocator -- -Dio.netty.allocator.numDirectArenas: 20
+15:07:21.542 [main] DEBUG io.netty.buffer.PooledByteBufAllocator -- -Dio.netty.allocator.pageSize: 8192
+15:07:21.542 [main] DEBUG io.netty.buffer.PooledByteBufAllocator -- -Dio.netty.allocator.maxOrder: 9
+15:07:21.542 [main] DEBUG io.netty.buffer.PooledByteBufAllocator -- -Dio.netty.allocator.chunkSize: 4194304
+15:07:21.542 [main] DEBUG io.netty.buffer.PooledByteBufAllocator -- -Dio.netty.allocator.smallCacheSize: 256
+15:07:21.542 [main] DEBUG io.netty.buffer.PooledByteBufAllocator -- -Dio.netty.allocator.normalCacheSize: 64
+15:07:21.542 [main] DEBUG io.netty.buffer.PooledByteBufAllocator -- -Dio.netty.allocator.maxCachedBufferCapacity: 32768
+15:07:21.542 [main] DEBUG io.netty.buffer.PooledByteBufAllocator -- -Dio.netty.allocator.cacheTrimInterval: 8192
+15:07:21.542 [main] DEBUG io.netty.buffer.PooledByteBufAllocator -- -Dio.netty.allocator.cacheTrimIntervalMillis: 0
+15:07:21.542 [main] DEBUG io.netty.buffer.PooledByteBufAllocator -- -Dio.netty.allocator.useCacheForAllThreads: false
+15:07:21.542 [main] DEBUG io.netty.buffer.PooledByteBufAllocator -- -Dio.netty.allocator.maxCachedByteBuffersPerChunk: 1023
+15:07:21.546 [main] DEBUG io.netty.buffer.ByteBufUtil -- -Dio.netty.allocator.type: pooled
+15:07:21.546 [main] DEBUG io.netty.buffer.ByteBufUtil -- -Dio.netty.threadLocalDirectBufferSize: 0
+15:07:21.546 [main] DEBUG io.netty.buffer.ByteBufUtil -- -Dio.netty.maxThreadLocalCharBufferSize: 16384
+15:07:21.547 [main] DEBUG io.netty.bootstrap.ChannelInitializerExtensions -- -Dio.netty.bootstrap.extensions: null
+15:07:21.556 [DefaultDispatcher-worker-1] INFO ktor.application -- Responding at http://0.0.0.0:8888
+15:07:23.142 [eventLoopGroupProxy-3-1] DEBUG io.netty.buffer.AbstractByteBuf -- -Dio.netty.buffer.checkAccessible: true
+15:07:23.143 [eventLoopGroupProxy-3-1] DEBUG io.netty.buffer.AbstractByteBuf -- -Dio.netty.buffer.checkBounds: true
+15:07:23.143 [eventLoopGroupProxy-3-1] DEBUG io.netty.util.ResourceLeakDetectorFactory -- Loaded default ResourceLeakDetector: io.netty.util.ResourceLeakDetector@3b065d18
+15:07:23.161 [eventLoopGroupProxy-3-1] DEBUG io.netty.util.Recycler -- -Dio.netty.recycler.maxCapacityPerThread: 4096
+15:07:23.161 [eventLoopGroupProxy-3-1] DEBUG io.netty.util.Recycler -- -Dio.netty.recycler.ratio: 8
+15:07:23.161 [eventLoopGroupProxy-3-1] DEBUG io.netty.util.Recycler -- -Dio.netty.recycler.chunkSize: 32
+15:07:23.161 [eventLoopGroupProxy-3-1] DEBUG io.netty.util.Recycler -- -Dio.netty.recycler.blocking: false
+15:07:23.161 [eventLoopGroupProxy-3-1] DEBUG io.netty.util.Recycler -- -Dio.netty.recycler.batchFastThreadLocalOnly: true
+📱 [연결] 새로운 손님 단말기 접속 시도
+📍 [세션매핑] 5 번 테이블 손님(기기 추가) 식별 완료
+📱 [연결] 새로운 손님 단말기 접속 시도
+📍 [세션매핑] 6 번 테이블 손님(기기 추가) 식별 완료
+💳 [결제 승인 요청] 테이블: 6번 | 주문번호: ORD_1790403391645_888 | 금액: 19500원 | Key: tx_T64EKSSPM
+📡 [주방 전달 완료] 총 0개 주방 화면으로 결제 완료 주문 전송
+🌟 [주방] 실시간 세션 연결됨
+💳 [결제 승인 요청] 테이블: 6번 | 주문번호: ORD_1790403427591_39 | 금액: 22000원 | Key: tx_VFL28KJ8T
+📡 [주방 전달 완료] 총 1개 주방 화면으로 결제 완료 주문 전송
+15:17:17.135 [eventLoopGroupProxy-3-1] DEBUG ktor.application -- I/O operation failed
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:399)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:431)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:489)
+	at io.netty.buffer.PooledByteBuf.setBytes(PooledByteBuf.java:255)
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1132)
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:356)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:151)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:994)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.ktor.server.netty.EventLoopGroupProxy$Companion.create$lambda$1$lambda$0(NettyApplicationEngine.kt:296)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+🧹 [초기화] 6 번 테이블
+📱 [연결] 새로운 손님 단말기 접속 시도
+📍 [세션매핑] 15 번 테이블 손님(기기 추가) 식별 완료
+📱 [연결] 새로운 손님 단말기 접속 시도
+📍 [세션매핑] 16 번 테이블 손님(기기 추가) 식별 완료
+💳 [결제 승인 요청] 테이블: 16번 | 주문번호: ORD_1790403510329_405 | 금액: 19000원 | Key: tx_3HWWTSXC2
+📡 [주방 전달 완료] 총 1개 주방 화면으로 결제 완료 주문 전송
+💳 [결제 승인 요청] 테이블: 15번 | 주문번호: ORD_1790403516105_804 | 금액: 37000원 | Key: tx_N4W7XSMW2
+📡 [주방 전달 완료] 총 1개 주방 화면으로 결제 완료 주문 전송
+15:19:11.777 [eventLoopGroupProxy-3-3] DEBUG ktor.application -- I/O operation failed
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:399)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:431)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:489)
+	at io.netty.buffer.PooledByteBuf.setBytes(PooledByteBuf.java:255)
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1132)
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:356)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:151)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:994)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.ktor.server.netty.EventLoopGroupProxy$Companion.create$lambda$1$lambda$0(NettyApplicationEngine.kt:296)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+15:19:11.777 [eventLoopGroupProxy-3-2] DEBUG ktor.application -- I/O operation failed
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:399)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:431)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:489)
+	at io.netty.buffer.PooledByteBuf.setBytes(PooledByteBuf.java:255)
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1132)
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:356)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:151)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:994)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.ktor.server.netty.EventLoopGroupProxy$Companion.create$lambda$1$lambda$0(NettyApplicationEngine.kt:296)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+15:19:11.777 [eventLoopGroupProxy-3-4] DEBUG ktor.application -- I/O operation failed
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:399)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:431)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:489)
+	at io.netty.buffer.PooledByteBuf.setBytes(PooledByteBuf.java:255)
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1132)
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:356)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:151)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:994)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.ktor.server.netty.EventLoopGroupProxy$Companion.create$lambda$1$lambda$0(NettyApplicationEngine.kt:296)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+🧹 [초기화] 16 번 테이블
+🚨 [신호접수] 15 번 테이블 -> 주방 전송 시도 (물 좀 주세요)
+📡 [전송성공] 총 1 개의 주방 화면으로 신호를 전송했습니다.
+🚨 [신호접수] 15 번 테이블 -> 주방 전송 시도 (앞접시/가위)
+📡 [전송성공] 총 1 개의 주방 화면으로 신호를 전송했습니다.
+🗑️ [메뉴 삭제] ID: 1
+🥘 [신메뉴 등록] "가지볶음" (위치: 하단)
+15:22:12.213 [eventLoopGroupProxy-3-1] DEBUG ktor.application -- I/O operation failed
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:399)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:431)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:489)
+	at io.netty.buffer.PooledByteBuf.setBytes(PooledByteBuf.java:255)
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1132)
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:356)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:151)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:994)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.ktor.server.netty.EventLoopGroupProxy$Companion.create$lambda$1$lambda$0(NettyApplicationEngine.kt:296)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+🚨 [신호접수] 15 번 테이블 -> 주방 전송 시도 (주문 접수)
+📡 [전송성공] 총 1 개의 주방 화면으로 신호를 전송했습니다.
+💾 [일일 마감 영구저장] 2026-09-26 매출 내역 저장 완료: sales_2026-09-26.json
+📱 [연결] 새로운 손님 단말기 접속 시도
+📍 [세션매핑] 17 번 테이블 손님(기기 추가) 식별 완료
+💳 [결제 승인 요청] 테이블: 17번 | 주문번호: ORD_1790404253479_981 | 금액: 11000원 | Key: tx_IXA80IFJE
+📡 [주방 전달 완료] 총 1개 주방 화면으로 결제 완료 주문 전송
+15:40:49.598 [eventLoopGroupProxy-3-3] DEBUG ktor.application -- I/O operation failed
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:399)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:431)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:489)
+	at io.netty.buffer.PooledByteBuf.setBytes(PooledByteBuf.java:255)
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1132)
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:356)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:151)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:994)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.ktor.server.netty.EventLoopGroupProxy$Companion.create$lambda$1$lambda$0(NettyApplicationEngine.kt:296)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+📱 [연결] 새로운 손님 단말기 접속 시도
+📍 [세션매핑] 5 번 테이블 손님(기기 추가) 식별 완료
+📱 [연결] 새로운 손님 단말기 접속 시도
+📍 [세션매핑] 5 번 테이블 손님(기기 추가) 식별 완료
+💳 [결제 승인 요청] 테이블: 5번 | 주문번호: ORD_1790407130465_587 | 금액: 25000원 | Key: tx_7CEB4OY96
+📡 [주방 전달 완료] 총 1개 주방 화면으로 결제 완료 주문 전송

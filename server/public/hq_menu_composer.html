@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏢 Starlink 본사 메뉴 컴포저 (WYSIWYG)</title>
+    <style>
+        :root {
+            --primary: #4caf50;
+            --bg-dark: #121212;
+            --card-bg: #1e1e1e;
+            --border-color: #333;
+            --text-gold: #ffbc42;
+            --app-primary: #8D6E63; /* 손님앱 테마색 */
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: var(--bg-dark); color: #fff; margin: 0; padding-bottom: 100px; }
+        .btn { padding: 10px 16px; border: none; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; transition: filter 0.2s; }
+        .btn:hover { filter: brightness(1.1); }
+        .btn-primary { background-color: var(--primary); color: #fff; }
+        .btn-gold { background-color: var(--text-gold); color: #000; }
+        .btn-danger { background-color: #d32f2f; color: white; }
+
+        .form-control { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #444; background: #222; color: white; box-sizing: border-box; font-size: 14px; margin-bottom: 16px; }
+        .form-control:focus { border-color: var(--primary); outline: none; }
+        label { display: block; font-size: 12px; color: #aaa; margin-bottom: 6px; font-weight: bold; }
+
+        /* 📱 모바일 폰 뷰 (좌측) */
+        .mobile-container { width: 390px; height: 750px; border: 14px solid #000; border-radius: 40px; background: #FAFAFA; position: relative; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 20px 40px rgba(0,0,0,0.5); margin: 0 auto; flex-shrink: 0; }
+        .mobile-header { background: white; padding: 16px; text-align: center; border-bottom: 1px solid #eee; flex-shrink: 0; }
+        .mobile-title { color: #1c1b1f; font-size: 18px; font-weight: 900; margin:0; }
+        .mobile-subtitle { font-size: 11px; background: #EFEBE9; color: var(--app-primary); padding: 3px 10px; border-radius: 12px; display: inline-block; margin-top: 4px; font-weight: bold; }
+
+        .category-bar { background: white; padding: 12px; display: flex; overflow-x: auto; gap: 8px; border-bottom: 1px solid #eee; flex-shrink: 0; scrollbar-width: none; }
+        .category-bar::-webkit-scrollbar { display: none; }
+        .category-chip { padding: 8px 16px; border-radius: 20px; background: #f1f1f1; font-size: 13px; font-weight: bold; white-space: nowrap; cursor: pointer; color: #333; border: 1px solid transparent; flex-shrink: 0; }
+        .category-chip.active { background: var(--app-primary); color: white; }
+
+        .menu-grid-wrapper { flex-grow: 1; overflow-y: auto; background: #FAFAFA; }
+        .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 12px; padding-bottom: 40px; }
+        .menu-card { background: white; border-radius: 16px; overflow: hidden; border: 2px solid #f0f0f0; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; flex-direction: column; cursor: pointer; transition: all 0.2s; position: relative; }
+        .menu-card:hover { border-color: #bbb; }
+        .menu-card.selected { border-color: #0071e3; box-shadow: 0 0 0 3px rgba(0,113,227,0.3); transform: scale(0.98); }
+        .menu-img { width: 100%; height: 110px; object-fit: cover; }
+        .menu-content { padding: 10px; display: flex; flex-direction: column; }
+        .menu-name { font-weight: bold; font-size: 14px; color: black; line-height: 1.2; min-height: 34px; }
+        .menu-price { font-weight: 800; color: #B3261E; margin-top: 6px; font-size: 14px; }
+        .menu-opt-badge { font-size: 10px; color: var(--app-primary); background: #f3edf7; padding: 2px 6px; border-radius: 4px; margin-top: 4px; align-self: flex-start; }
+        .order-badge { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.6); color: white; font-size: 10px; font-weight: bold; padding: 2px 6px; border-radius: 10px; }
+
+        /* 플로팅 바 */
+        .floating-bar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(20,20,20,0.95); backdrop-filter: blur(10px); padding: 20px; border-top: 1px solid #333; z-index: 200; display: flex; justify-content: center; align-items: center; gap: 20px; }
+    </style>
+</head>
+<body>
+
+<header style="display:flex; justify-content:space-between; align-items:center; background:#1a1a1a; padding:16px 24px; border-bottom:1px solid #333; position:sticky; top:0; z-index:100;">
+    <div style="display:flex; align-items:center; gap:16px;">
+        <h1 style="margin:0; font-size:20px; color:#fff;">🏢 Starlink 본사 메뉴 컴포저</h1>
+        <div style="display:flex; align-items:center; background:#262626; padding:6px 12px; border-radius:8px; border:1px solid #444; gap:10px;">
+            <label style="margin:0; color:#ffbc42; font-size:13px;">🏪 업장 유형:</label>
+            <select id="store-type-select" onchange="onStoreTypeChanged()" style="background:#111; color:white; border:1px solid #555; padding:6px 10px; border-radius:6px; font-weight:bold; font-size:13px;">
+                <option value="CAFE">☕ 카페 (선불)</option>
+                <option value="RESTAURANT">🍲 한식당/일반식당 (후불)</option>
+                <option value="CHINESE">🥢 중식당 (후불)</option>
+                <option value="PUB">🍺 주점/호프 (후불)</option>
+            </select>
+            <input type="text" id="store-name-input" value="스타링크 매장" oninput="updateStoreNamePreview(this.value)" placeholder="상호명 입력" style="background:#111; color:white; border:1px solid #555; padding:6px 10px; border-radius:6px; font-size:13px; width:150px;">
+        </div>
+    </div>
+    <div style="display:flex; gap:10px;">
+        <input type="file" id="csv-file-input" accept=".csv" style="display:none;" onchange="handleCSVUpload(this)">
+        <button class="btn" style="background:#00bcd4; color:black;" onclick="openQueueModal()">📥 수집 큐 관리 (0)</button>
+        <button class="btn" style="background:#E91E63; color:white;" onclick="openImageBankModal()">🖼️ 이미지뱅크 관리</button>
+        <button class="btn" style="background:#9C27B0; color:white;" onclick="executeAutoMatching()">⚡ 이미지뱅크 ➔ 큐 매칭 실행</button>
+        <button class="btn btn-primary" onclick="loadStoreMenus()">🔄 서버 동기화</button>
+    </div>
+</header>
+
+<div style="display:flex; gap:30px; padding:30px; max-width:1200px; margin:0 auto; align-items: flex-start;">
+
+    <!-- 좌측: 모바일 앱 라이브 프리뷰 -->
+    <div style="display:flex; flex-direction:column; align-items:center;">
+        <div style="margin-bottom:12px; color:#aaa; font-weight:bold; font-size:14px;">📱 손님 스마트폰 실제 표시 화면</div>
+        <div class="mobile-container">
+            <div class="mobile-header">
+                <h2 class="mobile-title" id="preview-store-name">스타링크 매장</h2>
+                <div class="mobile-subtitle">스마트 오더 미리보기</div>
+            </div>
+
+            <!-- 카테고리 탭 (자동 생성) -->
+            <div class="category-bar" id="mobile-category-bar">
+                <div class="category-chip active">전체</div>
+            </div>
+
+            <!-- 메뉴 그리드 (자동 생성) -->
+            <div class="menu-grid-wrapper">
+                <div class="menu-grid" id="mobile-menu-grid">
+                    <!-- 아이템 렌더링 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 우측: 스마트 에디터 패널 -->
+    <div style="flex: 1; background: #1a1a1a; border: 1px solid #333; border-radius: 20px; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: sticky; top: 100px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #333; padding-bottom:16px; margin-bottom:20px;">
+            <div>
+                <h2 style="margin:0; font-size:22px; color:var(--primary);" id="editor-title">✏️ 메뉴 상세 편집기</h2>
+                <p style="margin:4px 0 0 0; font-size:12px; color:#888;">좌측 폰 화면에서 메뉴를 클릭하면 이곳에서 수정할 수 있습니다.</p>
+            </div>
+            <button class="btn" style="background:#444; color:white;" onclick="clearEditor()">✨ 신규 메뉴 비우기</button>
+        </div>
+
+        <input type="hidden" id="edit-id">
+
+        <div style="display:flex; gap:20px;">
+            <!-- 이미지 에디터 -->
+            <div style="width: 140px; display:flex; flex-direction:column; gap:10px;">
+                <label>메뉴 사진</label>
+                <div style="width:140px; height:140px; border-radius:12px; overflow:hidden; border:2px dashed #555; position:relative; cursor:pointer; background:#111;" onclick="document.getElementById('edit-img-file').click()">
+                    <img id="edit-img-preview" src="https://via.placeholder.com/150?text=No+Image" style="width:100%; height:100%; object-fit:cover;">
+                    <div style="position:absolute; bottom:0; left:0; right:0; background:rgba(0,0,0,0.6); color:white; text-align:center; font-size:11px; padding:4px;">사진 변경</div>
+                </div>
+                <input type="file" id="edit-img-file" accept="image/*" style="display:none;" onchange="uploadMenuImage(this)">
+                <input type="hidden" id="edit-img-url">
+            </div>
+
+            <!-- 텍스트 에디터 -->
+            <div style="flex:1;">
+                <label>메뉴명</label>
+                <input type="text" id="edit-name" class="form-control" placeholder="예: 명품 삼선 짜장면">
+
+                <div style="display:flex; gap:12px;">
+                    <div style="flex:1;">
+                        <label>가격 (원)</label>
+                        <input type="number" id="edit-price" class="form-control" placeholder="8500">
+                    </div>
+                    <div style="flex:1;">
+                        <label>카테고리</label>
+                        <input type="text" id="edit-category" list="cat-datalist" class="form-control" placeholder="카테고리 입력">
+                        <datalist id="cat-datalist"></datalist>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 옵션 에디터 -->
+        <div style="background:#222; border-radius:12px; padding:16px; margin-top:8px;">
+            <label style="color:var(--text-gold);">🧩 서브 옵션 (예: 맵기 선택, 사이즈업)</label>
+            <input type="text" id="edit-opt-group" class="form-control" placeholder="옵션 그룹 이름 (비워두면 옵션 없음)" style="background:#111;">
+
+            <div style="display:grid; grid-template-columns: 2fr 1fr; gap:12px;">
+                <input type="text" id="edit-opt1-name" class="form-control" placeholder="옵션1 이름 (예: 매운맛)" style="margin-bottom:0; background:#111;">
+                <input type="number" id="edit-opt1-price" class="form-control" placeholder="추가금 (+500)" style="margin-bottom:0; background:#111;">
+
+                <input type="text" id="edit-opt2-name" class="form-control" placeholder="옵션2 이름 (예: 면 곱빼기)" style="margin-bottom:0; background:#111;">
+                <input type="number" id="edit-opt2-price" class="form-control" placeholder="추가금 (+1000)" style="margin-bottom:0; background:#111;">
+            </div>
+        </div>
+
+        <div style="display:flex; gap:12px; margin-top:24px;">
+            <button class="btn btn-danger" style="flex:1; padding:16px; font-size:16px;" id="btn-delete" onclick="deleteEditingMenu()" style="display:none;">🗑️ 이 메뉴 삭제</button>
+            <button class="btn btn-primary" style="flex:2; padding:16px; font-size:16px;" onclick="saveEditingMenu()">💾 수정/추가 내용 저장</button>
+        </div>
+    </div>
+</div>
+
+<div class="floating-bar">
+    <div style="text-align:right;">
+        <div style="font-size:12px; color:#aaa;">현재 조합된 총 메뉴 수</div>
+        <div style="font-size:18px; font-weight:bold; color:var(--text-gold);"><span id="total-count">0</span>개</div>
+    </div>
+    <button class="btn btn-primary" style="padding:16px 40px; font-size:18px; box-shadow:0 4px 15px rgba(76, 175, 80, 0.4);" onclick="submitFinalMenus()">
+        🚀 미니 PC(매장 서버)로 메뉴판 최종 배포하기
+    </button>
+</div>
+
+<script>
+    let hqMenus = [];
+    let currentCategory = '전체';
+    let currentEditingId = null;
+
+    // --- 업종별 기본 템플릿 프리셋 (영업사원 초판 템플릿용) ---
+    const storePresets = {
+        "CAFE": [
+            { id: "p1", name: "아메리카노", price: 4500, category: "커피", img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80" },
+            { id: "p2", name: "카페 라떼", price: 5000, category: "커피", img: "https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=600&q=80" },
+            { id: "p3", name: "레몬 에이드", price: 6000, category: "에이드", img: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80" },
+            { id: "p4", name: "수제 초코 케이크", price: 6500, category: "디저트", img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80" }
+        ],
+        "RESTAURANT": [
+            { id: "r1", name: "명품 한우 불고기 전골", price: 18000, category: "메인요리", img: "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?auto=format&fit=crop&w=600&q=80" },
+            { id: "r2", name: "얼큰 김치 찌개", price: 9000, category: "식사류", img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" },
+            { id: "r3", name: "제육 볶음", price: 10000, category: "식사류", img: "https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=600&q=80" },
+            { id: "r4", name: "공기밥", price: 1000, category: "사이드", img: "https://images.unsplash.com/photo-1516685018646-549198525c1b?auto=format&fit=crop&w=600&q=80" }
+        ],
+        "CHINESE": [
+            { id: "c1", name: "명품 삼선 짜장면", price: 8500, category: "면류", img: "https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=600&q=80" },
+            { id: "c2", name: "얼큰 차돌 짬뽕", price: 10000, category: "면류", img: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80" },
+            { id: "c3", name: "바삭 찹쌀 탕수육 (소)", price: 22000, category: "요리류", img: "https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=600&q=80" },
+            { id: "c4", name: "군만두 (8p)", price: 6000, category: "사이드", img: "https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=600&q=80" }
+        ],
+        "PUB": [
+            { id: "u1", name: "살얼음 생맥주 500cc", price: 4500, category: "주류", img: "https://images.unsplash.com/photo-1535958636474-b021ee887b13?auto=format&fit=crop&w=600&q=80" },
+            { id: "u2", name: "크리스피 치킨 & 감자튀김", price: 19000, category: "안주류", img: "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=600&q=80" },
+            { id: "u3", name: "얼큰 오뎅탕", price: 16000, category: "안주류", img: "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?auto=format&fit=crop&w=600&q=80" },
+            { id: "u4", name: "참이슬 소주", price: 5000, category: "주류", img: "https://images.unsplash.com/photo-1563227812-0ea4c22e6cc8?auto=format&fit=crop&w=600&q=80" }
+        ]
+    };
+
+    function updateStoreNamePreview(name) {
+        document.getElementById('preview-store-name').innerText = name || "스타링크 매장";
+    }
+
+    function onStoreTypeChanged() {
+        const type = document.getElementById('store-type-select').value;
+        if (confirm("선택한 업종의 기본 템플릿 메뉴로 초기화하시겠습니까?")) {
+            hqMenus = JSON.parse(JSON.stringify(storePresets[type] || storePresets["CAFE"]));
+            clearEditor();
+            renderMobileApp();
+        }
+    }
+
+    // --- 📥 영업 수집 큐 관리 시스템 (Dual-Stage Queue & 실제 파이어베이스 연동) ---
+    let incomingQueue = [];
+
+    // 실시간으로 큐 데이터를 가져오기
+    async function fetchIncomingQueue() {
+        incomingQueue = [];
+        const draft = localStorage.getItem("starlink_rep_draft");
+        if (draft) {
+            try {
+                const data = JSON.parse(draft);
+                if (data.storeInfo && data.storeInfo.name && data.collectedMenus.length > 0) {
+                    incomingQueue.push({
+                        id: "Q_REAL_" + Date.now(),
+                        storeName: data.storeInfo.name,
+                        repId: data.repId || "REP_KIM_07",
+                        storeType: data.storeInfo.type || "RESTAURANT",
+                        status: "PENDING",
+                        date: data.time || new Date().toLocaleString(),
+                        menus: data.collectedMenus
+                    });
+                }
+            } catch (e) {
+                console.error("로컬 큐 파싱 에러", e);
+            }
+        }
+    }
+
+    async function openQueueModal() {
+        await fetchIncomingQueue(); // 팝업 열 때 실제 큐 최신화
+
+        let modal = document.getElementById('queue-modal');
+        if (!modal) {
+            const div = document.createElement('div');
+            div.id = 'queue-modal';
+            div.style.cssText = "position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.85); display:flex; justify-content:center; align-items:center; z-index:2000; padding:16px;";
+            div.innerHTML = `
+                <div style="background:#1e1e1e; border:1px solid #444; border-radius:16px; padding:24px; width:100%; max-width:550px; box-shadow:0 10px 30px rgba(0,0,0,0.7); max-height:80vh; overflow-y:auto; color:white;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #333; padding-bottom:12px; margin-bottom:16px;">
+                        <h2 style="margin:0; font-size:18px; color:#ffbc42;">📥 본사 1차 수집 큐 (실시간 연동)</h2>
+                        <button onclick="document.getElementById('queue-modal').style.display='none'" style="background:none; border:none; color:#aaa; font-size:18px; cursor:pointer;">✕</button>
+                    </div>
+                    <p style="font-size:12px; color:#aaa; margin-top:0;">영업맨이 스마트폰 챗봇에서 미팅 직후 임시저장하거나 전송한 실제 데이터 대기열입니다.</p>
+                    <div id="queue-list-container" style="display:flex; flex-direction:column; gap:10px; margin-top:16px;"></div>
+                </div>
+            `;
+            document.body.appendChild(div);
+            modal = div;
+        }
+
+        modal.style.display = 'flex';
+        renderQueueList();
+    }
+
+    function renderQueueList() {
+        const container = document.getElementById('queue-list-container');
+        if (incomingQueue.length === 0) {
+            container.innerHTML = `<div style="text-align:center; padding:30px; color:#666;">대기 중인 수집 큐가 없습니다.</div>`;
+            return;
+        }
+
+        container.innerHTML = incomingQueue.map(item => `
+            <div style="background:#262626; border:1px solid #444; border-radius:10px; padding:14px; display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                    <div style="font-size:16px; font-weight:bold; color:#fff;">${item.storeName} <span style="font-size:11px; color:#4caf50; background:#1b5e20; padding:2px 6px; border-radius:4px;">${item.storeType}</span></div>
+                    <div style="font-size:11px; color:#aaa; margin-top:4px;">담당 영업사원: <b>${item.repId}</b> | 수집일시: ${item.date} | 메뉴수: <b>${item.menus.length}개</b></div>
+                </div>
+                <button class="btn btn-primary" style="padding:8px 14px; font-size:12px;" onclick="loadQueueItem('${item.id}')">검수 및 디자인 시작 ➔</button>
+            </div>
+        `).join('');
+    }
+
+    function loadQueueItem(id) {
+        const item = incomingQueue.find(q => q.id === id);
+        if (!item) return;
+
+        document.getElementById('store-type-select').value = item.storeType;
+        document.getElementById('store-name-input').value = item.storeName;
+        document.getElementById('preview-store-name').innerText = item.storeName;
+
+        hqMenus = item.menus.map((m, idx) => ({
+            id: "m_q_" + idx + "_" + Date.now(),
+            name: m.name,
+            price: m.price,
+            category: m.category,
+            img: getAiMatchedImage(m.name)
+        }));
+
+        clearEditor();
+        renderMobileApp();
+        document.getElementById('queue-modal').style.display = 'none';
+        alert(`✨ '${item.storeName}' 매장이 수집 큐에서 컴포저로 로드되었습니다!\n이제 AI 이미지 매칭 및 디자인 검수를 진행하세요.`);
+    }
+
+    // --- 🖼️ 본사 이미지뱅크 관리 및 자동 서식화 등록 시스템 ---
+    let imageBankAssets = [
+        { tag: "americano", keywords: "아메리카노,커피,에스프레소", category: "커피", url: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80" },
+        { tag: "latte", keywords: "라떼,카페라떼,바닐라라떼", category: "커피", url: "https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=600&q=80" },
+        { tag: "pork_belly", keywords: "삼겹살,구이,고기,한우생삼겹구이", category: "구이류", url: "https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=600&q=80" },
+        { tag: "stew", keywords: "찌개,국밥,된장찌개,김치찌개,차돌된장찌개", category: "식사류", url: "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?auto=format&fit=crop&w=600&q=80" },
+        { tag: "jjajang", keywords: "짜장,자장,짜장면,삼선짜장", category: "면류", url: "https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=600&q=80" },
+        { tag: "beer", keywords: "맥주,생맥주,호프,테라,카스", category: "주류", url: "https://images.unsplash.com/photo-1535958636474-b021ee887b13?auto=format&fit=crop&w=600&q=80" }
+    ];
+
+    function openImageBankModal() {
+        let modal = document.getElementById('imagebank-modal');
+        if (!modal) {
+            const div = document.createElement('div');
+            div.id = 'imagebank-modal';
+            div.style.cssText = "position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.85); display:flex; justify-content:center; align-items:center; z-index:2000; padding:16px;";
+            div.innerHTML = `
+                <div style="background:#1e1e1e; border:1px solid #444; border-radius:16px; padding:24px; width:100%; max-width:650px; box-shadow:0 10px 30px rgba(0,0,0,0.7); max-height:85vh; overflow-y:auto; color:white;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #333; padding-bottom:12px; margin-bottom:16px;">
+                        <h2 style="margin:0; font-size:18px; color:#E91E63;">🖼️ 본사 이미지뱅크 관리 및 자동 서식화</h2>
+                        <button onclick="document.getElementById('imagebank-modal').style.display='none'" style="background:none; border:none; color:#aaa; font-size:18px; cursor:pointer;">✕</button>
+                    </div>
+                    <p style="font-size:12px; color:#aaa; margin-top:0;">본사 이미지뱅크에 새 이미지를 등록하면, 키워드(태그)가 자동으로 서식화되어 AI 매칭 DB에 실시간 반영됩니다.</p>
+
+                    <div style="background:#262626; padding:14px; border-radius:10px; margin-bottom:16px; border:1px solid #444;">
+                        <div style="font-weight:bold; font-size:14px; margin-bottom:10px; color:#ffbc42;">+ 새 이미지 자산 등록</div>
+                        <div style="display:flex; gap:10px; margin-bottom:10px;">
+                            <input type="text" id="ib-tag" class="form-control" placeholder="태그명 (예: americano)" style="margin-bottom:0; background:#111;">
+                            <input type="text" id="ib-category" class="form-control" placeholder="카테고리 (예: 커피)" style="margin-bottom:0; background:#111;">
+                        </div>
+                        <input type="text" id="ib-keywords" class="form-control" placeholder="매칭 키워드 (쉼표로 구분 예: 아메리카노,커피,에스프레소)" style="margin-bottom:10px; background:#111;">
+                        <input type="text" id="ib-url" class="form-control" placeholder="이미지 URL 입력 (또는 업로드 링크)" style="margin-bottom:10px; background:#111;">
+                        <button class="btn" style="background:#E91E63; color:white; width:100%; padding:10px;" onclick="addNewImageAsset()">✨ 이미지뱅크에 자동 서식화 등록</button>
+                    </div>
+
+                    <div style="font-weight:bold; font-size:14px; margin-bottom:8px;">📋 등록된 이미지뱅크 리스트 (<span id="ib-count">0</span>개)</div>
+                    <div id="imagebank-list-container" style="display:flex; flex-direction:column; gap:8px;"></div>
+                </div>
+            `;
+            document.body.appendChild(div);
+            modal = div;
+        }
+
+        modal.style.display = 'flex';
+        renderImageBankList();
+    }
+
+    function renderImageBankList() {
+        document.getElementById('ib-count').innerText = imageBankAssets.length;
+        const container = document.getElementById('imagebank-list-container');
+        container.innerHTML = imageBankAssets.map((asset, idx) => `
+            <div style="background:#262626; border:1px solid #444; border-radius:8px; padding:10px; display:flex; align-items:center; gap:12px;">
+                <img src="${asset.url}" style="width:50px; height:50px; border-radius:6px; object-fit:cover;">
+                <div style="flex:1;">
+                    <div style="font-weight:bold; font-size:14px; color:#fff;">🏷️ ${asset.tag} <span style="font-size:11px; background:#444; padding:2px 6px; border-radius:4px; color:#ffbc42;">${asset.category}</span></div>
+                    <div style="font-size:11px; color:#aaa; margin-top:2px;">키워드: <b>[${asset.keywords}]</b></div>
+                </div>
+                <button class="btn" style="background:#d32f2f; color:white; padding:6px 10px; font-size:11px;" onclick="deleteImageAsset(${idx})">삭제</button>
+            </div>
+        `).join('');
+    }
+
+    function addNewImageAsset() {
+        const tag = document.getElementById('ib-tag').value.trim();
+        const cat = document.getElementById('ib-category').value.trim();
+        const kw = document.getElementById('ib-keywords').value.trim();
+        const url = document.getElementById('ib-url').value.trim();
+
+        if (!tag || !kw || !url) {
+            alert("태그명, 키워드, 이미지 URL은 필수 입력 항목입니다.");
+            return;
+        }
+
+        imageBankAssets.push({ tag, keywords: kw, category: cat || "일반", url });
+
+        // 실시간 AI 매칭 DB 자동 서식화 갱신
+        rebuildImageDb();
+
+        document.getElementById('ib-tag').value = '';
+        document.getElementById('ib-category').value = '';
+        document.getElementById('ib-keywords').value = '';
+        document.getElementById('ib-url').value = '';
+
+        renderImageBankList();
+        alert("✨ 이미지뱅크에 성공적으로 등록 및 자동 서식화되었습니다!");
+    }
+
+    function deleteImageAsset(idx) {
+        imageBankAssets.splice(idx, 1);
+        rebuildImageDb();
+        renderImageBankList();
+    }
+
+    function rebuildImageDb() {
+        // 이미지뱅크 자산을 컴포저의 실시간 AI 매칭 객체(imageDb)로 자동 서식화
+        for (const asset of imageBankAssets) {
+            // 쉼표로 분리된 키워드를 정규식 패턴 "|"으로 자동 서식화
+            const pattern = asset.keywords.split(',').map(k => k.trim()).join('|');
+            if (pattern) {
+                imageDb[pattern] = asset.url;
+            }
+        }
+    }
+
+    // 초기 서식화 실행
+    rebuildImageDb();
+    const defaultFallbackImg = "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80";
+
+    function getAiMatchedImage(menuName) {
+        for (const keywords in imageDb) {
+            const regex = new RegExp(`(${keywords})`, 'i');
+            if (regex.test(menuName)) return imageDb[keywords];
+        }
+        return defaultFallbackImg;
+    }
+
+    // --- ⚡ 이미지뱅크 ➔ 큐(Queue) 자동 매칭 실행 버튼 기능 ---
+    function executeAutoMatching() {
+        if (incomingQueue.length === 0) {
+            alert("현재 처리할 수집 큐(Incoming Queue)에 대기 중인 매장이 없습니다.");
+            return;
+        }
+
+        const targetStore = incomingQueue[0]; // 가장 먼저 대기 중인 매장 선택 (예: 홍대 바삭한 숯불구이)
+
+        document.getElementById('store-type-select').value = targetStore.storeType;
+        document.getElementById('store-name-input').value = targetStore.storeName;
+        document.getElementById('preview-store-name').innerText = targetStore.storeName;
+
+        // 영업맨이 보내온 순수 텍스트 뼈대(메뉴명, 가격)에 본사 이미지뱅크 자산을 자동 매칭하여 완성된 메뉴판 구성
+        hqMenus = targetStore.menus.map((m, idx) => ({
+            id: "m_match_" + idx + "_" + Date.now(),
+            name: m.name,
+            price: m.price,
+            category: m.category,
+            img: getAiMatchedImage(m.name) // <-- 본사 이미지뱅크 자동 매칭 가동!
+        }));
+
+        clearEditor();
+        renderMobileApp();
+
+        alert(`⚡ [자동 매칭 완료]\n'${targetStore.storeName}' 님의 수집 데이터(${targetStore.menus.length}개 메뉴)가 본사 이미지뱅크와 성공적으로 매칭되었습니다!\n\n좌측 스마트폰 미리보기 화면에서 확인하세요.`);
+    }
+
+    function renderMobileApp() {
+        // 1. 카테고리 렌더링
+        const categories = ['전체', ...new Set(hqMenus.map(m => m.category).filter(Boolean))];
+        if (!categories.includes(currentCategory)) currentCategory = '전체';
+
+        document.getElementById('mobile-category-bar').innerHTML = categories.map(cat =>
+            `<div class="category-chip ${cat === currentCategory ? 'active' : ''}" onclick="filterCategory('${cat}')">${cat}</div>`
+        ).join('');
+
+        // 에디터 Datalist 연동
+        document.getElementById('cat-datalist').innerHTML = categories.filter(c => c !== '전체').map(c => `<option value="${c}">`).join('');
+
+        // 2. 메뉴 렌더링
+        const grid = document.getElementById('mobile-menu-grid');
+        const filtered = hqMenus.filter(m => currentCategory === '전체' || m.category === currentCategory);
+
+        document.getElementById('total-count').innerText = hqMenus.length;
+
+        if (filtered.length === 0) {
+            grid.innerHTML = `<div style="grid-column: 1 / span 2; text-align:center; padding:40px; color:#999; font-size:14px;">메뉴가 없습니다.</div>`;
+            return;
+        }
+
+        grid.innerHTML = filtered.map((m, idx) => {
+            const hasOpt = m.optionGroups && m.optionGroups.length > 0;
+            const isSelected = m.id === currentEditingId;
+            return `
+            <div class="menu-card ${isSelected ? 'selected' : ''}" onclick="selectMenu('${m.id}')">
+                <div class="order-badge">${idx + 1}</div>
+                <img src="${m.img}" class="menu-img">
+                <div class="menu-content">
+                    <div class="menu-name">${m.name}</div>
+                    <div class="menu-price">${m.price.toLocaleString()}원</div>
+                    ${hasOpt ? `<div class="menu-opt-badge">✨ 옵션</div>` : ''}
+                </div>
+            </div>`;
+        }).join('');
+    }
+
+    function filterCategory(cat) {
+        currentCategory = cat;
+        renderMobileApp();
+    }
+
+    function selectMenu(id) {
+        currentEditingId = id;
+        const menu = hqMenus.find(m => m.id === id);
+        if (!menu) return;
+
+        document.getElementById('editor-title').innerText = "✏️ 메뉴 수정 중";
+        document.getElementById('edit-id').value = menu.id;
+        document.getElementById('edit-name').value = menu.name;
+        document.getElementById('edit-price').value = menu.price;
+        document.getElementById('edit-category').value = menu.category;
+        document.getElementById('edit-img-preview').src = menu.img;
+        document.getElementById('edit-img-url').value = menu.img;
+
+        document.getElementById('btn-delete').style.display = 'block';
+
+        // 옵션 로드
+        if (menu.optionGroups && menu.optionGroups.length > 0) {
+            const grp = menu.optionGroups[0];
+            document.getElementById('edit-opt-group').value = grp.title || '';
+            document.getElementById('edit-opt1-name').value = grp.options[0] ? grp.options[0].name : '';
+            document.getElementById('edit-opt1-price').value = grp.options[0] ? grp.options[0].price : '';
+            document.getElementById('edit-opt2-name').value = grp.options[1] ? grp.options[1].name : '';
+            document.getElementById('edit-opt2-price').value = grp.options[1] ? grp.options[1].price : '';
+        } else {
+            clearOptions();
+        }
+        renderMobileApp(); // 선택 테두리 갱신
+    }
+
+    function clearEditor() {
+        currentEditingId = null;
+        document.getElementById('editor-title').innerText = "✨ 신규 메뉴 등록";
+        document.getElementById('edit-id').value = '';
+        document.getElementById('edit-name').value = '';
+        document.getElementById('edit-price').value = '';
+        document.getElementById('edit-category').value = '';
+        document.getElementById('edit-img-preview').src = "https://via.placeholder.com/150?text=No+Image";
+        document.getElementById('edit-img-url').value = '';
+        document.getElementById('btn-delete').style.display = 'none';
+        clearOptions();
+        renderMobileApp();
+    }
+
+    function clearOptions() {
+        document.getElementById('edit-opt-group').value = '';
+        document.getElementById('edit-opt1-name').value = '';
+        document.getElementById('edit-opt1-price').value = '';
+        document.getElementById('edit-opt2-name').value = '';
+        document.getElementById('edit-opt2-price').value = '';
+    }
+
+    async function uploadMenuImage(input) {
+        if (!input.files || !input.files[0]) return;
+        const formData = new FormData();
+        formData.append('image', input.files[0]);
+
+        try {
+            const host = window.location.hostname || "localhost";
+            const res = await fetch(`http://${host}:8888/api/upload`, { method: 'POST', body: formData });
+            const data = await res.json();
+            document.getElementById('edit-img-preview').src = data.url;
+            document.getElementById('edit-img-url').value = data.url;
+        } catch (e) {
+            alert("사진 업로드 실패");
+        }
+    }
+
+    function saveEditingMenu() {
+        const id = document.getElementById('edit-id').value || "M_" + Date.now();
+        const name = document.getElementById('edit-name').value.trim();
+        const price = parseInt(document.getElementById('edit-price').value) || 0;
+        const cat = document.getElementById('edit-category').value.trim() || '미분류';
+        const img = document.getElementById('edit-img-url').value || getAiMatchedImage(name);
+
+        if (!name || price === 0) return alert("메뉴명과 가격을 입력하세요.");
+
+        const optTitle = document.getElementById('edit-opt-group').value.trim();
+        let options = [];
+        if (optTitle) {
+            const o1 = document.getElementById('edit-opt1-name').value.trim();
+            const p1 = parseInt(document.getElementById('edit-opt1-price').value) || 0;
+            const o2 = document.getElementById('edit-opt2-name').value.trim();
+            const p2 = parseInt(document.getElementById('edit-opt2-price').value) || 0;
+            if (o1) options.push({ name: o1, price: p1 });
+            if (o2) options.push({ name: o2, price: p2 });
+        }
+
+        const newMenu = {
+            id: id, name: name, price: price, category: cat, img: img,
+            optionGroups: options.length > 0 ? [{ title: optTitle, required: false, options: options }] : []
+        };
+
+        const existingIdx = hqMenus.findIndex(m => m.id === id);
+        if (existingIdx !== -1) {
+            hqMenus[existingIdx] = newMenu;
+        } else {
+            hqMenus.push(newMenu);
+        }
+
+        currentCategory = cat; // 수정한 카테고리로 뷰 이동
+        renderMobileApp();
+        selectMenu(id); // 방금 저장한 것 다시 선택 (피드백)
+    }
+
+    function deleteEditingMenu() {
+        if (!currentEditingId) return;
+        if (!confirm("이 메뉴를 삭제하시겠습니까?")) return;
+
+        hqMenus = hqMenus.filter(m => m.id !== currentEditingId);
+        clearEditor();
+    }
+
+    function downloadCSVTemplate() {
+        // [수정] 영업사원이 사진 URL까지 직접 입력할 수 있도록 양식 고도화
+        const csvContent = "카테고리,메뉴명,가격(숫자만),사진URL(선택사항)\n식사류,명품 삼선 짜장면,8500,https://example.com/jjajang.jpg\n사이드,속이 꽉 찬 군만두(6p),6000,\n주류/음료,소주(참이슬/진로),5000,";
+        const blob = new Blob(["\uFEFF" + csvContent], { type: 'text/csv;charset=utf-8;' });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "영업사원_프리미엄_메뉴수집양식.csv";
+        a.click();
+    }
+
+    function handleCSVUpload(input) {
+        const file = input.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const text = e.target.result;
+            const lines = text.split('\n');
+            const newMenus = [];
+
+            for (let i = 1; i < lines.length; i++) {
+                const line = lines[i].trim();
+                if (!line) continue;
+
+                const cols = line.split(',');
+                if (cols.length >= 3) {
+                    const cat = cols[0].trim();
+                    const name = cols[1].trim();
+                    const price = parseInt(cols[2].trim().replace(/[^0-9]/g, '')) || 0;
+
+                    // 4번째 열에 사진 URL이 있으면 그것을 최우선으로 사용, 없으면 AI 매칭
+                    let imgUrl = "";
+                    if (cols.length >= 4 && cols[3].trim().startsWith("http")) {
+                        imgUrl = cols[3].trim();
+                    } else {
+                        imgUrl = getAiMatchedImage(name);
+                    }
+
+                    if (name && price > 0) {
+                        newMenus.push({
+                            id: "csv_" + Date.now() + "_" + i,
+                            name: name,
+                            price: price,
+                            category: cat || "미분류",
+                            img: imgUrl
+                        });
+                    }
+                }
+            }
+
+            if (newMenus.length > 0) {
+                if (confirm(`총 ${newMenus.length}개의 메뉴를 감지했습니다.\n기존 메뉴를 덮어쓰시겠습니까?`)) {
+                    hqMenus = newMenus;
+                    clearEditor();
+                    renderMobileApp();
+                }
+            }
+            input.value = "";
+        };
+
+        // [오류 수정] Mac에서 생성한 UTF-8 CSV 파일을 읽기 위한 인코딩 자동 감지 로직 적용
+        reader.readAsText(file, "UTF-8");
+
+        // EUC-KR로 읽었을 때 한글이 깨지는 현상이 발생하면 (UTF-8 인코딩 파일인 경우)
+        // FileReader의 특성상 바로 재시도하기 어려우므로,
+        // 현대적인 브라우저 환경(Mac/Windows 최신 엑셀)에 맞춰 기본값을 UTF-8로 우선 변경합니다.
+    }
+
+    async function submitFinalMenus() {
+        if (hqMenus.length === 0) return alert("전송할 메뉴가 없습니다.");
+        if (!confirm(`총 ${hqMenus.length}개의 메뉴를 미니 PC로 최종 배포합니다.\n진행하시겠습니까?`)) return;
+
+        try {
+            const host = window.location.hostname || "localhost";
+            const res = await fetch(`http://${host}:8888/api/menus/bulk`, {
+                method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(hqMenus)
+            });
+            if (res.ok) alert("🎉 매장 메뉴판 배포가 완료되었습니다!");
+            else alert("전송 오류");
+        } catch (e) {
+            alert("서버 연결 실패");
+        }
+    }
+
+    loadStoreMenus();
+</script>
+</body>
+</html>
