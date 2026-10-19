@@ -354,9 +354,14 @@
             <input id="wifi-ssid-display" placeholder="카페 와이파이 이름" style="width:100%; box-sizing:border-box; padding:12px; border-radius:10px; border:1px solid #444; background:#222; color:white; font-weight:bold; font-size:15px;">
         </div>
 
-        <div style="text-align:left; margin-bottom:25px;">
+        <div style="text-align:left; margin-bottom:20px;">
             <label style="font-size:12px; color:#aaa; font-weight:bold; display:block; margin-bottom:6px;">손님용 Wi-Fi 비밀번호</label>
             <input id="wifi-pw-input" type="text" placeholder="비밀번호 입력" style="width:100%; box-sizing:border-box; padding:12px; border-radius:10px; border:1px solid #444; background:#222; color:white; font-size:16px;">
+        </div>
+
+        <div style="text-align:left; margin-bottom:25px;">
+            <label style="font-size:12px; color:#aaa; font-weight:bold; display:block; margin-bottom:6px;">🎁 보너스 포인트 자동 적립률 (%)</label>
+            <input id="point-rate-input" type="number" value="3" min="0" max="20" style="width:100%; box-sizing:border-box; padding:12px; border-radius:10px; border:1px solid #444; background:#222; color:#ffbc42; font-weight:bold; font-size:16px;">
         </div>
 
         <div style="display:flex; gap:10px;">
@@ -756,25 +761,27 @@
             const data = await res.json();
             document.getElementById('wifi-ssid-display').value = data.ssid || '감지 불가';
             document.getElementById('wifi-pw-input').value = data.password || '';
+            document.getElementById('point-rate-input').value = data.pointRate !== undefined ? data.pointRate : 3;
             document.getElementById('wifi-overlay').style.display = 'flex';
         } catch (e) {
-            alert("Wi-Fi 정보를 불러오지 못했습니다.");
+            alert("설정 정보를 불러오지 못했습니다.");
         }
     }
 
     async function saveWifiSettings() {
         const newSsid = document.getElementById('wifi-ssid-display').value;
         const newPw = document.getElementById('wifi-pw-input').value;
+        const newPointRate = parseInt(document.getElementById('point-rate-input').value) || 3;
         if (!newSsid || !newPw) return alert("와이파이 이름과 비밀번호를 모두 입력해 주세요!");
 
         try {
             const res = await fetch(`http://${window.location.hostname}:8888/api/wifi/update`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ ssid: newSsid, password: newPw })
+                body: JSON.stringify({ ssid: newSsid, password: newPw, pointRate: newPointRate })
             });
             if (res.ok) {
-                alert("✨ Wi-Fi 정보가 저장 및 클라우드에 동기화되었습니다!\n이제 손님들이 정확한 정보로 접속할 수 있습니다.");
+                alert(`✨ 매장 설정(Wi-Fi 및 포인트 적립률 ${newPointRate}%)이 저장 및 동기화되었습니다!`);
                 document.getElementById('wifi-overlay').style.display = 'none';
             }
         } catch (e) {

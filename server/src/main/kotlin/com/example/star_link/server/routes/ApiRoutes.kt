@@ -90,6 +90,7 @@ fun Route.configureApiRoutes(
         val response = buildJsonObject {
             put("ssid", currentSsid)
             put("password", config?.get("wifiPw")?.jsonPrimitive?.content ?: "")
+            put("pointRate", config?.get("pointRate")?.jsonPrimitive?.intOrNull ?: 3)
         }
         call.respondText(response.toString(), ContentType.Application.Json)
     }
@@ -99,14 +100,16 @@ fun Route.configureApiRoutes(
         val json = try { Json.parseToJsonElement(bodyText).jsonObject } catch (_: Exception) { null }
         val newSsid = json?.get("ssid")?.jsonPrimitive?.content
         val newPw = json?.get("password")?.jsonPrimitive?.content
+        val newPointRate = json?.get("pointRate")?.jsonPrimitive?.intOrNull ?: 3
         
         if (newSsid != null && newPw != null) {
             val currentMap = getStoreConfig()?.toMutableMap() ?: mutableMapOf()
             currentMap["wifiSsid"] = JsonPrimitive(newSsid)
             currentMap["wifiPw"] = JsonPrimitive(newPw)
+            currentMap["pointRate"] = JsonPrimitive(newPointRate)
             updateStoreConfig(JsonObject(currentMap))
             
-            println("⚙️ [Wi-Fi 설정 변경] SSID: $newSsid | PW: $newPw")
+            println("⚙️ [매장 설정 변경] SSID: $newSsid | PW: $newPw | 포인트 적립률: $newPointRate%")
             syncFirebase()
             call.respondText("{\"success\": true}", ContentType.Application.Json)
         } else {
@@ -168,6 +171,7 @@ fun Route.configureApiRoutes(
             put("pgClientKey", config?.get("pgClientKey")?.jsonPrimitive?.content ?: "test_ck_D5Ge2x3M8pv991005b6VgL1N0Ene")
             put("paymentMode", activeMode)
             put("tableCount", config?.get("tableCount")?.jsonPrimitive?.intOrNull ?: 20)
+            put("pointRate", config?.get("pointRate")?.jsonPrimitive?.intOrNull ?: 3) // 기본 적립률 3%
             put("isSetupComplete", config?.get("isSetupComplete")?.jsonPrimitive?.booleanOrNull ?: false)
         }
         call.respondText(responseConfig.toString(), ContentType.Application.Json)
@@ -341,6 +345,29 @@ fun Route.configureApiRoutes(
         call.respondText(response.toString(), ContentType.Application.Json)
     }
 
+    // [API] 고객 포인트 조회 엔드포인트
+    get("/api/point/lookup/{phoneKey}") {
+        val phoneKey = call.parameters["phoneKey"] ?: ""
+        if (phoneKey.length < 6) {
+            call.respondText("{\"exists\": false}", ContentType.Application.Json)
+            return@get
+        }
+        val customer = transaction {
+            Customers.select { Customers.phoneKey eq phoneKey }.firstOrNull()
+        }
+        if (customer != null) {
+            val res = buildJsonObject {
+                put("exists", true)
+                put("phoneKey", phoneKey)
+                put("pointBalance", customer[Customers.pointBalance])
+                put("totalSpent", customer[Customers.totalSpent])
+            }
+            call.respondText(res.toString(), ContentType.Application.Json)
+        } else {
+            call.respondText("{\"exists\": false}", ContentType.Application.Json)
+        }
+    }
+
     // [API] PG 결제 승인 요청
     post("/api/payment/confirm") {
         val bodyText = call.receiveText()
@@ -355,6 +382,19 @@ fun Route.configureApiRoutes(
         val tableNumber = json["tableNumber"]?.jsonPrimitive?.intOrNull ?: 1
         val itemsSummary = json["items"]?.jsonArray ?: buildJsonArray { }
         val isDutch = json["isDutchPayment"]?.jsonPrimitive?.booleanOrNull ?: false
+        val phoneKey = json["phoneKey"]?.jsonPrimitive?.content ?: ""
+
+        var earnedPoints = 0
+        if (phoneKey.isNotBlank() && phoneKey.length >= 6 && amount > 0) {
+            val pointRate = getStoreConfig()?.get("pointRate")?.jsonPrimitive?.intOrNull ?: 3
+            earnedPoints = (amount * pointRate) / 100
+            try {
+                DatabaseFactory.addCustomerPoint(phoneKey, earnedPoints, amount.toLong())
+                println("🎁 [포인트 적립 성공] 안심키: $phoneKey | 적립금: +$earnedPoints 점 (결제금액: $amount 원, 적립율: $pointRate%)")
+            } catch (e: Exception) {
+                println("⚠️ [포인트 적립 실패]: ${e.message}")
+            }
+        }
 
         val sessions = getTableSessions()
         if (isDutch) {
@@ -415,7 +455,12 @@ fun Route.configureApiRoutes(
             }
         }
 
-        call.respondText("{\"success\": true, \"message\": \"결제 승인 및 주문 접수가 완료되었습니다.\"}", ContentType.Application.Json)
+        val respObj = buildJsonObject {
+            put("success", true)
+            put("message", "결제 승인 및 주문 접수가 완료되었습니다.")
+            put("earnedPoints", earnedPoints)
+        }
+        call.respondText(respObj.toString(), ContentType.Application.Json)
     }
 
     // [API] 후불 주문 HTTP 접수
@@ -433,6 +478,19 @@ fun Route.configureApiRoutes(
         val itemsSummary = json["items"]?.jsonArray ?: buildJsonArray { }
         val paymentMode = json["paymentMode"]?.jsonPrimitive?.content ?: "POST_PAY"
         val isPaid = json["isPaid"]?.jsonPrimitive?.booleanOrNull ?: false
+        val phoneKey = json["phoneKey"]?.jsonPrimitive?.content ?: ""
+
+        var earnedPoints = 0
+        if (phoneKey.isNotBlank() && phoneKey.length >= 6 && amount > 0) {
+            val pointRate = getStoreConfig()?.get("pointRate")?.jsonPrimitive?.intOrNull ?: 3
+            earnedPoints = (amount * pointRate) / 100
+            try {
+                DatabaseFactory.addCustomerPoint(phoneKey, earnedPoints, amount.toLong())
+                println("🎁 [포인트 적립 성공(후불)] 안심키: $phoneKey | 적립금: +$earnedPoints 점 (주문금액: $amount 원, 적립율: $pointRate%)")
+            } catch (e: Exception) {
+                println("⚠️ [포인트 적립 실패]: ${e.message}")
+            }
+        }
 
         val session = getTableSessions().getOrPut(tableNumber) { TableSession() }
         session.orders.add(buildJsonObject {
@@ -458,7 +516,12 @@ fun Route.configureApiRoutes(
             try { it.send(Frame.Text(orderReceivedPacket)) } catch (_: Exception) {}
         }
 
-        call.respondText("{\"success\": true, \"message\": \"주문이 성공적으로 접수되었습니다.\"}", ContentType.Application.Json)
+        val respObj = buildJsonObject {
+            put("success", true)
+            put("message", "주문이 성공적으로 접수되었습니다.")
+            put("earnedPoints", earnedPoints)
+        }
+        call.respondText(respObj.toString(), ContentType.Application.Json)
     }
 
     // [API] 실시간 메뉴 조회

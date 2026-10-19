@@ -6,6 +6,7 @@ import org.jetbrains.exposed.sql.transactions.transaction
 import java.io.File
 import kotlinx.serialization.json.*
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.LocalTime
 
 // [메뉴 테이블]
@@ -41,6 +42,16 @@ object OrderItems : Table("order_items") {
     override val primaryKey = PrimaryKey(id)
 }
 
+// [고객 포인트 및 식별 테이블 - 6자리 안심 키 방식]
+object Customers : Table("customers") {
+    val id = varchar("id", 50)
+    val phoneKey = varchar("phone_key", 10)
+    val pointBalance = integer("point_balance").default(0)
+    val totalSpent = long("total_spent").default(0)
+    val createdAt = varchar("created_at", 30)
+    override val primaryKey = PrimaryKey(id)
+}
+
 object DatabaseFactory {
     fun init() {
         val dbFile = File("starlink.db")
@@ -48,7 +59,7 @@ object DatabaseFactory {
         
         transaction {
             // 테이블 생성
-            SchemaUtils.create(Menus, Sales, OrderItems)
+            SchemaUtils.create(Menus, Sales, OrderItems, Customers)
             
             // 기존 DB에 sort_order 컬럼 추가 마이그레이션 안전장치
             try {
@@ -278,6 +289,31 @@ object DatabaseFactory {
                     it[paidTotal] = amount
                     it[unpaidTotal] = 0L
                     it[orderCount] = 0
+                }
+            }
+        }
+    }
+
+    // 🎁 [포인트 적립 로직] 6자리 안심 키(phoneKey) 기반 자동 적립
+    fun addCustomerPoint(targetPhoneKey: String, earnedPoints: Int, spentAmount: Long) {
+        if (targetPhoneKey.isBlank() || targetPhoneKey.length < 6) return
+        transaction {
+            val customer = Customers.select { Customers.phoneKey eq targetPhoneKey }.firstOrNull()
+            if (customer != null) {
+                val cId = customer[Customers.id]
+                val currentBalance = customer[Customers.pointBalance]
+                val currentSpent = customer[Customers.totalSpent]
+                Customers.update({ Customers.id eq cId }) {
+                    it[Customers.pointBalance] = currentBalance + earnedPoints
+                    it[Customers.totalSpent] = currentSpent + spentAmount
+                }
+            } else {
+                Customers.insert {
+                    it[Customers.id] = "cust_" + System.currentTimeMillis()
+                    it[Customers.phoneKey] = targetPhoneKey
+                    it[Customers.pointBalance] = earnedPoints
+                    it[Customers.totalSpent] = spentAmount
+                    it[Customers.createdAt] = LocalDateTime.now().toString()
                 }
             }
         }

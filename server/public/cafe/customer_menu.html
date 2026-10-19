@@ -190,7 +190,28 @@
                 <div style="font-size:12px; color:#666;">식사를 마치신 후 나갈 때 카운터에서 계산</div>
             </div>
         </div>
-        <div style="display:flex; justify-content:space-between; margin-top:20px; font-weight:bold;">
+
+        <!-- 🎁 보너스 포인트 적립 섹션 -->
+        <div id="point-section" style="margin: 15px 0; padding: 12px; background: #f8f9fa; border-radius: 12px; border: 1px solid #e9ecef;">
+            <div id="point-registered-view" style="display:none; align-items:center; justify-content:space-between;">
+                <div>
+                    <span style="font-size:13px; font-weight:bold; color:#2e7d32;">✨ 포인트 자동 적립 중</span>
+                    <div style="font-size:12px; color:#666;" id="display-saved-phone">안심키: ***-****</div>
+                </div>
+                <button onclick="resetCustomerPhone()" style="background:none; border:1px solid #ccc; font-size:11px; padding:4px 8px; border-radius:6px; cursor:pointer;">번호변경</button>
+            </div>
+            <div id="point-input-view" style="display:block;">
+                <div style="font-size:13px; font-weight:bold; margin-bottom:6px; color:#333;">🎁 보너스 포인트 첫 방문 등록</div>
+                <div style="display:flex; gap:8px; align-items:center;">
+                    <input type="text" id="phone-mid" placeholder="중간 2자리" maxlength="2" style="width:50%; padding:8px; border:1px solid #ddd; border-radius:8px; text-align:center; font-size:14px;" />
+                    <span>-</span>
+                    <input type="text" id="phone-last" placeholder="뒷자리 4자리" maxlength="4" style="width:50%; padding:8px; border:1px solid #ddd; border-radius:8px; text-align:center; font-size:14px;" />
+                </div>
+                <div style="font-size:11px; color:#888; margin-top:4px;">* 최초 1회 입력 시, 재방문부터는 자동 적립됩니다!</div>
+            </div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; margin-top:15px; font-weight:bold;">
             <span>최종 주문 금액</span>
             <span id="final-pay-amount" style="color:var(--primary);">0원</span>
         </div>
@@ -354,7 +375,6 @@
                 <button onclick="window.location.reload()" style="margin-top:30px; background:none; border:1px solid #444; color:#888; padding:10px 20px; border-radius:10px; font-size:12px;">다시 주문하려면 여기를 누르세요</button>
             </div>
         `;
-        // [해결] 자동으로 /join으로 이동하여 루프가 발생하는 현상 차단
     }
 
     const defaultFallbackMenus = [
@@ -509,7 +529,6 @@
         }).join('');
     }
 
-    // 옵션 모달 전역 변수
     let currentActiveMenu = null;
     let optionModalQty = 1;
 
@@ -524,7 +543,6 @@
             if (menu.optionGroups && menu.optionGroups.length > 0) {
                 openOptionModal(menu);
             } else {
-                // 옵션 없는 메뉴는 즉시 1개 추가
                 addToCartDirect(menu, [], 1);
             }
         } catch (e) {
@@ -598,7 +616,6 @@
     function confirmOptionAddToCart() {
         if (!currentActiveMenu) return;
 
-        // 필수 항목 체크 유효성 검사
         for (let gIdx = 0; gIdx < currentActiveMenu.optionGroups.length; gIdx++) {
             const group = currentActiveMenu.optionGroups[gIdx];
             if (group.required) {
@@ -670,12 +687,52 @@
     function handleCartSubmit() {
         let totalPrice = cart.reduce((sum, i) => sum + (i.unitPrice * i.qty), 0);
         document.getElementById('final-pay-amount').innerText = `${totalPrice.toLocaleString()}원`;
+
+        const savedPhoneKey = localStorage.getItem('starlink_phone_key');
+        const regView = document.getElementById('point-registered-view');
+        const inputView = document.getElementById('point-input-view');
+        if (savedPhoneKey && savedPhoneKey.length >= 6) {
+            if (regView) regView.style.display = 'flex';
+            if (inputView) inputView.style.display = 'none';
+            const displayEl = document.getElementById('display-saved-phone');
+            if (displayEl) displayEl.innerText = `안심키: ***-${savedPhoneKey.slice(-4)}`;
+        } else {
+            if (regView) regView.style.display = 'none';
+            if (inputView) inputView.style.display = 'block';
+            const midEl = document.getElementById('phone-mid');
+            const lastEl = document.getElementById('phone-last');
+            if (midEl) midEl.value = '';
+            if (lastEl) lastEl.value = '';
+        }
+
         document.getElementById('payment-modal').style.display = 'flex';
+    }
+
+    function resetCustomerPhone() {
+        localStorage.removeItem('starlink_phone_key');
+        const regView = document.getElementById('point-registered-view');
+        const inputView = document.getElementById('point-input-view');
+        if (regView) regView.style.display = 'none';
+        if (inputView) inputView.style.display = 'block';
+    }
+
+    function getActivePhoneKey() {
+        let phoneKey = localStorage.getItem('starlink_phone_key');
+        if (!phoneKey || phoneKey.length < 6) {
+            const mid = document.getElementById('phone-mid')?.value?.trim() || '';
+            const last = document.getElementById('phone-last')?.value?.trim() || '';
+            if (mid.length >= 2 && last.length >= 4) {
+                phoneKey = mid.slice(-2) + last.slice(-4);
+                localStorage.setItem('starlink_phone_key', phoneKey);
+            }
+        }
+        return phoneKey || '';
     }
 
     async function submitPostPayOrder() {
         const orderId = "ORD_" + Date.now() + "_" + Math.floor(Math.random() * 1000);
         const total = cart.reduce((sum, i) => sum + (i.unitPrice * i.qty), 0);
+        const phoneKey = getActivePhoneKey();
 
         const itemsSummary = cart.map(item => {
             const optText = item.selectedOptions.map(o => o.name).join(', ');
@@ -694,11 +751,11 @@
             isPaid: false,
             paymentMode: "POST_PAY",
             orderId: orderId,
-            items: itemsSummary
+            items: itemsSummary,
+            phoneKey: phoneKey
         };
 
-
-
+        let earnedPoints = 0;
         try {
             const response = await fetch(`${window.location.origin}/api/order/submit`, {
                 method: "POST",
@@ -712,6 +769,7 @@
             if (result && result.success === false) {
                 throw new Error(result.message || "서버 주문 거절됨");
             }
+            earnedPoints = result.earnedPoints || 0;
         } catch (e) {
             console.error("HTTP 주문 전송 에러", e);
             alert("⚠️ 주문 전송 실패: " + e.message + "\n네트워크 연결을 확인해주세요.");
@@ -733,7 +791,12 @@
         if (typeof renderHistory === 'function') renderHistory();
         saveLastOrder(itemsSummary, total, orderId, "카운터 후불 결제");
         document.getElementById('btn-show-receipt').style.display = 'block';
-        showNotify("📝", "주문 접수 완료!", "주문이 주방으로 성공적으로 전달되었습니다.\n계산은 식사를 마치신 후 카운터에서 진행해 주세요.");
+
+        let msg = "주문이 주방으로 성공적으로 전달되었습니다.\n계산은 식사를 마치신 후 카운터에서 진행해 주세요.";
+        if (earnedPoints > 0) {
+            msg += `\n🎁 보너스 포인트 +${earnedPoints}점 적립 완료!`;
+        }
+        showNotify("📝", "주문 접수 완료!", msg);
     }
 
     let selectedPayMethod = 'KAKAO_PAY';
@@ -769,7 +832,6 @@
     async function startPGPayment() {
         document.getElementById('payment-modal').style.display = 'none';
 
-        // 후불 결제 선택 시
         if (selectedPayMethod === 'POST_PAY') {
             submitPostPayOrder();
             return;
@@ -782,6 +844,7 @@
         let pgClientKey = "test_ck_D5Ge2x3M8pv991005b6VgL1N0Ene";
         const txId = "tx_" + Math.random().toString(36).substr(2, 9).toUpperCase();
         const orderId = "ORD_" + Date.now() + "_" + Math.floor(Math.random() * 1000);
+        const phoneKey = getActivePhoneKey();
 
         const itemsSummary = cart.map(item => {
             const optText = item.selectedOptions.map(o => o.name).join(', ');
@@ -796,6 +859,7 @@
 
         await new Promise(r => setTimeout(r, 1200));
 
+        let earnedPoints = 0;
         try {
             const res = await fetch(`${window.location.origin}/api/payment/confirm`, {
                 method: "POST",
@@ -808,7 +872,8 @@
                     items: itemsSummary,
                     isPaid: true,
                     paymentMode: "PRE_PAY",
-                    payMethod: selectedPayMethod
+                    payMethod: selectedPayMethod,
+                    phoneKey: phoneKey
                 })
             });
             const result = await res.json();
@@ -817,6 +882,7 @@
                 alert("결제 거부: " + (result.message || "이미 결제되었거나 잔액이 부족합니다."));
                 return;
             }
+            earnedPoints = result.earnedPoints || 0;
         } catch (e) {
             console.error("결제 승인 통신 에러", e);
             document.getElementById('loading-overlay').style.display = 'none';
@@ -831,7 +897,12 @@
         cart = []; updateCartBar(); renderMenus();
         saveLastOrder(itemsSummary, total, txId, methodName);
         document.getElementById('btn-show-receipt').style.display = 'block';
-        showNotify("💳", `${methodName} 결제 완료!`, `승인번호: ${txId}\n주문이 주방으로 성공적으로 전달되었습니다.`);
+
+        let successDesc = `승인번호: ${txId}\n주문이 주방으로 성공적으로 전달되었습니다.`;
+        if (earnedPoints > 0) {
+            successDesc += `\n🎁 보너스 포인트 +${earnedPoints}점 적립 완료!`;
+        }
+        showNotify("💳", `${methodName} 결제 완료!`, successDesc);
     }
 
     function renderHistory() {
@@ -982,19 +1053,16 @@
     function closePopup() { document.getElementById('popup-overlay').style.display = 'none'; }
 
     function handleBackAction() {
-        // 1. 옵션 모달이 열려있으면 닫기
         if (document.getElementById('option-modal').style.display === 'flex') {
             closeOptionModal();
             return;
         }
 
-        // 2. 결제 수단 모달이 열려있으면 닫기
         if (document.getElementById('payment-modal').style.display === 'flex') {
             document.getElementById('payment-modal').style.display = 'none';
             return;
         }
 
-        // 3. 장바구니에 담긴 항목이 있으면 장바구니 비우기 확인
         if (cart.length > 0) {
             if (confirm("담아둔 메뉴를 비우고 이전 상태로 돌아가시겠습니까?")) {
                 cart = [];
@@ -1004,7 +1072,6 @@
             return;
         }
 
-        // 4. 주문내역/직원호출/내정보 탭인 경우 -> 메뉴판 탭으로 복귀
         const activeSection = document.querySelector('.view-section.active');
         if (activeSection && activeSection.id !== 'section-menu') {
             const menuTabNav = document.querySelector('.nav-item');
@@ -1012,7 +1079,6 @@
             return;
         }
 
-        // 5. 메뉴판 탭이고 장바구니가 비어있으면 앱 스캐너 첫 화면으로 복귀
         if (window.Android && window.Android.closeWebView) {
             window.Android.closeWebView();
         } else if (window.history.length > 1) {

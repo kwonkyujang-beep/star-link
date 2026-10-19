@@ -190,7 +190,28 @@
                 <div style="font-size:12px; color:#666;">식사를 마치신 후 나갈 때 카운터에서 계산</div>
             </div>
         </div>
-        <div style="display:flex; justify-content:space-between; margin-top:20px; font-weight:bold;">
+
+        <!-- 🎁 보너스 포인트 적립 섹션 -->
+        <div id="point-section" style="margin: 15px 0; padding: 12px; background: #f8f9fa; border-radius: 12px; border: 1px solid #e9ecef;">
+            <div id="point-registered-view" style="display:none; align-items:center; justify-content:space-between;">
+                <div>
+                    <span style="font-size:13px; font-weight:bold; color:#2e7d32;">✨ 포인트 자동 적립 중</span>
+                    <div style="font-size:12px; color:#666;" id="display-saved-phone">안심키: ***-****</div>
+                </div>
+                <button onclick="resetCustomerPhone()" style="background:none; border:1px solid #ccc; font-size:11px; padding:4px 8px; border-radius:6px; cursor:pointer;">번호변경</button>
+            </div>
+            <div id="point-input-view" style="display:block;">
+                <div style="font-size:13px; font-weight:bold; margin-bottom:6px; color:#333;">🎁 보너스 포인트 첫 방문 등록</div>
+                <div style="display:flex; gap:8px; align-items:center;">
+                    <input type="text" id="phone-mid" placeholder="중간 2자리" maxlength="2" style="width:50%; padding:8px; border:1px solid #ddd; border-radius:8px; text-align:center; font-size:14px;" />
+                    <span>-</span>
+                    <input type="text" id="phone-last" placeholder="뒷자리 4자리" maxlength="4" style="width:50%; padding:8px; border:1px solid #ddd; border-radius:8px; text-align:center; font-size:14px;" />
+                </div>
+                <div style="font-size:11px; color:#888; margin-top:4px;">* 최초 1회 입력 시, 재방문부터는 자동 적립됩니다!</div>
+            </div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; margin-top:15px; font-weight:bold;">
             <span>최종 주문 금액</span>
             <span id="final-pay-amount" style="color:var(--primary);">0원</span>
         </div>
@@ -226,37 +247,8 @@
     </section>
 
     <section id="section-pay" class="view-section">
-        <div style="padding: 20px 16px 0; font-weight: bold; font-size: 18px;">🧾 테이블 계산서 & 더치페이</div>
-        <div style="background:white; margin:16px; border-radius:16px; padding:20px; box-shadow:0 4px 15px rgba(0,0,0,0.05); border:1px solid #eee;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; font-size:15px;">
-                <span style="color:#666;">테이블 총 주문금액:</span>
-                <span id="dutch-total-display" style="font-weight:900; font-size:18px; color:var(--primary);">0원</span>
-            </div>
-
-            <div style="border-top:1px dashed #eee; padding-top:15px; margin-bottom:15px;">
-                <div style="font-weight:bold; font-size:14px; margin-bottom:10px;">💡 더치페이 (각자 내기) 계산기</div>
-                <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:6px; margin-bottom:12px;">
-                    <button onclick="calculateDutch(2)" style="padding:8px; background:#f0f5ff; border:1px solid #0050FF; color:#0050FF; border-radius:8px; font-weight:bold; cursor:pointer;">1/2 명</button>
-                    <button onclick="calculateDutch(3)" style="padding:8px; background:#f0f5ff; border:1px solid #0050FF; color:#0050FF; border-radius:8px; font-weight:bold; cursor:pointer;">1/3 명</button>
-                    <button onclick="calculateDutch(4)" style="padding:8px; background:#f0f5ff; border:1px solid #0050FF; color:#0050FF; border-radius:8px; font-weight:bold; cursor:pointer;">1/4 명</button>
-                    <button onclick="calculateDutch(5)" style="padding:8px; background:#f0f5ff; border:1px solid #0050FF; color:#0050FF; border-radius:8px; font-weight:bold; cursor:pointer;">1/5 명</button>
-                </div>
-                <div style="display:flex; gap:8px; align-items:center;">
-                    <input type="number" id="dutch-custom-input" placeholder="직접 낼 금액 입력" style="flex-grow:1; padding:12px; border:1px solid #ccc; border-radius:8px; font-size:15px;">
-                    <button onclick="applyCustomDutch()" style="padding:12px 16px; background:#6750A4; color:white; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">적용</button>
-                </div>
-            </div>
-
-            <div style="background:#f9f9f9; padding:15px; border-radius:12px; text-align:center; margin-bottom:15px;">
-                <div style="font-size:13px; color:#666;">내가 결제할 금액</div>
-                <div id="dutch-pay-amount" style="font-size:22px; font-weight:900; color:var(--error); margin-top:4px;">0원</div>
-            </div>
-
-            <button onclick="payDutchAmount()" style="width:100%; padding:16px; background:#0050FF; color:white; border:none; border-radius:12px; font-weight:bold; font-size:16px; cursor:pointer; box-shadow:0 4px 12px rgba(0,80,255,0.3);">💳 이 금액만큼 간편결제 하기</button>
-        </div>
-
-        <div style="padding: 10px 16px 0; font-weight: bold; font-size: 18px;">간편결제 카드 관리</div>
-        <div id="card-registered-view" style="margin:16px; display:none;">
+        <div style="padding: 20px 16px 0; font-weight: bold; font-size: 18px;">결제 수단 관리</div>
+        <div id="card-registered-view" style="display:none;">
             <div class="card-preview">
                 <div class="card-chip"></div>
                 <div style="font-size:12px; opacity:0.8;">Starlink Secure Card</div>
@@ -264,9 +256,9 @@
             </div>
             <button onclick="unregisterCard()" style="margin:0 16px; color:var(--error); border:none; background:none; font-weight:bold;">등록 해제</button>
         </div>
-        <div id="card-empty-view" style="padding:20px; text-align:center;">
-            <p style="color:#999; font-size:13px;">등록된 간편결제 카드가 없습니다.</p>
-            <button onclick="registerCardMock()" style="margin-top:10px; padding:10px 20px; background:var(--primary); color:white; border:none; border-radius:10px; font-weight:bold;">+ 카드 등록</button>
+        <div id="card-empty-view" style="padding:40px 20px; text-align:center;">
+            <p style="color:#999;">등록된 카드가 없습니다.</p>
+            <button onclick="registerCardMock()" style="margin-top:20px; padding:12px 24px; background:var(--primary); color:white; border:none; border-radius:12px; font-weight:bold;">+ 카드 등록</button>
         </div>
     </section>
 </main>
@@ -342,7 +334,6 @@
 
     let cart = []; // [{ cartKey, menuId, name, basePrice, optionPrice, unitPrice, qty, selectedOptions }]
     let orderHistory = JSON.parse(localStorage.getItem(`orders_${tableNumber}`)) || [];
-    let isDutchPaymentMode = false;
 
     const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
     const wsHost = window.location.protocol === 'https:' ? window.location.host : `${window.location.hostname}:8888`;
@@ -384,7 +375,6 @@
                 <button onclick="window.location.reload()" style="margin-top:30px; background:none; border:1px solid #444; color:#888; padding:10px 20px; border-radius:10px; font-size:12px;">다시 주문하려면 여기를 누르세요</button>
             </div>
         `;
-        // [해결] 자동으로 /join으로 이동하여 루프가 발생하는 현상 차단
     }
 
     const defaultFallbackMenus = [
@@ -467,31 +457,6 @@
 
     let menus = defaultFallbackMenus;
 
-    async function fetchTableSharedOrders() {
-        if (paymentMode !== 'POST_PAY') return;
-        try {
-            const res = await fetch(`${window.location.origin}/api/table/${tableNumber}/orders`);
-            if (res.ok) {
-                const data = await res.json();
-                if (data && Array.isArray(data.orders)) {
-                    orderHistory = data.orders;
-                    localStorage.setItem(`orders_${tableNumber}`, JSON.stringify(orderHistory));
-                    if (typeof renderHistory === 'function') renderHistory();
-                    if (typeof renderPaySection === 'function') renderPaySection();
-                    if (typeof data.remainingAmount === 'number' && data.remainingAmount > 0) {
-                        currentDutchAmount = data.remainingAmount;
-                        const amtEl = document.getElementById('dutch-pay-amount');
-                        if (amtEl) amtEl.innerText = `${currentDutchAmount.toLocaleString()}원`;
-                        const inputEl = document.getElementById('dutch-custom-input');
-                        if (inputEl) inputEl.value = currentDutchAmount;
-                    }
-                }
-            }
-        } catch (e) {
-            console.warn("테이블 공유 주문 내역 로드 실패", e);
-        }
-    }
-
     async function fetchStoreConfig() {
         try {
             const res = await fetch(`${window.location.origin}/api/store/config`);
@@ -503,9 +468,6 @@
                     document.title = `${config.storeName} 스마트 오더 🛎️`;
                 }
                 updateCartBar();
-                if (paymentMode === 'POST_PAY') {
-                    fetchTableSharedOrders();
-                }
             }
         } catch (e) {
             console.warn("매장 설정 조회 실패", e);
@@ -567,7 +529,6 @@
         }).join('');
     }
 
-    // 옵션 모달 전역 변수
     let currentActiveMenu = null;
     let optionModalQty = 1;
 
@@ -582,7 +543,6 @@
             if (menu.optionGroups && menu.optionGroups.length > 0) {
                 openOptionModal(menu);
             } else {
-                // 옵션 없는 메뉴는 즉시 1개 추가
                 addToCartDirect(menu, [], 1);
             }
         } catch (e) {
@@ -656,7 +616,6 @@
     function confirmOptionAddToCart() {
         if (!currentActiveMenu) return;
 
-        // 필수 항목 체크 유효성 검사
         for (let gIdx = 0; gIdx < currentActiveMenu.optionGroups.length; gIdx++) {
             const group = currentActiveMenu.optionGroups[gIdx];
             if (group.required) {
@@ -726,15 +685,54 @@
     }
 
     function handleCartSubmit() {
-        isDutchPaymentMode = false;
         let totalPrice = cart.reduce((sum, i) => sum + (i.unitPrice * i.qty), 0);
         document.getElementById('final-pay-amount').innerText = `${totalPrice.toLocaleString()}원`;
+
+        const savedPhoneKey = localStorage.getItem('starlink_phone_key');
+        const regView = document.getElementById('point-registered-view');
+        const inputView = document.getElementById('point-input-view');
+        if (savedPhoneKey && savedPhoneKey.length >= 6) {
+            if (regView) regView.style.display = 'flex';
+            if (inputView) inputView.style.display = 'none';
+            const displayEl = document.getElementById('display-saved-phone');
+            if (displayEl) displayEl.innerText = `안심키: ***-${savedPhoneKey.slice(-4)}`;
+        } else {
+            if (regView) regView.style.display = 'none';
+            if (inputView) inputView.style.display = 'block';
+            const midEl = document.getElementById('phone-mid');
+            const lastEl = document.getElementById('phone-last');
+            if (midEl) midEl.value = '';
+            if (lastEl) lastEl.value = '';
+        }
+
         document.getElementById('payment-modal').style.display = 'flex';
+    }
+
+    function resetCustomerPhone() {
+        localStorage.removeItem('starlink_phone_key');
+        const regView = document.getElementById('point-registered-view');
+        const inputView = document.getElementById('point-input-view');
+        if (regView) regView.style.display = 'none';
+        if (inputView) inputView.style.display = 'block';
+    }
+
+    function getActivePhoneKey() {
+        let phoneKey = localStorage.getItem('starlink_phone_key');
+        if (!phoneKey || phoneKey.length < 6) {
+            const mid = document.getElementById('phone-mid')?.value?.trim() || '';
+            const last = document.getElementById('phone-last')?.value?.trim() || '';
+            if (mid.length >= 2 && last.length >= 4) {
+                phoneKey = mid.slice(-2) + last.slice(-4);
+                localStorage.setItem('starlink_phone_key', phoneKey);
+            }
+        }
+        return phoneKey || '';
     }
 
     async function submitPostPayOrder() {
         const orderId = "ORD_" + Date.now() + "_" + Math.floor(Math.random() * 1000);
         const total = cart.reduce((sum, i) => sum + (i.unitPrice * i.qty), 0);
+        const phoneKey = getActivePhoneKey();
 
         const itemsSummary = cart.map(item => {
             const optText = item.selectedOptions.map(o => o.name).join(', ');
@@ -753,11 +751,11 @@
             isPaid: false,
             paymentMode: "POST_PAY",
             orderId: orderId,
-            items: itemsSummary
+            items: itemsSummary,
+            phoneKey: phoneKey
         };
 
-
-
+        let earnedPoints = 0;
         try {
             const response = await fetch(`${window.location.origin}/api/order/submit`, {
                 method: "POST",
@@ -771,6 +769,7 @@
             if (result && result.success === false) {
                 throw new Error(result.message || "서버 주문 거절됨");
             }
+            earnedPoints = result.earnedPoints || 0;
         } catch (e) {
             console.error("HTTP 주문 전송 에러", e);
             alert("⚠️ 주문 전송 실패: " + e.message + "\n네트워크 연결을 확인해주세요.");
@@ -792,7 +791,12 @@
         if (typeof renderHistory === 'function') renderHistory();
         saveLastOrder(itemsSummary, total, orderId, "카운터 후불 결제");
         document.getElementById('btn-show-receipt').style.display = 'block';
-        showNotify("📝", "주문 접수 완료!", "주문이 주방으로 성공적으로 전달되었습니다.\n계산은 식사를 마치신 후 카운터에서 진행해 주세요.");
+
+        let msg = "주문이 주방으로 성공적으로 전달되었습니다.\n계산은 식사를 마치신 후 카운터에서 진행해 주세요.";
+        if (earnedPoints > 0) {
+            msg += `\n🎁 보너스 포인트 +${earnedPoints}점 적립 완료!`;
+        }
+        showNotify("📝", "주문 접수 완료!", msg);
     }
 
     let selectedPayMethod = 'KAKAO_PAY';
@@ -828,8 +832,7 @@
     async function startPGPayment() {
         document.getElementById('payment-modal').style.display = 'none';
 
-        // 후불 결제 선택 시 (단, 더치페이 결제일 때는 후불결제가 아닌 간편결제 승인 처리 수행)
-        if (selectedPayMethod === 'POST_PAY' && !isDutchPaymentMode) {
+        if (selectedPayMethod === 'POST_PAY') {
             submitPostPayOrder();
             return;
         }
@@ -840,34 +843,23 @@
 
         let pgClientKey = "test_ck_D5Ge2x3M8pv991005b6VgL1N0Ene";
         const txId = "tx_" + Math.random().toString(36).substr(2, 9).toUpperCase();
-        const orderId = (isDutchPaymentMode ? "DUTCH_" : "ORD_") + Date.now() + "_" + Math.floor(Math.random() * 1000);
+        const orderId = "ORD_" + Date.now() + "_" + Math.floor(Math.random() * 1000);
+        const phoneKey = getActivePhoneKey();
 
-        let itemsSummary = [];
-        let total = 0;
-
-        if (isDutchPaymentMode) {
-            total = currentDutchAmount;
-            itemsSummary = [{
-                name: "더치페이 / 잔액 결제",
-                qty: 1,
-                price: currentDutchAmount,
-                options: "더치페이 분할결제"
-            }];
-        } else {
-            itemsSummary = cart.map(item => {
-                const optText = item.selectedOptions.map(o => o.name).join(', ');
-                return {
-                    name: item.name + (optText ? ` [${optText}]` : ''),
-                    qty: item.qty,
-                    price: item.unitPrice,
-                    options: optText
-                };
-            });
-            total = itemsSummary.reduce((sum, i) => sum + (i.price * i.qty), 0);
-        }
+        const itemsSummary = cart.map(item => {
+            const optText = item.selectedOptions.map(o => o.name).join(', ');
+            return {
+                name: item.name + (optText ? ` [${optText}]` : ''),
+                qty: item.qty,
+                price: item.unitPrice,
+                options: optText
+            };
+        });
+        const total = itemsSummary.reduce((sum, i) => sum + (i.price * i.qty), 0);
 
         await new Promise(r => setTimeout(r, 1200));
 
+        let earnedPoints = 0;
         try {
             const res = await fetch(`${window.location.origin}/api/payment/confirm`, {
                 method: "POST",
@@ -879,9 +871,9 @@
                     tableNumber: parseInt(tableNumber),
                     items: itemsSummary,
                     isPaid: true,
-                    isDutchPayment: isDutchPaymentMode,
-                    paymentMode: paymentMode,
-                    payMethod: selectedPayMethod
+                    paymentMode: "PRE_PAY",
+                    payMethod: selectedPayMethod,
+                    phoneKey: phoneKey
                 })
             });
             const result = await res.json();
@@ -890,6 +882,7 @@
                 alert("결제 거부: " + (result.message || "이미 결제되었거나 잔액이 부족합니다."));
                 return;
             }
+            earnedPoints = result.earnedPoints || 0;
         } catch (e) {
             console.error("결제 승인 통신 에러", e);
             document.getElementById('loading-overlay').style.display = 'none';
@@ -897,39 +890,19 @@
             return;
         }
 
-        if (paymentMode === 'PRE_PAY') {
-            // 선불제(PRE_PAY)인 경우 결제 완료 즉시 테이블 주문 내역 초기화 (다음 손님을 위해 자동 리셋)
-            localStorage.removeItem(`orders_${tableNumber}`);
-            orderHistory = [];
-        } else {
-            // 후불제(POST_PAY)인 경우 누적 유지
-            orderHistory.push({
-                time: new Date().toLocaleTimeString(),
-                items: itemsSummary,
-                status: isDutchPaymentMode ? `더치페이 결제완료(${methodName})` : `주문완료(${methodName})`,
-                total: total,
-                isPaid: true,
-                txId: txId
-            });
-            localStorage.setItem(`orders_${tableNumber}`, JSON.stringify(orderHistory));
-            fetchTableSharedOrders();
-        }
+        orderHistory.push({ time: new Date().toLocaleTimeString(), items: itemsSummary, status: `주문완료(${methodName})`, total: total, isPaid: true, txId: txId });
+        localStorage.setItem(`orders_${tableNumber}`, JSON.stringify(orderHistory));
 
         document.getElementById('loading-overlay').style.display = 'none';
-
-        if (isDutchPaymentMode) {
-            isDutchPaymentMode = false;
-        } else {
-            cart = [];
-            updateCartBar();
-            renderMenus();
-            saveLastOrder(itemsSummary, total, txId, methodName);
-        }
-
+        cart = []; updateCartBar(); renderMenus();
+        saveLastOrder(itemsSummary, total, txId, methodName);
         document.getElementById('btn-show-receipt').style.display = 'block';
-        showNotify("💳", `${methodName} 결제 완료!`, `결제금액: ${total.toLocaleString()}원\n승인번호: ${txId}\n정상적으로 처리되었습니다.`);
-        renderHistory();
-        renderPaySection();
+
+        let successDesc = `승인번호: ${txId}\n주문이 주방으로 성공적으로 전달되었습니다.`;
+        if (earnedPoints > 0) {
+            successDesc += `\n🎁 보너스 포인트 +${earnedPoints}점 적립 완료!`;
+        }
+        showNotify("💳", `${methodName} 결제 완료!`, successDesc);
     }
 
     function renderHistory() {
@@ -966,45 +939,7 @@
         renderPaySection(); updateCartBar();
     }
 
-    let currentDutchAmount = 0;
-
-    function calculateDutch(persons) {
-        let grandTotal = 0;
-        orderHistory.forEach(o => { grandTotal += o.total; });
-        if (grandTotal <= 0) {
-            alert("결제할 주문 내역이 없습니다.");
-            return;
-        }
-        currentDutchAmount = Math.ceil((grandTotal / persons) / 100) * 100;
-        document.getElementById('dutch-pay-amount').innerText = `${currentDutchAmount.toLocaleString()}원`;
-        document.getElementById('dutch-custom-input').value = currentDutchAmount;
-    }
-
-    function applyCustomDutch() {
-        const val = parseInt(document.getElementById('dutch-custom-input').value) || 0;
-        currentDutchAmount = val;
-        document.getElementById('dutch-pay-amount').innerText = `${currentDutchAmount.toLocaleString()}원`;
-    }
-
-    function payDutchAmount() {
-        if (currentDutchAmount <= 0) {
-            alert("결제할 금액을 확인해주세요.");
-            return;
-        }
-        isDutchPaymentMode = true;
-        document.getElementById('final-pay-amount').innerText = `${currentDutchAmount.toLocaleString()}원`;
-        document.getElementById('payment-modal').style.display = 'flex';
-    }
-
     function renderPaySection() {
-        let grandTotal = 0;
-        orderHistory.forEach(o => { grandTotal += o.total; });
-        document.getElementById('dutch-total-display').innerText = `${grandTotal.toLocaleString()}원`;
-        if (currentDutchAmount === 0 && grandTotal > 0) {
-            currentDutchAmount = grandTotal;
-            document.getElementById('dutch-pay-amount').innerText = `${currentDutchAmount.toLocaleString()}원`;
-            document.getElementById('dutch-custom-input').value = currentDutchAmount;
-        }
         document.getElementById('card-registered-view').style.display = secureCardToken ? 'block' : 'none';
         document.getElementById('card-empty-view').style.display = secureCardToken ? 'none' : 'block';
     }
@@ -1118,19 +1053,16 @@
     function closePopup() { document.getElementById('popup-overlay').style.display = 'none'; }
 
     function handleBackAction() {
-        // 1. 옵션 모달이 열려있으면 닫기
         if (document.getElementById('option-modal').style.display === 'flex') {
             closeOptionModal();
             return;
         }
 
-        // 2. 결제 수단 모달이 열려있으면 닫기
         if (document.getElementById('payment-modal').style.display === 'flex') {
             document.getElementById('payment-modal').style.display = 'none';
             return;
         }
 
-        // 3. 장바구니에 담긴 항목이 있으면 장바구니 비우기 확인
         if (cart.length > 0) {
             if (confirm("담아둔 메뉴를 비우고 이전 상태로 돌아가시겠습니까?")) {
                 cart = [];
@@ -1140,7 +1072,6 @@
             return;
         }
 
-        // 4. 주문내역/직원호출/내정보 탭인 경우 -> 메뉴판 탭으로 복귀
         const activeSection = document.querySelector('.view-section.active');
         if (activeSection && activeSection.id !== 'section-menu') {
             const menuTabNav = document.querySelector('.nav-item');
@@ -1148,7 +1079,6 @@
             return;
         }
 
-        // 5. 메뉴판 탭이고 장바구니가 비어있으면 앱 스캐너 첫 화면으로 복귀
         if (window.Android && window.Android.closeWebView) {
             window.Android.closeWebView();
         } else if (window.history.length > 1) {
